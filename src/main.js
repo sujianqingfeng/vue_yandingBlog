@@ -15,7 +15,8 @@ Vue.use(VueMaterial)
 
 Vue.material.registerTheme('app', {
   primary: 'cyan',
-  accent: 'pink'
+  accent: 'pink',
+  warn: 'red'
 })
 
 Vue.material.setCurrentTheme('app')
