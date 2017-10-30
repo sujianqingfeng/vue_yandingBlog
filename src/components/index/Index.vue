@@ -1,5 +1,5 @@
 <template>
-  <div class="yd-blog">
+  <md-layout md-column class="yd-blog">
     <md-toolbar class="md-transparent">
         <md-button class="md-icon-button menu-color" @click="toggleLeftSidenav">
             <md-icon>menu</md-icon>
@@ -11,38 +11,32 @@
     <Navbar ref="nav"/>
 
 
-    <div class="content">
+    <md-layout md-column class="content">
 
-        <md-list class="zero">
-           
-            <md-list-item class="zero">
+        <md-list class="md-transparent " >
+            
+            <md-list-item md-ink-ripple="#03A9F4" class="md-clickable">
+
+             
+            <blog-item title="wo shi biaoti" time="1 day ago" content="content"/>
+            
               
               
+            
+            </md-list-item >
+
+             <md-list-item class="blog-item">
               
-              <blog-item title="wo shi biaoti" time="1 day ago" content="condfjdjaf"/>
+              <blog-item title="wo shi biaoti" time="1 day ago" content="content"/>
             
             </md-list-item>
            
-          </md-list>
+        </md-list>
 
-         <!-- <md-layout md-column  md-gutter>
-          <md-layout md-column @click="goDetail" >
-            <blog-item title="wo shi biaoti" time="1 day ago" content="condfjdjaf"/>
-          </md-layout>
-
-          <md-layout md-column class="blog-item"  >
-            <blog-item title="wo shi biaoti" time="1 day ago" content="condfjdjaf"/>
-
-          </md-layout>
-
-          <md-layout md-column class="blog-item" >
-            <blog-item title="wo shi biaoti" time="1 day ago" content="condfjdjaf"/>
-
-          </md-layout>
-        </md-layout>      -->
-    </div>
+     
+    </md-layout>
   
-  </div>
+  </md-layout>
 </template>
 
 <script>
@@ -71,16 +65,11 @@ export default {
 
 <style scoped>
 
+.menu-color {
+  color: white;
+}
 
 .blog-item{
-  display: block;
-}
-
-.blog-list{
-
-}
-
-.menu-color{
-  color: white
+  margin-top: 20px
 }
 </style>

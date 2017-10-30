@@ -1,20 +1,21 @@
 <template>
-  <div class="blog">
-            <div class="blog-header">
-              <span class="blog-title md-title">{{title}}</span>
-            </div>
-         <p class="blog-content">{{content}}</p>
+  <md-layout class="blog"  md-column md-gutter>
+      <md-layout md-flex='50' class="blog-header">
+        <span class="blog-title md-title">{{title}}</span>
+      </md-layout>
 
-         <div class="bolg-footer">
-            <md-avatar class="md-avatar-icon avatar">
-              <md-icon>home</md-icon>
-            </md-avatar>
-            <span>{{time}}</span>
-         </div>
-         
-        </div>
+      <md-layout md-flex='30'>
+        <p class="blog-content">{{content}}</p>
+      </md-layout>
+      
+      <md-layout class="bolg-footer" md-vertical-align="center">
+        <md-avatar class="md-avatar-icon avatar">
+          <md-icon>home</md-icon>
+        </md-avatar>
+        <span>{{time}}</span>
+      </md-layout>
+  </md-layout>
 </template>
-
 <script>
 export default {
   name: 'BlogItem',
@@ -38,14 +39,12 @@ export default {
   display: flex;
   flex-direction: column;
   height: 350px;
-  background-color: #bdbdbd;
 }
 .blog-header {
-  height: 200px;
   background-image: url("timg22.jpg");
   background-size: cover;
   background-repeat: no-repeat;
-background-position: center;
+  background-position: center;
   display: flex;
   align-items: flex-end;
 }
