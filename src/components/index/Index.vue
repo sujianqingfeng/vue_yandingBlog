@@ -15,7 +15,7 @@
 
         <md-list class="md-transparent " >
             
-            <md-list-item md-ink-ripple="#03A9F4" class="md-clickable">
+            <md-list-item @click='goDetail' md-ink-ripple="#03A9F4" class="md-clickable">
 
              
             <blog-item title="wo shi biaoti" time="1 day ago" content="content"/>
@@ -52,7 +52,7 @@ export default {
       this.$refs.nav.toggle()
     },
     goDetail () {
-      this.$route.push('/detail/36y8749')
+      this.$router.push({path: '/detail/36y8749'})
     }
   },
   components: {
@@ -65,9 +65,6 @@ export default {
 
 <style scoped>
 
-.menu-color {
-  color: white;
-}
 
 .blog-item{
   margin-top: 20px

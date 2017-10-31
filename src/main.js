@@ -21,6 +21,10 @@ Vue.material.registerTheme('app', {
 
 Vue.material.setCurrentTheme('app')
 
+Vue.prototype.$log = function (msg) {
+  console.log(msg)
+}
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',

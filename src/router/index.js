@@ -1,21 +1,26 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from 'components/index/index'
-import BlogDetail from 'components/blog-detail/BlogDetail'
 
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
+  base: '/yanding/',
   routes: [
     {
       path: '/',
-      name: 'index',
-      component: Index,
-      children: [{
-        path: '/detail/:Id',
-        name: 'blogdetail',
-        component: BlogDetail
-      }
+      component: resolve => require(['components/index/indexWarpper'], resolve),
+      children: [
+        {
+          path: '/',
+          name: 'index',
+          component: resolve => require(['components/index/index'], resolve)
+        },
+        {
+          path: '/detail/:id',
+          name: 'blogdetail',
+          component: resolve => require(['components/blog-detail/BlogDetail'], resolve)
+        }
       ]
     }
   ]
