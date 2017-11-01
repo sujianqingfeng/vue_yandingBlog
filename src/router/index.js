@@ -20,6 +20,11 @@ export default new Router({
           path: '/detail/:id',
           name: 'blogdetail',
           component: resolve => require(['components/blog-detail/BlogDetail'], resolve)
+        },
+        {
+          path: '/about',
+          name: 'about',
+          component: resolve => require(['components/about-me/AboutMe'], resolve)
         }
       ]
     }
