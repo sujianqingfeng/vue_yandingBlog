@@ -44,7 +44,7 @@ body .yd-blog {
 
 .content {
   display: block;
-  margin: 8% 20% 0 20%;
+  margin: 8% 20% 8% 20%;
 }
 
 .zero{
@@ -54,4 +54,12 @@ body .yd-blog {
 
 .menu-color {
   color: white;
+}
+
+.md-padding{
+  padding: 18px
+}
+
+.md-margin{
+  margin: 18px
 }

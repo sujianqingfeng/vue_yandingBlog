@@ -21,7 +21,7 @@
             </md-list-item>
             <md-list-item>Category</md-list-item>
             <md-list-item>Serach</md-list-item>
-            <md-list-item>About me</md-list-item>
+            <md-list-item @click="goAboutMe">About me</md-list-item>
           </md-list>
     </md-sidenav>
 </template>
@@ -35,6 +35,9 @@ export default {
   methods: {
     toggle () {
       this.$refs.leftSidenav.toggle()
+    },
+    goAboutMe () {
+      this.$router.push({path: '/about'})
     }
   }
 }
