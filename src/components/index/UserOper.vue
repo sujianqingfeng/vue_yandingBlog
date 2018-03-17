@@ -1,5 +1,5 @@
 <template>
-    <md-card class="user-oper md-padding">
+    <md-card class="user-oper">
 
         <div class="md-layout user-header">
             <md-avatar class="md-large">
@@ -7,15 +7,15 @@
             </md-avatar>
         </div>
 
-        <div class="md-layout user-footer">
-            <div class="md-layout-item">
-                <span>素笺’s Blog</span>
+        <div class="md-layout user-footer md-padding">
+            <div class="md-layout-item  md-layout md-alignment-center-left">
+                <span class="font-color">素笺’s Blog</span>
             </div>
 
-            <div class="md-layout-item">
+            <div class="md-layout-item md-layout md-alignment-center-right">
                 <md-menu md-size="medium" md-align-trigger>
                     <md-button md-menu-trigger class="md-icon-button">
-                        <md-icon>home</md-icon>
+                        <md-icon>view_carousel</md-icon>
                     </md-button>
 
                     <md-menu-content>
@@ -28,7 +28,7 @@
 
                  <md-menu md-size="medium" md-align-trigger>
                     <md-button md-menu-trigger class="md-icon-button">
-                        <md-icon>home</md-icon>
+                        <md-icon>more_vert</md-icon>
                     </md-button>
 
                     <md-menu-content>

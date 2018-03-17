@@ -1,43 +1,53 @@
 <template>
-    <md-sidenav class="md-left" ref="leftSidenav" >
 
-       
+  <md-drawer :md-active.sync="showNavigation" @md-closed="$emit('update:show', false)">
+    <md-toolbar class="md-transparent" md-elevation="0">
+      <span class="md-title">My App name</span>
+    </md-toolbar>
 
-        <md-avatar class="md-avatar-icon md-large avatar">
-            <md-icon>home</md-icon>
-        </md-avatar>
+    <md-list>
+      <md-list-item>
+        <md-icon>move_to_inbox</md-icon>
+        <span class="md-list-item-text">Inbox</span>
+      </md-list-item>
 
+      <md-list-item>
+        <md-icon>send</md-icon>
+        <span class="md-list-item-text">Sent Mail</span>
+      </md-list-item>
 
-        <p class="sing">
-          Wo shi yi ge qian ming
-        </p>
+      <md-list-item>
+        <md-icon>delete</md-icon>
+        <span class="md-list-item-text">Trash</span>
+      </md-list-item>
 
+      <md-list-item>
+        <md-icon>error</md-icon>
+        <span class="md-list-item-text">Spam</span>
+      </md-list-item>
+    </md-list>
+  </md-drawer>
 
-        <md-list>
-            <md-list-item>Plain Text</md-list-item>
-            <md-list-item target="_blank" href="https://google.com">Link</md-list-item>
-            <md-list-item>
-              <router-link to="/components/list">Router View</router-link>
-            </md-list-item>
-            <md-list-item>Category</md-list-item>
-            <md-list-item>Serach</md-list-item>
-            <md-list-item @click="goAboutMe">About me</md-list-item>
-          </md-list>
-    </md-sidenav>
 </template>
 
 <script>
 export default {
   name: 'Navbar',
+  props: {
+    show: {
+      type: Boolean,
+      default: false
+    }
+  },
   data () {
-    return {}
+    return {
+      showNavigation: this.show
+    }
   },
   methods: {
-    toggle () {
-      this.$refs.leftSidenav.toggle()
-    },
+
     goAboutMe () {
-      this.$router.push({path: '/about'})
+      this.$router.push({ path: '/about' })
     }
   }
 }
@@ -45,10 +55,8 @@ export default {
 
 
 <style scoped>
-
-  .avatar{
-    display: block;
-    margin: 20px auto 15px
-  }
-
+.avatar {
+  display: block;
+  margin: 20px auto 15px;
+}
 </style>

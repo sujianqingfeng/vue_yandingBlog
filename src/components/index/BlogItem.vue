@@ -1,29 +1,43 @@
 <template>
-  <md-layout class="blog"  md-column md-gutter>
-      <md-layout md-flex='50' class="blog-header">
-        <span class="blog-title md-title">{{title}}</span>
-      </md-layout>
+  <md-card class="blog-item">
 
-      <md-layout md-flex='30'>
-        <p class="blog-content">{{content}}</p>
-      </md-layout>
-      
-      <md-layout class="bolg-footer" md-vertical-align="center">
-        <md-avatar class="md-avatar-icon avatar">
-          <md-icon>home</md-icon>
-        </md-avatar>
-        <span>{{time}}</span>
-      </md-layout>
-  </md-layout>
+    <md-card-header class="blog-item-header md-padding md-layout md-alignment-bottom-left">
+      <span class="md-title">花开堪折直须折，莫待无花空折枝</span>
+    </md-card-header>
+
+    <div class="md-padding  md-layout md-alignment-center-left">
+      <span> 人生若只如初见，何事秋风悲画扇</span>
+
+      <md-button to="/components/button" class="md-primary">阅读更多</md-button>
+    </div>
+
+    <div class="md-padding md-layout  blog-item-footer md-alignment-center-left">
+      <div class="md-layout-item ">
+        <div class="md-layout-item">
+          <md-avatar>
+            <img :src="avatar" alt="Avatar">
+          </md-avatar>
+          <span class="blog-item-footer-text">素笺淡墨染流年</span>
+          <span class="blog-item-footer-text">2018/3/17</span>
+          <span class="blog-item-footer-text">666</span>
+        </div>
+
+       
+      </div>
+
+      <div class="md-layout-item md-layout md-alignment-center-right">
+        <p class="blog-item-category-text">文字分类</p>
+      </div>
+    </div>
+
+  </md-card>
 </template>
 <script>
 export default {
   name: 'BlogItem',
-  data () {
-    return {
-
-    }
-  },
+  data: () => ({
+    avatar: require('./avatar.jpg')
+  }),
   props: {
     title: String,
     time: String,
@@ -35,42 +49,29 @@ export default {
 
 
 <style scoped>
-.blog {
-  display: flex;
-  flex-direction: column;
-  height: 350px;
+
+.blog-item{
+  margin-top: 20px
 }
-.blog-header {
-  background-image: url("timg22.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-}
-.blog-title {
+
+.blog-item-header {
+  height: 250px;
+  background-image: url("test.png");
   color: white;
-  margin-left: 20px;
-  margin-bottom: 20px;
 }
 
-.blog-content {
-  flex: 1;
-  background-color: white;
-  display: flex;
-  align-items: center;
-  padding-left: 20px
+.blog-item-footer {
+  border-top-width: 1px;
+  border-top-color: grey;
+  border-style: solid;
 }
 
-.bolg-footer {
-  background-color: white;
-  margin-top: 1px;
+.blog-item-footer-text{
+  color: gray;
+  margin-left: 16px
 }
 
-.avatar {
-  margin-left: 20px;
-  margin-top: 8px;
-  margin-bottom: 8px
+.blog-item-category-text{
+  color: "#607D8B"
 }
-
 </style>
