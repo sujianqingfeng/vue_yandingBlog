@@ -1,72 +1,61 @@
 <template>
-  <md-layout md-column class="yd-blog">
-    <md-toolbar class="md-transparent">
-        <md-button class="md-icon-button menu-color" @click="toggleLeftSidenav">
-            <md-icon>menu</md-icon>
-        </md-button>
-
-    <h2 class="md-title menu-color">My Blog</h2>
-    </md-toolbar>
-
-    <Navbar ref="nav"/>
+  <div class="page-container">
+    
+    <div class="blog-header md-layout ">
+        <md-icon class="menu">menu</md-icon>
+    </div>
 
 
-    <md-layout md-column class="content">
+    <div class="blog-content  md-layout md-gutter">
+      <div class="md-layout-item md-size-65">
+        <user-info></user-info>
+      </div>
+      <div class="md-layout-item md-size-25">
+          <user-oper/>
+      </div>
+    </div>
 
-        <md-list class="md-transparent " >
-            
-            <md-list-item @click='goDetail' md-ink-ripple="#03A9F4" class="md-clickable">
-
-             
-            <blog-item title="wo shi biaoti" time="1 day ago" content="content"/>
-            
-              
-              
-            
-            </md-list-item >
-
-             <md-list-item class="blog-item">
-              
-              <blog-item title="wo shi biaoti" time="1 day ago" content="content"/>
-            
-            </md-list-item>
-           
-        </md-list>
-
-     
-    </md-layout>
-  
-  </md-layout>
+   
+  </div>
 </template>
 
+
+
 <script>
-import Navbar from 'components/index/Navbar'
-import BlogItem from 'components/index/BlogItem'
+import UserInfo from './UserInfo'
+import UserOper from './UserOper'
+
 export default {
   name: 'index',
-  data () {
-    return {}
-  },
-  methods: {
-    toggleLeftSidenav () {
-      this.$refs.nav.toggle()
-    },
-    goDetail () {
-      this.$router.push({path: '/detail/36y8749'})
-    }
-  },
+  data: () => ({
+    menuVisible: false
+  }),
   components: {
-    Navbar,
-    BlogItem
+    UserInfo,
+    UserOper
   }
 }
 </script>
 
+<style >
 
-<style scoped>
+.page-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center
+}
 
+.blog-header {
+  width: 100%;
+  height: 200px;
+}
+.menu {
+  margin: 16px;
+}
 
-.blog-item{
-  margin-top: 20px
+.blog-content {
+  width: 65%;
+  margin: 10px auto
 }
 </style>
+

@@ -5,7 +5,8 @@ import App from './App'
 import router from './router'
 
 import VueMaterial from 'vue-material'
-import 'vue-material/dist/vue-material.css'
+import 'vue-material/dist/vue-material.min.css'
+import 'vue-material/dist/theme/default.css'
 
 import 'assets/css/index.css'
 import 'static/reset.css'
@@ -13,13 +14,13 @@ import 'static/reset.css'
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
 
-Vue.material.registerTheme('app', {
-  primary: 'cyan',
-  accent: 'pink',
-  warn: 'red'
-})
+// Vue.material.registerTheme('app', {
+//   primary: 'cyan',
+//   accent: 'pink',
+//   warn: 'red'
+// })
 
-Vue.material.setCurrentTheme('app')
+// Vue.material.setCurrentTheme('app')
 
 Vue.prototype.$log = function (msg) {
   console.log(msg)

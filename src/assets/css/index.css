@@ -3,7 +3,7 @@
 (max-width: 1024px) and (-webkit-max-device-pixel-ratio: 1.5),
 (max-width: 1024px) and (max-resolution: 1.5dppx) {
   body::before {
-    background: url('../img/timg.jpg') no-repeat;
+    background-color:"#E9EBEC"
   }
 }
 
@@ -12,7 +12,7 @@
 (min-width: 1025px) and (max-width: 2048px) and (-webkit-max-device-pixel-ratio: 1.5),
 (min-width: 1025px) and (max-width: 2048px) and (max-resolution: 1.5dppx) {
   body::before {
-    background: url('../img/timg.jpg') no-repeat;
+    background-color: "#E9EBEC"
   }
 }
 
@@ -21,7 +21,7 @@
 (min-width: 2049px) and (-webkit-max-device-pixel-ratio: 1.5),
 (min-width: 2049px) and (max-resolution: 1.5dppx) {
   body::before {
-    background: url('../img/bg_2048.jpg') no-repeat;
+    background-color: "#E9EBEC"
   }
 }
 
