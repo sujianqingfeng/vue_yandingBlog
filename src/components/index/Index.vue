@@ -41,7 +41,7 @@
           <span class="md-list-item-text">关于我</span>
         </md-list-item>
 
-         <md-list-item>
+         <md-list-item  to="friend">
           <md-icon class="fa fa-link"></md-icon>
           <span class="md-list-item-text">友情链接</span>
         </md-list-item>
@@ -105,7 +105,6 @@ export default {
   methods: {
     homeClick: () => {
       this.menuVisible = !this.menuVisible
-      // console.log(this.menuVisible)
     }
   },
   components: {

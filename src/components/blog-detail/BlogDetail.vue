@@ -1,110 +1,108 @@
 <template>
-  <md-layout md-column class="yd-blog">
-    <md-toolbar class="md-transparent menu-color ">
-        <md-button class="md-icon-button menu-color">
-            <md-icon>arrow_back</md-icon>
-        </md-button>
+  <div class="page-container">
+    <div class="blog-detail">
 
-    </md-toolbar>
+      <md-card class="blog-detail-header">
+        <md-card-header class="blog-detail-header-bg  md-padding md-layout md-alignment-bottom-left">
+          <span class="md-title">花开堪折直须折，莫待无花空折枝</span>
+        </md-card-header>
 
-    <md-layout md-column class="content">
-      <md-layout  class="blog-header">
-        <span class="blog-title md-title menu-color">dfjdkfj</span>
-      </md-layout>
+        <div class="md-padding md-layout  blog-detail-info md-alignment-center-left">
+          <div class="md-layout-item ">
+            <div class="md-layout-item">
+              <md-avatar>
+                <img :src="avatar" alt="Avatar">
+              </md-avatar>
+              <span class="blog-detail-info-text">素笺淡墨染流年</span>
+              <span class="blog-detail-info-text">2018/3/17</span>
+              <span class="blog-detail-info-text">666</span>
+            </div>
 
-      
-        <md-layout  md-align="start" class="blog-content-header">
-         
-          
-           <md-avatar class="md-avatar-icon md-accent md-margin">
-             <md-icon>favorite</md-icon>
-            </md-avatar>
+          </div>
 
-             
-            <span>素笺清风染流年</span>
-        </md-layout>
+          <div class="md-layout-item md-layout md-alignment-center-right">
 
-
-        <md-layout class="blog-content md-padding">
-
-          我是一只小小鸟，小呀小小鸟！！！
-
-        </md-layout>
-
-        <md-layout class="md-padding-10 button-warpper">
-
-         <md-layout class="pre-button">
-            <md-button class="md-icon-button menu-color">
-             <md-icon >arrow_back</md-icon>
+            <md-button class="md-icon-button">
+              <md-icon>view_carousel</md-icon>
             </md-button>
-             
-           
-         </md-layout>
-         <md-layout class="next-button">
-            <md-button class="md-icon-button menu-color">
-              <md-icon  >arrow_forward</md-icon>
+
+            <md-button class="md-icon-button">
+              <md-icon>view_carousel</md-icon>
             </md-button>
-           
-         </md-layout>
 
-        </md-layout>
+          </div>
+        </div>
+
+        <div class="md-layout md-padding blog-detail-content">
+          春水初生，春林初盛，春风十里，不如你。
+
+        </div>
+
+      </md-card>
+
+    </div>
+    <div class="blog-footer md-padding md-alignment-center-center">
+      <div class="md-layout-item ">
+        <blog-footer/>
+      </div>
+    </div>
 
 
+  </div>
 
-    </md-layout>
-  </md-layout>
 </template>
 
 <script>
+import BlogFooter from '../index/BlogFooter'
 export default {
-  name: '',
+  name: 'blog-detail',
   data () {
-    return {}
+    return {
+      avatar: require('../index/avatar.jpg')
+    }
+  },
+  components: {
+    BlogFooter
   }
 }
 </script>
 
 
-<style scoped>
-.blog-header {
-  height: 200px;
+<style>
+.blog-detail {
+  width: 65%;
+  display: flex;
+  margin: auto;
+  flex-direction: column;
+}
+
+.blog-detail-header {
+  margin-top: 200px;
+}
+
+.blog-detail-header-bg {
+  height: 250px;
   background-image: url("timg22.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
+  color: white;
 }
 
-.blog-title {
-  padding: 18px;
+.blog-detail-info {
+  border-bottom-color: grey;
+  border-bottom-width: 1px;
+  border-style: solid;
 }
 
-.blog-content-header {
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
+.blog-detail-info-text {
+  margin-left: 16px;
+}
+
+.blog-detail-content {
+  height: 1000px;
+}
+
+.blog-footer {
+  margin-top: 100px;
+  width: 100%;
   background-color: white;
-  align-items: center;
-}
-
-.blog-content {
-  margin-top: 1px;
-  background-color: white;
-  height: 1200px;
-}
-
-.button-warpper {
-  display: flex;
-}
-
-.pre-button {
-  flex:1;
-}
-.next-button {
-  flex:1;
-  display: flex;
-  justify-content: flex-end;
-
 }
 </style>

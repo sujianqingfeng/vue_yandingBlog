@@ -8,7 +8,7 @@
     <div class="md-padding  md-layout md-alignment-center-left">
       <span> 人生若只如初见，何事秋风悲画扇</span>
 
-      <md-button to="/components/button" class="md-primary">阅读更多</md-button>
+      <md-button to="/detail/dddd"   class="md-primary">阅读更多</md-button>
     </div>
 
     <div class="md-padding md-layout  blog-item-footer md-alignment-center-left">
