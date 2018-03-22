@@ -11,16 +11,10 @@ import 'vue-material/dist/theme/default.css'
 import 'assets/css/index.css'
 import 'static/reset.css'
 
+import store from 'store/index.js'
+
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
-
-// Vue.material.registerTheme('app', {
-//   primary: 'cyan',
-//   accent: 'pink',
-//   warn: 'red'
-// })
-
-// Vue.material.setCurrentTheme('app')
 
 Vue.prototype.$log = function (msg) {
   console.log(msg)
@@ -30,6 +24,7 @@ Vue.prototype.$log = function (msg) {
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: {
     App

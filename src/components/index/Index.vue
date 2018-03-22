@@ -93,19 +93,32 @@ import BlogItem from './BlogItem'
 import BlogPagination from './BlogPagination'
 import BlogFooter from './BlogFooter'
 import Navbar from './Navbar'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'index',
   data () {
     return {
       menuVisible: false,
-      avatar: require('./avatar.jpg')
+      avatar: require('./avatar.jpg'),
+      expandNews: []
     }
   },
+  computed: {
+    ...mapGetters({
+      list: 'list'
+    })
+  },
   methods: {
+    ...mapActions([
+      'getBlogList'
+    ]),
     homeClick: () => {
       this.menuVisible = !this.menuVisible
     }
+  },
+  created () {
+    this.getBlogList(11)
   },
   components: {
     UserInfo,

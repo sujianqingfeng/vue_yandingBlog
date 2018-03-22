@@ -9,12 +9,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: resolve => require(['components/index/indexWarpper'], resolve),
+      component: resolve => require(['components/index/IndexWarpper'], resolve),
       children: [
         {
           path: '/',
           name: 'index',
-          component: resolve => require(['components/index/index'], resolve)
+          component: resolve => require(['components/index/Index'], resolve)
         },
         {
           path: '/detail/:id',
