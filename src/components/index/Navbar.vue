@@ -37,6 +37,11 @@
           <span class="md-list-item-text">友情链接</span>
         </md-list-item>
 
+          <md-list-item to="edit">
+          <md-icon class="fa fa-link"></md-icon>
+          <span class="md-list-item-text">编辑</span>
+        </md-list-item>
+
       </md-list>
     </md-drawer>
 

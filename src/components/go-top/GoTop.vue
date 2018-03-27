@@ -29,11 +29,7 @@ export default {
         this.timer && clearInterval(this.timer)
       }
 
-      if (curHeight > viewHeight + 100) {
-        this.show = true
-      } else {
-        this.show = false
-      }
+      this.show = (curHeight > viewHeight + 100)
       this.beforeScrollTop = curHeight
     },
     goTop () {

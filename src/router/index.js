@@ -30,6 +30,11 @@ export default new Router({
           path: '/friend',
           name: 'friend',
           component: resolve => require(['components/friend/FriendLink'], resolve)
+        },
+        {
+          path: '/edit',
+          name: 'edit',
+          component: resolve => require(['components/edit-blog/EditBlog'], resolve)
         }
       ]
     }
