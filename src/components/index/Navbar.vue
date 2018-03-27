@@ -1,32 +1,44 @@
 <template>
+<md-drawer :md-active.sync="showNavigation" >
 
-  <md-drawer :md-active.sync="showNavigation" @md-closed="$emit('update:show', false)">
-    <md-toolbar class="md-transparent" md-elevation="0">
-      <span class="md-title">My App name</span>
-    </md-toolbar>
+      <div class="drawer-header md-layout">
+        {{showNavigation}}
+        <md-avatar>
+          <img :src="avatar" alt="Avatar">
+        </md-avatar>
 
-    <md-list>
-      <md-list-item>
-        <md-icon>move_to_inbox</md-icon>
-        <span class="md-list-item-text">Inbox</span>
-      </md-list-item>
+      </div>
 
-      <md-list-item>
-        <md-icon>send</md-icon>
-        <span class="md-list-item-text">Sent Mail</span>
-      </md-list-item>
+      <md-list>
 
-      <md-list-item>
-        <md-icon>delete</md-icon>
-        <span class="md-list-item-text">Trash</span>
-      </md-list-item>
+        <md-list-item to="/yanding">
+          <md-icon>home</md-icon>
+          <span class="md-list-item-text">主页</span>
+        </md-list-item>
 
-      <md-list-item>
-        <md-icon>error</md-icon>
-        <span class="md-list-item-text">Spam</span>
-      </md-list-item>
-    </md-list>
-  </md-drawer>
+        <md-list-item md-expand :md-expanded.sync="expandNews">
+          <md-icon>library_books</md-icon>
+          <span class="md-list-item-text">类别</span>
+
+          <md-list slot="md-expand">
+            <md-list-item class="md-inset">World</md-list-item>
+            <md-list-item class="md-inset">Europe</md-list-item>
+            <md-list-item class="md-inset">South America</md-list-item>
+          </md-list>
+        </md-list-item>
+
+        <md-list-item to="about">
+          <md-icon>account_circle</md-icon>
+          <span class="md-list-item-text">关于我</span>
+        </md-list-item>
+
+        <md-list-item to="friend">
+          <md-icon class="fa fa-link"></md-icon>
+          <span class="md-list-item-text">友情链接</span>
+        </md-list-item>
+
+      </md-list>
+    </md-drawer>
 
 </template>
 
@@ -41,14 +53,23 @@ export default {
   },
   data () {
     return {
-      showNavigation: this.show
+      avatar: require('./avatar.jpg'),
+      expandNews: []
+    }
+  },
+  computed: {
+    showNavigation: {
+      get: function () {
+        return this.show
+      },
+      set: function (v) {
+        this.$emit('update:show', v)
+      }
+
     }
   },
   methods: {
 
-    goAboutMe () {
-      this.$router.push({ path: '/about' })
-    }
   }
 }
 </script>

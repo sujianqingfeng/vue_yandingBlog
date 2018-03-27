@@ -7,22 +7,25 @@
 
     <div class="md-padding  md-layout md-alignment-center-left">
       <span> 人生若只如初见，何事秋风悲画扇</span>
-
-      <md-button to="/detail/dddd"   class="md-primary">阅读更多</md-button>
+      <md-button to="/detail/dddd" class="md-primary">阅读更多</md-button>
     </div>
 
-    <div class="md-padding md-layout  blog-item-footer md-alignment-center-left">
-      <div class="md-layout-item ">
-        <div class="md-layout-item">
+    <div class="md-padding md-layout blog-item-footer md-alignment-center-left">
+      <div class="md-layout-item md-layout md-gutter">
+
+        <div class="md-layout-item md-size-10   md-smail-size-15 md-xsmall-size-20">
           <md-avatar>
             <img :src="avatar" alt="Avatar">
           </md-avatar>
-          <span class="blog-item-footer-text">素笺淡墨染流年</span>
-          <span class="blog-item-footer-text">2018/3/17</span>
-          <span class="blog-item-footer-text">666</span>
         </div>
 
-       
+        <div class="md-layout-item md-size-70  md-smail-size-85 md-xsmall-size-80 blog-item-footer-text-warpper">
+          <p>
+            <span class="blog-item-footer-text">素笺淡墨染流年</span>
+          </p>
+          <span class="blog-item-footer-text">2018/3/17 6666</span>
+        </div>
+
       </div>
 
       <div class="md-layout-item md-layout md-alignment-center-right">
@@ -49,9 +52,8 @@ export default {
 
 
 <style scoped>
-
-.blog-item{
-  margin-top: 20px
+.blog-item {
+  margin-top: 20px;
 }
 
 .blog-item-header {
@@ -66,12 +68,19 @@ export default {
   border-style: solid;
 }
 
-.blog-item-footer-text{
-  color: gray;
-  margin-left: 16px
+.blog-item-footer-text-warpper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.blog-item-category-text{
-  color: "#607D8B"
+.blog-item-footer-text {
+  color: gray;
+  margin-left: 12px;
+  padding: 4px;
+}
+
+.blog-item-category-text {
+  color: "#607D8B";
 }
 </style>

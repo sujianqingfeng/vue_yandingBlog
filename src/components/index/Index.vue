@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <div class="blog-containert">
 
     <div class="blog-header md-layout ">
       <md-button @click="menuVisible=true" class="md-icon-button">
@@ -8,71 +8,33 @@
 
     </div>
 
-    <md-drawer :md-active.sync="menuVisible">
+    <navbar :show.sync='menuVisible'/>
 
-      <div class="drawer-header md-layout">
-
-        <md-avatar>
-          <img :src="avatar" alt="Avatar">
-        </md-avatar>
-
+    <div class="blog-content-warpper">
+      <div class="blog-content md-layout md-gutter">
+        <div class="md-layout-item  md-size-65 md-smail-size-100 md-xsmall-size-100">
+          <user-info/>
+        </div>
+        <div class="md-layout-item md-size-35 md-smail-size-100 md-xsmall-size-100">
+          <user-oper/>
+        </div>
       </div>
 
-      <md-list>
+      <div class="blog-item-content md-layout md-gutter">
 
-        <md-list-item>
-          <md-icon>home</md-icon>
-          <span class="md-list-item-text">主页</span>
-        </md-list-item>
-
-        <md-list-item md-expand :md-expanded.sync="expandNews">
-          <md-icon>library_books</md-icon>
-          <span class="md-list-item-text">类别</span>
-
-          <md-list slot="md-expand">
-            <md-list-item class="md-inset">World</md-list-item>
-            <md-list-item class="md-inset">Europe</md-list-item>
-            <md-list-item class="md-inset">South America</md-list-item>
-          </md-list>
-        </md-list-item>
-
-         <md-list-item>
-          <md-icon>account_circle</md-icon>
-          <span class="md-list-item-text">关于我</span>
-        </md-list-item>
-
-         <md-list-item  to="friend">
-          <md-icon class="fa fa-link"></md-icon>
-          <span class="md-list-item-text">友情链接</span>
-        </md-list-item>
-
-       
-
-      </md-list>
-    </md-drawer>
-
-    <div class="blog-content  md-layout md-gutter">
-      <div class="md-layout-item md-size-70">
-        <user-info/>
+        <div class="md-layout-item ">
+          <blog-item/>
+          <blog-item/>
+          <blog-item/>
+        </div>
       </div>
-      <div class="md-layout-item md-size-30">
-        <user-oper/>
-      </div>
-    </div>
 
-    <div class="blog-item-content md-layout md-gutter">
-
-      <div class="md-layout-item ">
-        <blog-item/>
-        <blog-item/>
-        <blog-item/>
+      <div class="blog-pagination md-layout md-gutter">
+        <div class="md-layout-item">
+          <blog-pagination/>
+        </div>
       </div>
-    </div>
 
-    <div class="blog-pagination md-layout md-gutter">
-      <div class="md-layout-item">
-        <blog-pagination/>
-      </div>
     </div>
 
     <div class="blog-footer md-padding md-alignment-center-center">
@@ -110,9 +72,7 @@ export default {
     })
   },
   methods: {
-    ...mapActions([
-      'getBlogList'
-    ]),
+    ...mapActions(['getBlogList']),
     homeClick: () => {
       this.menuVisible = !this.menuVisible
     }
@@ -132,10 +92,9 @@ export default {
 </script>
 
 <style >
-.page-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+.blog-containert {
+  width: 100%;
+  height: 100%;
 }
 
 .blog-header {
@@ -151,17 +110,22 @@ export default {
   background-image: url("test.png");
 }
 
+.blog-content-warpper {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
 .blog-content {
-  width: 65%;
+  width: 100%;
 }
 
 .blog-item-content {
-  width: 65%;
+  max-width: 900px;
   margin-top: 25px;
 }
 
 .blog-pagination {
-  width: 65%;
+  max-width: 900px;
 }
 
 .blog-footer {

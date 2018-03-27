@@ -8,7 +8,7 @@
         </div>
 
         <div class="md-layout user-footer md-padding">
-            <div class="md-layout-item  md-layout md-alignment-center-left">
+            <div class="md-layout-item md-layout md-alignment-center-left">
                 <span class="font-color">素笺’s Blog</span>
             </div>
 
@@ -25,8 +25,7 @@
                     </md-menu-content>
                 </md-menu>
 
-
-                 <md-menu md-size="medium" md-align-trigger>
+                <md-menu md-size="medium" md-align-trigger>
                     <md-button md-menu-trigger class="md-icon-button">
                         <md-icon>more_vert</md-icon>
                     </md-button>
@@ -57,9 +56,8 @@ export default {
 </script>
 
 <style >
-.user-header{
-    height: 300px;
+.user-header {
+  height: 300px;
 }
-
 </style>
 

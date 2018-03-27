@@ -34,6 +34,7 @@ export default {
 .friend-item {
   height: 60px;
   background-color: gold;
+  margin-top: 16px;
 }
 
 .friend-item-img {

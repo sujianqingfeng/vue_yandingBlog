@@ -1,30 +1,31 @@
 <template>
-    <div class="page-container">
+    <div class="blog-containert">
 
-        <div class="friend">
-            
-            <div class="friend-header">
+        <div class="friend-header">
 
-            </div>
+        </div>
 
+        <div class="friend-container">
             <div class="md-layout md-gutter">
 
-                <div class="md-layout-item md-size-25">
+                <div class="md-layout-item md-size-33 md-smail-size-50 md-xsmall-size-100">
                     <friend-item></friend-item>
                 </div>
 
-                <div class="md-layout-item md-size-25">
+                <div class="md-layout-item md-size-33 md-smail-size-50 md-xsmall-size-100">
                     <friend-item></friend-item>
                 </div>
 
-                <div class="md-layout-item md-size-25">
+                <div class="md-layout-item md-size-33 md-smail-size-50 md-xsmall-size-100">
                     <friend-item></friend-item>
                 </div>
 
-                <div class="md-layout-item md-size-25">
-                    <friend-item></friend-item>
-                </div>
+            </div>
+        </div>
 
+        <div class="blog-footer md-padding md-alignment-center-center">
+            <div class="md-layout-item ">
+                <blog-footer/>
             </div>
         </div>
 
@@ -34,28 +35,24 @@
 
 <script>
 import FriendItem from './FriendItem'
+import BlogFooter from 'components/index/BlogFooter'
 
 export default {
   name: 'friend',
   components: {
-    FriendItem
+    FriendItem,
+    BlogFooter
   }
 }
 </script>
 
 <style>
-.friend {
- width: 65%;
-  display: flex;
-  margin: auto;
-  flex-direction: column;
-}
-
 .friend-container {
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .friend-header {
   height: 100px;
 }
-
 </style>

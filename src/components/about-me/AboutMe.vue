@@ -1,85 +1,107 @@
 <template>
-  <md-layout md-column class="yd-blog">
-    <md-toolbar class="md-transparent menu-color ">
-        <md-button class="md-icon-button menu-color">
-            <md-icon>arrow_back</md-icon>
-        </md-button>
+  <div class="blog-container">
+    <div class="blog-about">
 
-    </md-toolbar>
+      <md-card class="blog-detail-header">
+        <md-card-header class="blog-detail-header-bg  md-padding md-layout md-alignment-bottom-left">
+          <span class="md-title">花开堪折直须折，莫待无花空折枝</span>
+        </md-card-header>
 
-    <md-layout md-column class="content">
-      <md-layout  class="blog-header">
-        <span class="blog-title md-title">About Me</span>
-      </md-layout>
+        <div class="md-padding md-layout  blog-detail-info md-alignment-center-left">
 
+          <div class="md-layout-item md-size-70 md-layout md-alignment-center-left">
 
+            <div class="blog-detail-avatar">
+              <md-avatar>
+                <img :src="avatar" alt="Avatar">
+              </md-avatar>
+            </div>
 
-      <md-layout  md-align="start" class="blog-content-header">
-         
-          
-           <md-avatar class="md-avatar-icon md-accent md-margin">
-             <md-icon>favorite</md-icon>
-            </md-avatar>
+            <div class="blog-detail-text-warpper">
+              <p class="blog-detail-info-text">素笺淡墨染流年</p>
+            </div>
 
-             
-            <span>素笺清风染流年</span>
-      </md-layout>
+          </div>
 
+          <div class="md-layout-item md-size-30 md-layout md-alignment-center-right">
 
-      <md-layout class="about-content md-padding">
+            <md-button class="md-icon-button">
+              <md-icon>view_carousel</md-icon>
+            </md-button>
+          </div>
+        </div>
 
-          我是一只小小鸟，小呀小小鸟！！！
+        <div class="md-layout md-padding blog-detail-content">
+          春水初生，春林初盛，春风十里，不如你。
 
-      </md-layout>
+        </div>
 
+      </md-card>
 
+    </div>
+    <div class="blog-footer md-padding md-alignment-center-center">
+      <div class="md-layout-item ">
+        <blog-footer/>
+      </div>
+    </div>
 
-    </md-layout>
-  </md-layout>
+  </div>
+
 </template>
 
 <script>
+import BlogFooter from '../index/BlogFooter'
 export default {
-  name: '',
+  name: 'blog-detail',
   data () {
     return {
+      avatar: require('../index/avatar.jpg')
     }
+  },
+  components: {
+    BlogFooter
   }
 }
 </script>
 
 
-<style scoped>
-.blog-header {
-  height: 200px;
+<style>
+.blog-about {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.blog-detail-header {
+  margin-top: 200px;
+}
+
+.blog-detail-header-bg {
+  height: 250px;
   background-image: url("timg22.jpg");
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center;
-  display: flex;
-  align-items: flex-end;
-  color:white
+  color: white;
 }
 
-
-.blog-title{
-  padding: 18px
+.blog-detail-info {
+  border-bottom-color: grey;
+  border-bottom-width: 1px;
+  border-style: solid;
 }
 
+.blog-detail-text-warpper {
+}
 
+.blog-detail-info-text {
+  margin-left: 12px;
+  padding: 4px;
+}
 
-.blog-content-header{
-  display: flex;
-  flex-direction:row;
-  justify-content: flex-start;
+.blog-detail-content {
+  height: 1000px;
+}
+
+.blog-footer {
+  margin-top: 100px;
+  width: 100%;
   background-color: white;
-  align-items: center
 }
-
-.about-content{
-  margin-top: 1px;
-  background-color: white;
-  height: 1200px;
-}
-
 </style>

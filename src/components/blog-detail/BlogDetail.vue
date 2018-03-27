@@ -1,5 +1,5 @@
 <template>
-  <div class="page-container">
+  <div class="blog-container">
     <div class="blog-detail">
 
       <md-card class="blog-detail-header">
@@ -8,19 +8,25 @@
         </md-card-header>
 
         <div class="md-padding md-layout  blog-detail-info md-alignment-center-left">
-          <div class="md-layout-item ">
-            <div class="md-layout-item">
-              <md-avatar>
-                <img :src="avatar" alt="Avatar">
-              </md-avatar>
-              <span class="blog-detail-info-text">素笺淡墨染流年</span>
+
+          <div class="md-layout-item md-size-70 md-layout md-alignment-center-left">
+
+            <div class="blog-detail-avatar">
+               <md-avatar>
+              <img :src="avatar" alt="Avatar">
+            </md-avatar>
+            </div>
+           
+            <div class="blog-detail-text-warpper">
+
+              <p class="blog-detail-info-text">素笺淡墨染流年</p>
               <span class="blog-detail-info-text">2018/3/17</span>
               <span class="blog-detail-info-text">666</span>
             </div>
 
           </div>
 
-          <div class="md-layout-item md-layout md-alignment-center-right">
+          <div class="md-layout-item md-size-30 md-layout md-alignment-center-right">
 
             <md-button class="md-icon-button">
               <md-icon>view_carousel</md-icon>
@@ -47,6 +53,10 @@
       </div>
     </div>
 
+    <div class="go-top">
+      <go-top/>
+
+    </div>
 
   </div>
 
@@ -54,6 +64,7 @@
 
 <script>
 import BlogFooter from '../index/BlogFooter'
+import GoTop from 'components/go-top/GoTop'
 export default {
   name: 'blog-detail',
   data () {
@@ -62,7 +73,8 @@ export default {
     }
   },
   components: {
-    BlogFooter
+    BlogFooter,
+    GoTop
   }
 }
 </script>
@@ -70,10 +82,8 @@ export default {
 
 <style>
 .blog-detail {
-  width: 65%;
-  display: flex;
-  margin: auto;
-  flex-direction: column;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
 .blog-detail-header {
@@ -92,12 +102,17 @@ export default {
   border-style: solid;
 }
 
+.blog-detail-text-warpper {
+
+}
+
 .blog-detail-info-text {
-  margin-left: 16px;
+  margin-left: 12px;
+  padding: 4px;
 }
 
 .blog-detail-content {
-  height: 1000px;
+  height: 2000px;
 }
 
 .blog-footer {
@@ -105,4 +120,6 @@ export default {
   width: 100%;
   background-color: white;
 }
+
+
 </style>
