@@ -9,7 +9,6 @@ body  {
   padding: 0;
 }
 
-
 .menu-color {
   color: white;
 }
@@ -22,7 +21,6 @@ body  {
   padding: 10px
 }
 
-
 .md-margin{
   margin: 18px
 }
@@ -30,5 +28,15 @@ body  {
 .go-top{
   position: fixed;
   bottom: 120px;
-  right: 90px;
+  right: 70px;
+  z-index: 999;
+}
+
+.blog-head-warpper{
+  height: 168px;
+  width: 100%;
+}
+
+.blog-head-icon{
+ margin: 18px
 }

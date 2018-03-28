@@ -1,5 +1,16 @@
 <template>
   <div class="blog-container">
+
+     <div class="blog-head-warpper">
+      <md-button @click='$router.go(-1)' class="md-icon-button blog-head-icon">
+        <md-icon class="">arrow_back</md-icon>
+      </md-button>
+
+      <blog-index/>
+
+    </div>
+
+
     <div class="blog-detail">
 
       <md-card class="blog-detail-header">
@@ -65,6 +76,7 @@
 <script>
 import BlogFooter from '../index/BlogFooter'
 import GoTop from 'components/go-top/GoTop'
+import BlogIndex from './BlogIndex'
 export default {
   name: 'blog-detail',
   data () {
@@ -74,7 +86,8 @@ export default {
   },
   components: {
     BlogFooter,
-    GoTop
+    GoTop,
+    BlogIndex
   }
 }
 </script>
@@ -87,7 +100,7 @@ export default {
 }
 
 .blog-detail-header {
-  margin-top: 200px;
+
 }
 
 .blog-detail-header-bg {

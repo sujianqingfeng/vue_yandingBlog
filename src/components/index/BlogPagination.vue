@@ -33,7 +33,7 @@ export default {
 
 <style >
 .blog-pagination{
-    margin-top: 10px
+   
 }
 </style>
 

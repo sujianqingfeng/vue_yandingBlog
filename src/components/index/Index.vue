@@ -1,14 +1,15 @@
 <template>
   <div class="blog-containert">
 
-    <div class="blog-header md-layout ">
-      <md-button @click="menuVisible=true" class="md-icon-button">
+    <div class="blog-head-warpper">
+
+      <md-button @click="menuVisible=true" class="md-icon-button blog-head-icon">
         <md-icon class="menu">menu</md-icon>
       </md-button>
 
     </div>
 
-    <navbar :show.sync='menuVisible'/>
+    <navbar :show.sync='menuVisible' />
 
     <div class="blog-content-warpper">
       <div class="blog-content md-layout md-gutter">
@@ -125,6 +126,7 @@ export default {
 }
 
 .blog-pagination {
+  margin-top: 70px;
   max-width: 900px;
 }
 
