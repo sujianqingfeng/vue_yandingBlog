@@ -1,15 +1,39 @@
 <template>
 
-    <md-button @click="show=!show" class="md-icon-button blog-index-icon">
-        <md-icon>format_list_numbered</md-icon>
-        <md-tooltip :md-active.sync="show" class="index-tip index-tip">
-            <ul>
-                <li><a>ffff</a></li>
-               <li><a>ffff</a></li>
-               <li><a>ffff</a></li>
-            </ul>
-        </md-tooltip>
-    </md-button>
+    <div class="index-warpper">
+
+        <md-button @click="iconClick" class="md-icon-button">
+            <md-icon>format_list_numbered</md-icon>
+        </md-button>
+
+        <ol class="index-ol" v-show="show">
+            <li class="index-li">
+                <a href="">1. dddd</a>
+            </li>
+            <li class="index-li">
+                <a href="">2. fff</a>
+            </li>
+            <li class="index-li">
+                <a href="">3. ggg</a>
+            </li>
+            <li class="index-li">
+                <a href="">3. ggg</a>
+            </li>
+            <li class="index-li">
+                <a href="">3. ggg</a>
+            </li>
+            <li class="index-li">
+                <a href="">3. ggg</a>
+            </li>
+            <li class="index-li">
+                <a href="">3. ggg</a>
+            </li>
+            <li class="index-li">
+                <a href="">3. ggg</a>
+            </li>
+        </ol>
+
+    </div>
 
 </template>
 
@@ -18,33 +42,54 @@ export default {
   name: 'blogIndex',
   data: () => ({
     show: true
-  })
+  }),
+  mounted () {
+    this.$nextTick(() => {
+      this.listener = window.addEventListener('click', this.click)
+    })
+  },
+  methods: {
+    iconClick (e) {
+      this.show = !this.show
+      e.stopPropagation ? e.stopPropagation() : (e.cancelBubble = true)
+    },
+    click (event) {
+      this.show = event.target.className.includes('index-li')
+    }
+  },
+  destroyed () {
+    this.listener && window.removeEventListener(this.listener)
+  }
 }
 </script>
 
-<style>
-.blog-index-icon {
+<style scoped>
+.index-warpper {
   position: fixed;
-  left: 18px;
+  left: 14px;
   top: 60px;
 }
 
-.index-tip{
-    background-color: transparent !important
+.index-ol {
+  background-color: white;
+  min-width: 200px;
+  max-height: 100px;
+  margin-left: 13px;
+  overflow-y: scroll;
 }
 
-.index-tip ul{
-    background-color: white;
-    padding: 8px
+.index-li {
+  padding-left: 10px;
+  padding-top: 4px;
+  padding-bottom: 4px;
 }
 
-.index-tip ul li a{
-    color: gray;
-   
+.index-ol li a {
+  color: #aaaaaa;
+  font-weight: 100;
 }
 
-.index-tip ul li a:hover{
-    color: gray;
-     text-decoration: underline
+.index-ol li a:hover {
+  color: #b3d4fc;
 }
 </style>

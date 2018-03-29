@@ -17,7 +17,7 @@ export default {
   }),
   mounted () {
     this.$nextTick(() => {
-      window.addEventListener('scroll', this.scrollListener)
+      this.listener = window.addEventListener('scroll', this.scrollListener)
     })
   },
   methods: {
@@ -47,6 +47,9 @@ export default {
         document.body.scrollTop = curHeight + speed
       }
     }
+  },
+  destroyed () {
+    this.listener && window.removeEventListener(this.listener)
   }
 }
 </script>
