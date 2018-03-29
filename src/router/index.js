@@ -35,6 +35,11 @@ export default new Router({
           path: '/edit',
           name: 'edit',
           component: resolve => require(['components/edit-blog/EditBlog'], resolve)
+        },
+        {
+          path: '/editUser',
+          name: 'editUser',
+          component: resolve => require(['components/user/EditUser'], resolve)
         }
       ]
     }
