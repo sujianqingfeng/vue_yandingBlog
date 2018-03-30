@@ -12,7 +12,7 @@ export default new Router({
       component: resolve => require(['components/index/IndexWarpper'], resolve),
       children: [
         {
-          path: '/',
+          path: '/:id',
           name: 'index',
           component: resolve => require(['components/index/Index'], resolve)
         },

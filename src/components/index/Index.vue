@@ -73,13 +73,14 @@ export default {
     })
   },
   methods: {
-    ...mapActions(['getBlogList']),
+    ...mapActions(['getBlogList', 'getUser']),
     homeClick: () => {
       this.menuVisible = !this.menuVisible
     }
   },
   created () {
     this.getBlogList(11)
+    this.getUser(this.$route.params.id)
   },
   components: {
     UserInfo,

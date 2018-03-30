@@ -20,7 +20,7 @@ axios.interceptors.response.use(response => {
 axios.defaults.baseURL = '/api'
 // 设置默认请求头
 axios.defaults.headers = {
-  'X-Requested-With': 'XMLHttpRequest'
+  contentType: 'application/x-www-form-urlencoded'
 }
 axios.defaults.timeout = 10000
 

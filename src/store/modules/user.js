@@ -9,8 +9,9 @@ const getters = {
 }
 
 const actions = {
-  getUser: ({commit}) => {
-    http.get(apiConst.gethome)
+  getUser: ({commit}, id) => {
+    console.log(id)
+    http.get(apiConst.getUserInfo(id))
        .then(info => commit('setUser', info))
   }
 }
