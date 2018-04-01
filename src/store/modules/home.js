@@ -9,9 +9,9 @@ const getters = {
 }
 
 const actions = {
-  getBlogList: ({commit}) => {
-    http.get(apiConst.gethome)
-       .then(res => commit('setList', res))
+  getBlogList: ({commit}, id) => {
+    http.get(apiConst.getBlogList(id))
+       .then(res => commit('setList', res.data.results))
   }
 }
 

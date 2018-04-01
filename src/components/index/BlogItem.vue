@@ -2,11 +2,11 @@
   <md-card class="blog-item">
 
     <md-card-header class="blog-item-header md-padding md-layout md-alignment-bottom-left">
-      <span class="md-title">花开堪折直须折，莫待无花空折枝</span>
+      <span class="md-title">{{item.title}}</span>
     </md-card-header>
 
     <div class="md-padding  md-layout md-alignment-center-left">
-      <span> 人生若只如初见，何事秋风悲画扇</span>
+      <span>{{item.content}}</span>
       <md-button to="/detail/dddd" class="md-primary">阅读更多</md-button>
     </div>
 
@@ -21,15 +21,17 @@
 
         <div class="md-layout-item md-size-70  md-smail-size-85 md-xsmall-size-80 blog-item-footer-text-warpper">
           <p>
-            <span class="blog-item-footer-text">素笺淡墨染流年</span>
+            <span class="blog-item-footer-text">{{info.username}}</span>
           </p>
-          <span class="blog-item-footer-text">2018/3/17 6666</span>
+          <span class="blog-item-footer-text">{{item.add_time}}
+            <span class="blog-item-footer-view">{{item.num+' view'}}</span>
+          </span>
         </div>
 
       </div>
 
       <div class="md-layout-item md-layout md-alignment-center-right">
-        <p class="blog-item-category-text">文字分类</p>
+        <p class="blog-item-category-text">{{item.category.name}}</p>
       </div>
     </div>
 
@@ -45,7 +47,9 @@ export default {
     title: String,
     time: String,
     content: String,
-    img_url: String
+    img_url: String,
+    item: Object,
+    info: Object
   }
 }
 </script>
@@ -82,5 +86,9 @@ export default {
 
 .blog-item-category-text {
   color: "#607D8B";
+}
+
+.blog-item-footer-view{
+  margin-left: 16px
 }
 </style>

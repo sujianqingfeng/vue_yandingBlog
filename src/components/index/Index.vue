@@ -9,24 +9,24 @@
 
     </div>
 
-    <navbar :show.sync='menuVisible' />
+    <navbar :show.sync='menuVisible' :info='info' />
 
     <div class="blog-content-warpper">
       <div class="blog-content md-layout md-gutter">
         <div class="md-layout-item  md-size-65 md-smail-size-100 md-xsmall-size-100">
-          <user-info/>
+          <user-info :info='info'/>
         </div>
         <div class="md-layout-item md-size-35 md-smail-size-100 md-xsmall-size-100">
-          <user-oper/>
+          <user-oper :info='info'/>
         </div>
       </div>
 
       <div class="blog-item-content md-layout md-gutter">
 
         <div class="md-layout-item ">
-          <blog-item/>
-          <blog-item/>
-          <blog-item/>
+
+          <blog-item v-for="item in list" :key='item.id' :info='info'  :item='item' />
+         
         </div>
       </div>
 
@@ -69,7 +69,8 @@ export default {
   },
   computed: {
     ...mapGetters({
-      list: 'list'
+      list: 'list',
+      info: 'info'
     })
   },
   methods: {
@@ -79,7 +80,7 @@ export default {
     }
   },
   created () {
-    this.getBlogList(11)
+    this.getBlogList(this.$route.params.id)
     this.getUser(this.$route.params.id)
   },
   components: {

@@ -2,7 +2,7 @@
   <md-card class="info-container">
    
     <div class="info-header md-padding md-layout md-alignment-bottom-left">
-       <h2 class="info-text md-title ">问世间情为何物，直教人生死相许</h2>
+       <h2 class="info-text md-title ">{{info.desc}}</h2>
     </div>
    
 
@@ -11,7 +11,7 @@
           <md-avatar>
             <img :src="avatar" alt="Avatar">
           </md-avatar>
-          <span class="info-footer-text md-margin">素笺淡墨染流年</span>
+          <span class="info-footer-text md-margin">{{info.username}}</span>
       </div>
     </div>
 
@@ -24,6 +24,9 @@
 <script>
 export default {
   name: 'userInfo',
+  props: {
+    info: Object
+  },
   data: () => ({
     avatar: require('./avatar.jpg')
   })

@@ -22,7 +22,7 @@ export default new Router({
           component: resolve => require(['components/blog-detail/BlogDetail'], resolve)
         },
         {
-          path: '/about',
+          path: '/about/:id',
           name: 'about',
           component: resolve => require(['components/about-me/AboutMe'], resolve)
         },

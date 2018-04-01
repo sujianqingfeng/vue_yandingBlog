@@ -28,7 +28,7 @@
         </md-list>
       </md-list-item>
 
-      <md-list-item to="about">
+      <md-list-item :to="'about/'+info.id">
         <md-icon>account_circle</md-icon>
         <span class="md-list-item-text">关于我</span>
       </md-list-item>
@@ -55,7 +55,8 @@ export default {
     show: {
       type: Boolean,
       default: false
-    }
+    },
+    info: Object
   },
   data () {
     return {

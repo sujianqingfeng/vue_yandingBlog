@@ -9,7 +9,7 @@
 
         <div class="md-layout user-footer md-padding">
             <div class="md-layout-item md-layout md-alignment-center-left">
-                <span class="font-color">素笺’s Blog</span>
+                <span class="font-color">{{info.username}}’s Blog</span>
             </div>
 
             <div class="md-layout-item md-layout md-alignment-center-right">
@@ -49,6 +49,9 @@
 <script>
 export default {
   name: 'userOper',
+  props: {
+    info: Object
+  },
   data: () => ({
     avatar: require('./avatar.jpg')
   })
