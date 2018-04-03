@@ -5507,6 +5507,10 @@ vm-browserify@0.0.4:
   dependencies:
     indexof "0.0.1"
 
+vue-analytics@^5.10.0:
+  version "5.10.0"
+  resolved "http://r.cnpmjs.org/vue-analytics/download/vue-analytics-5.10.0.tgz#ee5d99e0cbce638fd833b79ac54832cc0565b60b"
+
 vue-ga@^1.0.0:
   version "1.0.0"
   resolved "http://r.cnpmjs.org/vue-ga/download/vue-ga-1.0.0.tgz#c890fc529970af10abef2c42c81ea38cfb00cef1"

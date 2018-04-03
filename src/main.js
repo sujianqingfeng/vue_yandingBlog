@@ -8,6 +8,8 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
+import VueAnalytics from 'vue-analytics'
+
 import 'assets/css/index.css'
 import 'static/reset.css'
 
@@ -15,6 +17,12 @@ import store from 'store/index.js'
 
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
+
+Vue.use(VueAnalytics, {
+  id: 'UA-116815221-1',
+  checkDuplicatedScript: true,
+  router
+})
 
 Vue.prototype.$log = function (msg) {
   console.log(msg)
