@@ -1,7 +1,10 @@
 // 引入axios
 import axios from 'axios'
+import {getCookie} from '../utils/cookie'
 
 axios.interceptors.request.use(config => {
+  let token = getCookie('token')
+  if (token) config.headers.Authorization = `JWT ${token}`
   return config
 }, error => {
   return Promise.reject(error)

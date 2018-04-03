@@ -12,7 +12,7 @@ export default new Router({
       component: resolve => require(['components/index/IndexWarpper'], resolve),
       children: [
         {
-          path: '/:id',
+          path: '/home/:id',
           name: 'index',
           component: resolve => require(['components/index/Index'], resolve)
         },
@@ -40,6 +40,11 @@ export default new Router({
           path: '/editUser',
           name: 'editUser',
           component: resolve => require(['components/user/EditUser'], resolve)
+        },
+        {
+          path: 'login',
+          name: 'login',
+          component: resolve => require(['components/user/Login'], resolve)
         }
       ]
     }
