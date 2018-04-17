@@ -2,7 +2,7 @@
   <md-drawer :md-active.sync="showNavigation">
 
     <div class="drawer-header md-layout md-alignment-center">
-      <md-button to='editUser' class="md-fab">
+      <md-button to='/editUser' class="md-fab">
         <md-avatar class="md-large">
           <img :src="avatar" alt="Avatar">
         </md-avatar>
@@ -38,7 +38,7 @@
         <span class="md-list-item-text">友情链接</span>
       </md-list-item>
 
-      <md-list-item to="edit">
+      <md-list-item to="/edit">
         <md-icon class="fa fa-link"></md-icon>
         <span class="md-list-item-text">编辑</span>
       </md-list-item>

@@ -12,50 +12,60 @@
 
             <md-card class="edit-user-card">
 
-                <div class="avatar-warpper md-layout md-alignment-center">
-                    <img :src="avatar" class="avatar" />
-                    <md-button class="md-primary">修改头像</md-button>
+                <div class="edit-user-header" :style="editUserHeader">
+                    <div class="avatar-warpper md-layout md-alignment-center" :style="editUserHeader">
+                        <img :src="avatar" class="avatar" />
+                    </div>
+
                 </div>
 
                 <div class="user-form md-layout md-alignment-center">
                     <md-field>
+                        <md-icon >insert_emoticon</md-icon>
                         <label>昵称</label>
-                        <md-textarea v-model="name" md-autogrow md-counter="200"></md-textarea>
+                        <md-input disabled v-model="name" md-autogrow></md-input>
                     </md-field>
 
                     <md-field>
+                        <label>头像</label>
+                        <md-file @md-change="picChange" v-model="fileName" />
+                    </md-field>
+
+                    <md-field>
+                        <md-icon>spa</md-icon>
                         <label>描述</label>
-                        <md-textarea v-model="name" md-autogrow md-counter="200"></md-textarea>
+                        <md-textarea v-model="userParams.desc" md-autogrow md-counter="10"></md-textarea>
                     </md-field>
 
                     <md-field>
-
-                        <label for="movie">性别</label>
-                        <md-select v-model="movie" name="movie" id="movie">
-                            <md-option value="fight-club">Fight Club</md-option>
-                            <md-option value="godfather">Godfather</md-option>
-                            <md-option value="godfather-ii">Godfather II</md-option>
+                        <md-icon class="fa fa-transgender"></md-icon>
+                        <label >性别</label>
+                        <md-select v-model="userParams.sex" name="movie" id="movie">
+                            <md-option value="0">男</md-option>
+                            <md-option value="1">女</md-option>
+                            <md-option value="2">未知</md-option>
 
                         </md-select>
 
                     </md-field>
 
+                    <md-datepicker v-model="userParams.birthday">
+                        <!-- <label>出生年月</label> -->
+                    </md-datepicker>
+
                     <md-field>
-                        <label>出生年月</label>
-                        <md-input v-model="date"></md-input>
+                         <md-icon class="fa fa-github"></md-icon>
+                        <label>github</label>
+                        <md-textarea v-model="userParams.github" md-autogrow md-counter="200"></md-textarea>
                     </md-field>
 
                     <md-field>
-                        <label>昵称</label>
-                        <md-textarea v-model="name" md-autogrow md-counter="200"></md-textarea>
+                        <md-icon class="fa fa-link"></md-icon>
+                        <label>link</label>
+                        <md-textarea v-model="userParams.other_link" md-autogrow md-counter="200"></md-textarea>
                     </md-field>
 
-                    <md-field>
-                        <label>昵称</label>
-                        <md-textarea v-model="name" md-autogrow md-counter="200"></md-textarea>
-                    </md-field>
-
-                    <md-button class="md-raised md-primary bt-save">确定修改</md-button>
+                    <md-button class="md-raised md-primary bt-save" @click='save'>确定修改</md-button>
 
                 </div>
 
@@ -75,14 +85,53 @@
 
 <script>
 import BlogFooter from '../index/BlogFooter'
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'editUser',
   data: () => ({
     avatar: require('../index/avatar.jpg'),
-    name: ''
+    name: '',
+    editUserHeader: {
+      backgroundImage:
+        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
+    },
+    fileName: '',
+    userParams: {
+      sex: '',
+      birthday: null,
+      desc: '',
+      icon: null,
+      github: '',
+      other_link: ''
+    }
   }),
   components: {
     BlogFooter
+  },
+  methods: {
+    ...mapActions(['editUser']),
+    save () {
+      let formdata = new FormData()
+      const params = this.userParams
+      console.log(params)
+      for (let key in params) {
+        if (params[key]) {
+          formdata.append(key, params[key])
+        }
+      }
+
+      this.editUser({id: this.user.id, params: formdata})
+    },
+    picChange (FileList) {
+      if (FileList[0]) {
+        this.userParams.icon = FileList[0]
+      }
+    }
+  },
+  computed: {
+    ...mapGetters({
+      user: 'user'
+    })
   }
 }
 </script>
@@ -100,8 +149,15 @@ export default {
   align-items: center;
 }
 
+.edit-user-header {
+  background-image: "url(" + require("../../assets/imgs/blog_header_bg.jpg") +
+    ")";
+  width: 100%;
+}
+
 .avatar-warpper {
   margin-top: 100px;
+  margin-bottom: 100px;
 }
 
 .avatar {
@@ -111,6 +167,7 @@ export default {
 }
 
 .user-form {
+  margin-top: 50px;
   width: 70%;
 }
 

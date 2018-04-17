@@ -9,7 +9,7 @@
 
     <div class="blog-login-warpper md-layout">
 
-      <div class="md-layout-item md-small-size-100 md-xsmall-size-100 blog-login-left-warpper">
+      <div class="md-layout-item md-small-size-100 md-xsmall-size-100 blog-login-left-warpper" :style="back">
 
       </div>
       <div class="md-layout-item md-small-size-100 md-xsmall-size-100 blog-login-right-warpper md-layout md-alignment-center-center">
@@ -64,6 +64,10 @@ export default {
     params: {
       username: 'sujian',
       password: 'admin123'
+    },
+    back: {
+      backgroundImage:
+        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
     }
   }),
   methods: {
@@ -85,7 +89,7 @@ export default {
 }
 
 .blog-login-left-warpper {
-  background-image: url("16pic_4760725_b.jpg");
+  background-image: 'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
 }
 
 .blog-login-right-warpper {

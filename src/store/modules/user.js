@@ -23,6 +23,14 @@ const actions = {
   login: ({commit}, params) => {
     http.post(apiConst.login(), params)
        .then(res => commit('setUser', res.data))
+  },
+  editUser: ({commit}, {id, params}) => {
+    http.patch(apiConst.editUser(id), params)
+    .then(res => {
+      console.log('修改成功')
+      commit('setUser', res.data)
+    })
+    .catch(error => console.log(error.data))
   }
 }
 
@@ -31,8 +39,9 @@ const mutations = {
     state.info = info
   },
   setUser: (state, info) => {
-    setCookie('user', JSON.stringify(info.user))
-    setCookie('token', info.token)
+    info.user && setCookie('user', JSON.stringify(info.user))
+
+    info.token && setCookie('token', info.token)
   }
 }
 

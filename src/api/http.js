@@ -17,7 +17,7 @@ axios.interceptors.response.use(response => {
     console.error('发生错误　这里可以进行一些异常处理')
   }
 
-  return Promise.resolve(error.response)
+  return Promise.reject(error.response)
 })
 
 axios.defaults.baseURL = '/api'
@@ -27,30 +27,31 @@ axios.defaults.headers = {
 }
 axios.defaults.timeout = 10000
 
-export default {
-  // get请求
-  get (url, param) {
-    return new Promise((resolve, reject) => {
-      axios({
-        method: 'get',
-        url,
-        params: param
-      }).then(res => {
-        resolve(res)
-      })
-    })
-  },
-  // post请求
-  post (url, param) {
-    return new Promise((resolve, reject) => {
-      axios({
-        method: 'post',
-        url,
-        data: param
+const request = (method, url, param) => (new Promise((resolve, reject) => {
+  axios({
+    method: method,
+    url,
+    params: method === 'get' ? param : '',
+    data: method !== 'get' ? param : ''
+  }).then(res => {
+    resolve(res)
+  }).catch(error => reject(error))
+}))
 
-      }).then(res => {
-        resolve(res)
-      })
-    })
+export default {
+  get (url, param) {
+    return request('get', url, param)
+  },
+  post (url, param) {
+    return request('post', url, param)
+  },
+  detlete (url, param) {
+    return request('detlete', url, param)
+  },
+  patch (url, param) {
+    return request('patch', url, param)
+  },
+  put (url, param) {
+    return request('put', url, param)
   }
 }
