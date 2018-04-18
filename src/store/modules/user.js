@@ -25,12 +25,11 @@ const actions = {
        .then(res => commit('setUser', res.data))
   },
   editUser: ({commit}, {id, params}) => {
-    http.patch(apiConst.editUser(id), params)
+    return http.patch(apiConst.editUser(id), params)
     .then(res => {
-      console.log('修改成功')
-      commit('setUser', res.data)
+      commit('updateUser', res.data)
     })
-    .catch(error => console.log(error.data))
+    .catch(error => Promise.reject(error.data))
   }
 }
 
@@ -42,6 +41,9 @@ const mutations = {
     info.user && setCookie('user', JSON.stringify(info.user))
 
     info.token && setCookie('token', info.token)
+  },
+  updateUser (state, info) {
+    info && setCookie('user', JSON.stringify(info))
   }
 }
 

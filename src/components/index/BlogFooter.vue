@@ -31,8 +31,7 @@
 export default {
   name: 'userInfo',
   data: () => ({
-    avatar: require('./avatar.jpg'),
-    jianshu: require('../../assets/img/jianshu.svg')
+    avatar: require('./avatar.jpg')
   })
 }
 </script>

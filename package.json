@@ -13,6 +13,7 @@
   "dependencies": {
     "axios": "^0.18.0",
     "mavon-editor": "^2.5.2",
+    "moment": "^2.22.1",
     "vue": "^2.5.2",
     "vue-analytics": "^5.10.0",
     "vue-material": "beta",
