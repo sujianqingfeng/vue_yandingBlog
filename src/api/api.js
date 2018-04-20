@@ -5,3 +5,4 @@ export const getUserInfo = (id) => `${baseUrl}users/${id}/`
 export const getBlogList = (id) => `${baseUrl}blogs/${id}/blog_list/`
 export const login = () => `${baseUrl}login/`
 export const editUser = (id) => `${baseUrl}users/${id}/`
+export const uploadImg = () => `${baseUrl}img_upload/`
