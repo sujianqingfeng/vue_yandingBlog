@@ -16,15 +16,15 @@
           <div class="title-warpper">
 
             <md-field>
-              <md-input class="text-title" v-model="blog_params" placeholder="这里是标题"></md-input>
+              <md-input class="text-title" v-model="blog_params.title" placeholder="这里是标题"></md-input>
             </md-field>
 
             <md-field>
               <transition name="slide-fade">
-                <md-input v-if="!showCategory" v-model="blog_params" placeholder="这里是分类"></md-input>
+                <md-input v-if="!showCategory" v-model="blog_params.category" placeholder="这里是分类"></md-input>
               </transition>
               <transition name="slide-fade">
-                <md-select v-if="showCategory" v-model="blog_params" name="movie" id="movie" placeholder="这里是分类">
+                <md-select v-if="showCategory" v-model="blog_params.category" name="movie" id="movie" placeholder="这里是分类">
                   <md-option value="fight-club">Fight Club</md-option>
                   <md-option value="godfather">Godfather</md-option>
                 </md-select>
@@ -69,7 +69,7 @@
         <div class="md-layout blog-edit-content">
 
           <div class="editor">
-            <mavon-editor  ref=md v-model="value" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
+            <mavon-editor  ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
           </div>
         </div>
 
@@ -100,7 +100,7 @@ import EditNav from './EditNav'
 export default {
   name: 'editBlog',
   data: () => ({
-    value: '春水初生，春林初盛，春风十里，不如你。',
+
     avatar: require('../index/avatar.jpg'),
     menuVisible: false,
     editUserHeader: {
@@ -109,7 +109,11 @@ export default {
     },
     showCategory: true,
     img_file: {},
-    blog_params: {},
+    blog_params: {
+      title: '',
+      category: '',
+      content: ''
+    },
     toolbars: {
       bold: true, // 粗体
       italic: true, // 斜体
@@ -147,7 +151,7 @@ export default {
     }
   }),
   methods: {
-    ...mapActions(['uploadImg']),
+    ...mapActions(['uploadImg', 'save']),
     categoryToggle () {
       this.showCategory = !this.showCategory
     },
@@ -170,10 +174,15 @@ export default {
         for (const i in imgs) {
           this.$refs.md.$img2Url('./' + i, imgs[i])
         }
+        this.save(this.blog_params)
       })
     },
     saveBlog () {
-      this.uploadimg()
+      if (this.img_file.lenght > 0) {
+        this.uploadimg()
+      } else {
+        this.save(this.blog_params)
+      }
     }
 
   },
@@ -191,11 +200,12 @@ export default {
 }
 .editor {
   width: 100%;
-  height: 500px;
+  height: 1200px;
 }
 .edit-warpper {
   max-width: 900px;
   margin: 0 auto;
+padding-bottom: 100px
 }
 .blog-edit-header {
 }

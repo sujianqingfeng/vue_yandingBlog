@@ -33,12 +33,12 @@
         <span class="md-list-item-text">关于我</span>
       </md-list-item>
 
-      <md-list-item to="friend">
+      <md-list-item to="/friend">
         <md-icon class="fa fa-link"></md-icon>
         <span class="md-list-item-text">友情链接</span>
       </md-list-item>
 
-      <md-list-item to="/edit">
+      <md-list-item to="/editBlog">
         <md-icon class="fa fa-link"></md-icon>
         <span class="md-list-item-text">编辑</span>
       </md-list-item>

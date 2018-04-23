@@ -27,12 +27,12 @@ export default new Router({
           component: resolve => require(['components/about-me/AboutMe'], resolve)
         },
         {
-          path: '/friend',
+          path: '/friend/',
           name: 'friend',
           component: resolve => require(['components/friend/FriendLink'], resolve)
         },
         {
-          path: '/edit',
+          path: '/editBlog/:id',
           name: 'edit',
           component: resolve => require(['components/edit-blog/EditBlog'], resolve)
         },
