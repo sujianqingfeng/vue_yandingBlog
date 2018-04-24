@@ -1,7 +1,7 @@
 <template>
   <md-card class="blog-item">
 
-    <md-card-header class="blog-item-header md-padding md-layout md-alignment-bottom-left">
+    <md-card-header class="blog-item-header md-padding md-layout md-alignment-bottom-left" :style="header">
       <span class="md-title">{{item.title}}</span>
     </md-card-header>
 
@@ -41,7 +41,11 @@
 export default {
   name: 'BlogItem',
   data: () => ({
-    avatar: require('./avatar.jpg')
+    avatar: require('./avatar.jpg'),
+    header: {
+      backgroundImage:
+        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
+    }
   }),
   props: {
     title: String,
@@ -62,13 +66,13 @@ export default {
 
 .blog-item-header {
   height: 250px;
-  background-image: url("test.png");
+  /* background-image: url("test.png"); */
   color: white;
 }
 
 .blog-item-footer {
   border-top-width: 1px;
-  border-top-color: grey;
+  border-top-color: rgb(240, 236, 236);
   border-style: solid;
 }
 

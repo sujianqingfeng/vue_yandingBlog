@@ -110,7 +110,7 @@ export default {
 
 .drawer-header {
   height: 200px;
-  background-image: url("test.png");
+  /* background-image: url("test.png"); */
 }
 
 .blog-content-warpper {

@@ -1,7 +1,7 @@
 <template>
   <md-drawer :md-active.sync="showNavigation">
 
-    <div class="drawer-header md-layout md-alignment-center">
+    <div class="drawer-header md-layout md-alignment-center" :style="header">
       <md-button to='/editUser' class="md-fab">
         <md-avatar class="md-large">
           <img :src="avatar" alt="Avatar">
@@ -61,7 +61,11 @@ export default {
   data () {
     return {
       avatar: require('./avatar.jpg'),
-      expandNews: []
+      expandNews: [],
+      header: {
+        backgroundImage:
+        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
+      }
     }
   },
   computed: {
