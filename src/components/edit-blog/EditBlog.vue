@@ -86,6 +86,14 @@
       </div>
     </div>
 
+
+
+ <md-snackbar md-position="left" :md-duration="4000" :md-active.sync="showSnackbar" >
+      <span>{{snackbarText}}</span>
+     
+    </md-snackbar>
+
+
   </div>
 
 </template>
@@ -100,7 +108,8 @@ import EditNav from './EditNav'
 export default {
   name: 'editBlog',
   data: () => ({
-
+    showSnackbar: false,
+    snackbarText: '',
     avatar: require('../index/avatar.jpg'),
     menuVisible: false,
     editUserHeader: {
@@ -151,7 +160,7 @@ export default {
     }
   }),
   methods: {
-    ...mapActions(['uploadImg', 'save']),
+    ...mapActions(['uploadImg', 'save', 'update']),
     categoryToggle () {
       this.showCategory = !this.showCategory
     },
@@ -174,15 +183,50 @@ export default {
         for (const i in imgs) {
           this.$refs.md.$img2Url('./' + i, imgs[i])
         }
-        this.save(this.blog_params)
+
+        let params = this.$route.params
+        if (params.id) {
+          this.updateTheBlog(params.id)
+          return
+        }
+
+        this.saveTheBlog()
       })
     },
     saveBlog () {
+      let params = this.$route.params
+      if (params.id) {
+        if (this.img_file.lenght > 0) {
+          this.uploadimg()
+        } else {
+          this.updateTheBlog(params.id)
+        }
+        return
+      }
+
       if (this.img_file.lenght > 0) {
         this.uploadimg()
       } else {
-        this.save(this.blog_params)
+        this.saveTheBlog()
       }
+    },
+    saveTheBlog () {
+      this.save(this.blog_params)
+      .then(res => {
+        this.$router.push('/detail/' + res.data.id)
+      })
+      .catch(error => {
+        this.snackbarText = '保存失败' + error.data
+        this.showSnackbar = true
+      })
+    },
+    updateTheBlog (id) {
+      this.update({id: id, params: this.blog_params})
+      .then(res => this.$router.push('/detail/' + res.data.id))
+      .catch(error => {
+        this.snackbarText = '修改失败' + error.data
+        this.showSnackbar = true
+      })
     }
 
   },

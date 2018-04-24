@@ -6,7 +6,7 @@
         <md-icon class="">arrow_back</md-icon>
       </md-button>
 
-      <blog-index/>
+      <blog-index :navigations='navigations'/>
 
     </div>
 
@@ -14,8 +14,8 @@
     <div class="blog-detail">
 
       <md-card class="blog-detail-header">
-        <md-card-header class="blog-detail-header-bg  md-padding md-layout md-alignment-bottom-left">
-          <span class="md-title">花开堪折直须折，莫待无花空折枝</span>
+        <md-card-header class="blog-detail-header-bg  md-padding md-layout md-alignment-bottom-left" :style="detailHeader">
+          <span class="md-title">{{blogInfo.title}}</span>
         </md-card-header>
 
         <div class="md-padding md-layout  blog-detail-info md-alignment-center-left">
@@ -30,29 +30,27 @@
            
             <div class="blog-detail-text-warpper">
 
-              <p class="blog-detail-info-text">素笺淡墨染流年</p>
-              <span class="blog-detail-info-text">2018/3/17</span>
-              <span class="blog-detail-info-text">666</span>
+              <p class="blog-detail-info-text">{{blogInfo.user?blogInfo.user.username:''}}</p>
+              <span class="blog-detail-info-text">{{blogInfo.add_time}}</span>
+              <span class="blog-detail-info-text">{{blogInfo.num}} view</span>
             </div>
 
           </div>
 
           <div class="md-layout-item md-size-30 md-layout md-alignment-center-right">
 
-            <md-button class="md-icon-button">
-              <md-icon>view_carousel</md-icon>
-            </md-button>
+          
 
             <md-button class="md-icon-button">
-              <md-icon>view_carousel</md-icon>
+              <md-icon>send</md-icon>
             </md-button>
 
           </div>
         </div>
 
-        <div class="md-layout md-padding blog-detail-content">
-          春水初生，春林初盛，春风十里，不如你。
-
+        <div class="md-layout  blog-detail-content">
+         <!-- {{blogInfo.content}} -->
+            <mavon-editor  ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" class="blog-detail-content"  />
         </div>
 
       </md-card>
@@ -77,17 +75,51 @@
 import BlogFooter from '../index/BlogFooter'
 import GoTop from 'components/go-top/GoTop'
 import BlogIndex from './BlogIndex'
+import { mapActions } from 'vuex'
+import { mavonEditor } from 'mavon-editor'
 export default {
   name: 'blog-detail',
   data () {
     return {
-      avatar: require('../index/avatar.jpg')
+      detailHeader: {
+        backgroundImage:
+        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
+      },
+      avatar: require('../index/avatar.jpg'),
+      blogInfo: {},
+      toolbars: {
+
+      },
+      navigations: []
     }
   },
+  methods: {
+    ...mapActions(['getBlog']),
+    generateNavigation () {
+      let navigations = []
+      let childs = document.querySelector('.v-show-content').childNodes
+      childs.forEach((element, index) => {
+        if (element.localName === 'h1' || element.localName === 'h2') {
+          console.log(element.outerText)
+          element.id = 'n' + navigations.length
+          navigations.push(element.outerText)
+        }
+      })
+      this.navigations = navigations
+    }
+  },
+  created () {
+    this.getBlog(this.$route.params.id).then(res => {
+      this.blogInfo = res.data
+      setTimeout(this.generateNavigation, 1000)
+    })
+  },
+
   components: {
     BlogFooter,
     GoTop,
-    BlogIndex
+    BlogIndex,
+    mavonEditor
   }
 }
 </script>
@@ -105,14 +137,14 @@ export default {
 
 .blog-detail-header-bg {
   height: 250px;
-  background-image: url("timg22.jpg");
+  /* background-image: url("timg22.jpg"); */
   color: white;
 }
 
 .blog-detail-info {
-  border-bottom-color: grey;
-  border-bottom-width: 1px;
-  border-style: solid;
+  /* border-bottom-color:  #c4c1bf; */
+  /* border-bottom-width: 1px;
+  border-style: solid; */
 }
 
 .blog-detail-text-warpper {
@@ -125,7 +157,8 @@ export default {
 }
 
 .blog-detail-content {
-  height: 2000px;
+  width: 100%;
+  min-height: 1000px;
 }
 
 .blog-footer {
@@ -133,6 +166,8 @@ export default {
   width: 100%;
   background-color: white;
 }
+
+
 
 
 </style>

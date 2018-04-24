@@ -15,6 +15,12 @@ const actions = {
   },
   save ({commit}, params) {
     return http.post(apiConst.saveBlog(), params)
+  },
+  update ({commit}, {id, params}) {
+    return http.patch(apiConst.updateBlog(id), params)
+  },
+  getBlog ({commit}, id) {
+    return http.get(apiConst.updateBlog(id))
   }
 }
 

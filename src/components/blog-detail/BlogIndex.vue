@@ -7,30 +7,10 @@
         </md-button>
 
         <ol class="index-ol" v-show="show">
-            <li class="index-li">
-                <a href="">1. dddd</a>
+            <li class="index-li" :key="item" v-for="(item,index) in navigations">
+                <a  v-on:click='goIndex(index)'>{{item}}</a>
             </li>
-            <li class="index-li">
-                <a href="">2. fff</a>
-            </li>
-            <li class="index-li">
-                <a href="">3. ggg</a>
-            </li>
-            <li class="index-li">
-                <a href="">3. ggg</a>
-            </li>
-            <li class="index-li">
-                <a href="">3. ggg</a>
-            </li>
-            <li class="index-li">
-                <a href="">3. ggg</a>
-            </li>
-            <li class="index-li">
-                <a href="">3. ggg</a>
-            </li>
-            <li class="index-li">
-                <a href="">3. ggg</a>
-            </li>
+          
         </ol>
 
     </div>
@@ -40,8 +20,11 @@
 <script>
 export default {
   name: 'blogIndex',
+  props: {
+    navigations: Array
+  },
   data: () => ({
-    show: true
+    show: false
   }),
   mounted () {
     this.$nextTick(() => {
@@ -55,6 +38,25 @@ export default {
     },
     click (event) {
       this.show = event.target.className.includes('index-li')
+    },
+    goIndex (index) {
+      document.getElementById('n' + index).scrollIntoView()
+
+      // this.timer = setInterval(this.startScroll, 50, index)
+    },
+    startScroll (index) {
+      let curHeight = document.getElementById('n' + index).scrollTop - document.documentElement.scrollTop
+      console.log(index, curHeight)
+      let now = curHeight
+      let speed = (0 - now) / 7
+      speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed)
+      if (curHeight === 0) {
+        this.timer && clearInterval(this.timer)
+      } else {
+        console.log(curHeight + speed)
+        document.getElementById('n' + index).scrollTop = curHeight + speed
+        document.documentElement.scrollTop = curHeight + speed
+      }
     }
   },
   destroyed () {

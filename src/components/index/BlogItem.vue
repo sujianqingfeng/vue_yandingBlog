@@ -31,7 +31,7 @@
       </div>
 
       <div class="md-layout-item md-layout md-alignment-center-right">
-        <p class="blog-item-category-text">{{item.category.name}}</p>
+        <p class="blog-item-category-text">{{item.category?item.category.name:'-'}}</p>
       </div>
     </div>
 
