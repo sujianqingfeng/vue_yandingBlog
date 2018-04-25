@@ -41,8 +41,8 @@
 
           
 
-            <md-button class="md-icon-button">
-              <md-icon>send</md-icon>
+            <md-button @click="share"  class="md-icon-button">
+              <md-icon>share</md-icon>
             </md-button>
 
           </div>
@@ -64,8 +64,12 @@
 
     <div class="go-top">
       <go-top/>
-
     </div>
+
+     <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showSnackbar" >
+      <span>{{snackbarText}}</span>
+     
+    </md-snackbar>
 
   </div>
 
@@ -81,6 +85,8 @@ export default {
   name: 'blog-detail',
   data () {
     return {
+      showSnackbar: false,
+      snackbarText: '',
       detailHeader: {
         backgroundImage:
         'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
@@ -106,6 +112,12 @@ export default {
         }
       })
       this.navigations = navigations
+    },
+    share () {
+      this.$copyText(window.location.href).then(e => {
+        this.snackbarText = '复制到剪贴板'
+        this.showSnackbar = true
+      })
     }
   },
   created () {
@@ -167,7 +179,13 @@ export default {
   background-color: white;
 }
 
+.md-snackbar.md-theme-default{
+  background-color:#E9EBEC
+}
 
+.md-snackbar.md-theme-default span{
+ color: gray;
+}
 
 
 </style>

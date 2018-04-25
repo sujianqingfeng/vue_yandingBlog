@@ -2,17 +2,17 @@
   <md-drawer :md-active.sync="showNavigation">
 
     <div class="drawer-header md-layout md-alignment-center" :style="header">
-      <md-button to='/editUser' class="md-fab">
-        <md-avatar class="md-large">
-          <img :src="avatar" alt="Avatar">
-        </md-avatar>
-      </md-button>
+
+      <router-link :to="user ? '/editUser' : '/login'">
+        <img :src="info.icon?info.icon:avatar" alt="Avatar" class="avatar-style">
+      
+      </router-link>
 
     </div>
 
     <md-list>
 
-      <md-list-item to="/yanding">
+      <md-list-item :to="'/home/'+info.id">
         <md-icon>home</md-icon>
         <span class="md-list-item-text">主页</span>
       </md-list-item>
@@ -22,9 +22,8 @@
         <span class="md-list-item-text">类别</span>
 
         <md-list slot="md-expand">
-          <md-list-item class="md-inset">World</md-list-item>
-          <md-list-item class="md-inset">Europe</md-list-item>
-          <md-list-item class="md-inset">South America</md-list-item>
+          <md-list-item class="md-inset">所有</md-list-item>
+          <md-list-item v-for="item in categorys" :key='item.id' class="md-inset">{{item.name}}</md-list-item>
         </md-list>
       </md-list-item>
 
@@ -38,9 +37,9 @@
         <span class="md-list-item-text">友情链接</span>
       </md-list-item>
 
-      <md-list-item to="/editBlog">
-        <md-icon class="fa fa-link"></md-icon>
-        <span class="md-list-item-text">编辑</span>
+      <md-list-item v-show="user.id === info.id" to="/editBlog">
+        <md-icon >create</md-icon>
+        <span class="md-list-item-text">写博客</span>
       </md-list-item>
 
     </md-list>
@@ -56,7 +55,9 @@ export default {
       type: Boolean,
       default: false
     },
-    info: Object
+    info: Object,
+    user: Object,
+    categorys: Array
   },
   data () {
     return {
@@ -64,7 +65,7 @@ export default {
       expandNews: [],
       header: {
         backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
+          'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
       }
     }
   },
@@ -87,5 +88,11 @@ export default {
 .avatar {
   display: block;
   margin: 20px auto 15px;
+}
+
+.avatar-style {
+  height: 120px;
+  width: 120px;
+  border-radius: 60px;
 }
 </style>

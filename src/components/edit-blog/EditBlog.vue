@@ -25,8 +25,8 @@
               </transition>
               <transition name="slide-fade">
                 <md-select v-if="showCategory" v-model="blog_params.category" name="movie" id="movie" placeholder="这里是分类">
-                  <md-option value="fight-club">Fight Club</md-option>
-                  <md-option value="godfather">Godfather</md-option>
+                  <md-option v-for="item in categorys" :key="item.id" :value="item.id">{{item.name}}</md-option>
+
                 </md-select>
               </transition>
 
@@ -45,14 +45,13 @@
 
             <div class="blog-detail-avatar">
               <md-avatar>
-                <img :src="avatar" alt="Avatar">
+                <img :src="user.icon?user.icon:avatar" alt="Avatar">
               </md-avatar>
             </div>
 
             <div class="blog-detail-text-warpper">
-              <p class="blog-edit-info-text">素笺淡墨染流年</p>
-              <span class="blog-edit-info-text">2018/3/17</span>
-              <span class="blog-edit-info-text">666</span>
+              <p class="blog-edit-info-text">{{user.username}}</p>
+              <span class="blog-edit-info-text">{{createTimeF()}}</span>
             </div>
 
           </div>
@@ -60,7 +59,7 @@
           <div class="md-layout-item md-size-30 md-layout md-alignment-center-right">
 
             <md-button class="md-icon-button" @click="saveBlog">
-              <md-icon class="fa fa-save"></md-icon>
+              <md-icon>check</md-icon>
             </md-button>
 
           </div>
@@ -69,7 +68,7 @@
         <div class="md-layout blog-edit-content">
 
           <div class="editor">
-            <mavon-editor  ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
+            <mavon-editor ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
           </div>
         </div>
 
@@ -86,13 +85,10 @@
       </div>
     </div>
 
-
-
- <md-snackbar md-position="left" :md-duration="4000" :md-active.sync="showSnackbar" >
+    <md-snackbar md-position="left" :md-duration="4000" :md-active.sync="showSnackbar">
       <span>{{snackbarText}}</span>
-     
-    </md-snackbar>
 
+    </md-snackbar>
 
   </div>
 
@@ -102,9 +98,9 @@
 <script>
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 import EditNav from './EditNav'
-
+import moment from 'moment'
 export default {
   name: 'editBlog',
   data: () => ({
@@ -118,6 +114,7 @@ export default {
     },
     showCategory: true,
     img_file: {},
+    createTime: '',
     blog_params: {
       title: '',
       category: '',
@@ -160,7 +157,7 @@ export default {
     }
   }),
   methods: {
-    ...mapActions(['uploadImg', 'save', 'update']),
+    ...mapActions(['uploadImg', 'save', 'update', 'getBlog']),
     categoryToggle () {
       this.showCategory = !this.showCategory
     },
@@ -212,23 +209,42 @@ export default {
     },
     saveTheBlog () {
       this.save(this.blog_params)
-      .then(res => {
-        this.$router.push('/detail/' + res.data.id)
-      })
-      .catch(error => {
-        this.snackbarText = '保存失败' + error.data
-        this.showSnackbar = true
-      })
+        .then(res => {
+          this.$router.push('/detail/' + res.data.id)
+        })
+        .catch(error => {
+          this.snackbarText = '保存失败' + error.data
+          this.showSnackbar = true
+        })
     },
     updateTheBlog (id) {
-      this.update({id: id, params: this.blog_params})
-      .then(res => this.$router.push('/detail/' + res.data.id))
-      .catch(error => {
-        this.snackbarText = '修改失败' + error.data
-        this.showSnackbar = true
-      })
+      this.update({ id: id, params: this.blog_params })
+        .then(res => this.$router.push('/detail/' + res.data.id))
+        .catch(error => {
+          this.snackbarText = '修改失败' + error.data
+          this.showSnackbar = true
+        })
+    },
+    createTimeF () {
+      return this.createTime
+        ? this.createTime
+        : moment(new Date()).format('YYYY-MM-DD')
     }
+  },
+  created () {
+    const params = this.$route.params
+    params &&
+      params.id &&
+      this.getBlog(params.id).then(res => {
+        this.createTime = res.data.add_time
+        this.blog_params.category = res.data.category.id
+        this.blog_params.content = res.data.content
+        this.blog_params.title = res.data.title
+      })
+  },
 
+  computed: {
+    ...mapGetters(['user', 'categorys'])
   },
 
   components: {
@@ -249,7 +265,7 @@ export default {
 .edit-warpper {
   max-width: 900px;
   margin: 0 auto;
-padding-bottom: 100px
+  padding-bottom: 100px;
 }
 .blog-edit-header {
 }
@@ -352,6 +368,15 @@ textarea:-ms-input-placeholder {
 
 .md-field.md-theme-default:after {
   background-color: white !important;
+}
+
+
+.md-snackbar.md-theme-default{
+  background-color:#E9EBEC
+}
+
+.md-snackbar.md-theme-default span{
+ color: gray;
 }
 </style>
 

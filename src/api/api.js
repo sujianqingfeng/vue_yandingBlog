@@ -8,3 +8,4 @@ export const editUser = (id) => `${baseUrl}users/${id}/`
 export const uploadImg = () => `${baseUrl}img_upload/`
 export const saveBlog = () => `${baseUrl}blogs/`
 export const updateBlog = (id) => `${baseUrl}blogs/${id}/`
+export const getCategorys = (id) => `${baseUrl}category/${id}/category_list/`

@@ -2,7 +2,7 @@
 
     <div class="index-warpper">
 
-        <md-button @click="iconClick" class="md-icon-button">
+        <md-button v-show="navigations.lenght>0" @click="iconClick" class="md-icon-button">
             <md-icon>format_list_numbered</md-icon>
         </md-button>
 

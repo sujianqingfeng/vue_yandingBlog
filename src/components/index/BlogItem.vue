@@ -7,7 +7,7 @@
 
     <div class="md-padding  md-layout md-alignment-center-left">
       <span>{{item.content}}</span>
-      <md-button to="/detail/dddd" class="md-primary">阅读更多</md-button>
+      <md-button :to="'/detail/'+item.id" class="md-primary">阅读更多</md-button>
     </div>
 
     <div class="md-padding md-layout blog-item-footer md-alignment-center-left">
@@ -15,7 +15,7 @@
 
         <div class="md-layout-item md-size-10   md-smail-size-15 md-xsmall-size-20">
           <md-avatar>
-            <img :src="avatar" alt="Avatar">
+            <img :src="info.icon?info.icon:avatar" alt="Avatar">
           </md-avatar>
         </div>
 

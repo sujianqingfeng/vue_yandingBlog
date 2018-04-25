@@ -8,6 +8,8 @@ import VueMaterial from 'vue-material'
 import 'vue-material/dist/vue-material.min.css'
 import 'vue-material/dist/theme/default.css'
 
+import VueClipboard from 'vue-clipboard2'
+
 import VueAnalytics from 'vue-analytics'
 
 import 'assets/css/index.css'
@@ -17,6 +19,8 @@ import store from 'store/index.js'
 
 Vue.config.productionTip = false
 Vue.use(VueMaterial)
+
+Vue.use(VueClipboard)
 
 Vue.use(VueAnalytics, {
   id: 'UA-116815221-1',

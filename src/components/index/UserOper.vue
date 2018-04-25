@@ -1,10 +1,10 @@
 <template>
     <md-card class="user-oper">
 
-        <div class="md-layout user-header">
-            <md-avatar class="md-large">
-                <img :src="avatar" alt="Avatar">
-            </md-avatar>
+        <div class="md-layout user-header md-layout md-alignment-center">
+         
+            <img :src="info.icon?info.icon:avatar" alt="Avatar" class="avatar-style">
+        
         </div>
 
         <div class="md-layout user-footer md-padding">
@@ -61,6 +61,12 @@ export default {
 <style >
 .user-header {
   height: 300px;
+}
+
+.avatar-style{
+    height: 120px !important; 
+    width: 120px;
+    border-radius: 60px
 }
 </style>
 

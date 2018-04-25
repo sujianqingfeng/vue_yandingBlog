@@ -9,15 +9,15 @@
 
     </div>
 
-    <navbar :show.sync='menuVisible' :info='info' />
+    <navbar :show.sync='menuVisible' :info='info' :user='user' :categorys='categorys' />
 
     <div class="blog-content-warpper">
-      <div class="blog-content md-layout md-gutter">
+      <div class="blog-content md-layout md-gutter" v-show="showHeader">
         <div class="md-layout-item  md-size-65 md-smail-size-100 md-xsmall-size-100">
-          <user-info :info='info'/>
+          <user-info :info='info' />
         </div>
         <div class="md-layout-item md-size-35 md-smail-size-100 md-xsmall-size-100">
-          <user-oper :info='info'/>
+          <user-oper :info='info' />
         </div>
       </div>
 
@@ -25,14 +25,14 @@
 
         <div class="md-layout-item ">
 
-          <blog-item v-for="item in list" :key='item.id' :info='info'  :item='item' />
-         
+          <blog-item v-for="item in list" :key='item.id' :info='info' :item='item' />
+
         </div>
       </div>
 
       <div class="blog-pagination md-layout md-gutter">
         <div class="md-layout-item">
-          <blog-pagination/>
+          <blog-pagination :page='page' :preShow='hasPre' :nextShow='hasNext' @nextPerform='nextPerform' @prePerform='prePerform'/>
         </div>
       </div>
 
@@ -64,24 +64,44 @@ export default {
     return {
       menuVisible: false,
       avatar: require('./avatar.jpg'),
-      expandNews: []
+      expandNews: [],
+      page: 1
     }
   },
   computed: {
-    ...mapGetters({
-      list: 'list',
-      info: 'info'
-    })
+    ...mapGetters([
+      'list',
+      'info',
+      'categorys',
+      'hasNext',
+      'hasPre',
+      'showHeader',
+      'user'
+    ])
   },
   methods: {
-    ...mapActions(['getBlogList', 'getUser']),
+    ...mapActions(['getBlogList', 'getUser', 'getCategory']),
     homeClick: () => {
       this.menuVisible = !this.menuVisible
+    },
+    nextPerform () {
+      const id = this.$route.params.id
+      const page = this.page + 1
+      this.page = page
+      this.getBlogList({id, page})
+    },
+    prePerform () {
+      const id = this.$route.params.id
+      const page = this.page - 1
+      this.page = page
+      this.getBlogList({id, page})
     }
   },
   created () {
-    this.getBlogList(this.$route.params.id)
-    this.getUser(this.$route.params.id)
+    const id = this.$route.params.id
+    this.getBlogList({id: id, page: this.page})
+    this.getUser(id)
+    this.getCategory(id)
   },
   components: {
     UserInfo,
