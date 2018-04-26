@@ -1,22 +1,22 @@
 <template>
-  <md-card class="info-container">
-   
-    <div class="info-header md-padding md-layout md-alignment-bottom-left" :style="header">
-       <h2 class="info-text md-title ">{{info.desc}}</h2>
-    </div>
-   
+  <v-card color="white">
+    <v-layout column>
+      <v-flex d-flex align-end justify-end pb-3 pl-3 :style="headerBg" class="info-header">
+        <p class="display-1 info-text">fff</p>
+        </v-flex>
+      <v-flex>
+        <v-layout align-center  mx-2 my-2>
+          <v-avatar :size="50" class="grey lighten-4">
+            <img :src="avatar" alt="avatar">
+          </v-avatar>
+          <p class="info-footer-text">252525</p>
+        </v-layout>
 
-    <div class="md-layout  info-footer md-padding">
-      <div class="md-layout-item">
-          <md-avatar>
-            <img :src="avatar" alt="Avatar">
-          </md-avatar>
-          <span class="info-footer-text md-margin">{{info.username}}</span>
-      </div>
-    </div>
+      </v-flex>
 
+    </v-layout>
 
-  </md-card>
+  </v-card>
 </template>
 
 
@@ -29,7 +29,7 @@ export default {
   },
   data: () => ({
     avatar: require('./avatar.jpg'),
-    header: {
+    headerBg: {
       backgroundImage:
         'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
     }
@@ -40,16 +40,15 @@ export default {
 <style >
 .info-header {
   height: 300px;
-  /* background-image: url("test.png"); */
 }
 
-.info-text{
-  color: white
+.info-text {
+  color: white;
 }
 
-.info-footer-text{
+.info-footer-text {
   color: gray;
+  margin-left: 8px
 }
-
 </style>
 

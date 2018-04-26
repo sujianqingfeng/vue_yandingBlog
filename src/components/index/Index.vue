@@ -1,50 +1,27 @@
 <template>
-  <div class="blog-containert">
 
-    <div class="blog-head-warpper">
+  <v-app app>
+    <v-toolbar app absolute color="transparent" flat scroll-off-screen>
+      <v-btn icon @click.native="ll">
+        <v-icon>menu</v-icon>
+      </v-btn>
 
-      <md-button @click="menuVisible=true" class="md-icon-button blog-head-icon">
-        <md-icon class="menu">menu</md-icon>
-      </md-button>
+    </v-toolbar>
+    <v-content class="blog-content-warpper">
+      <v-container fluid>
+        <v-layout class="blog-header" offset-md1>
+          
+          <v-flex xs12 md8 mr-3>
+            <user-info/>
+          </v-flex>
+           <v-flex xs12 md4>
+             <user-oper/>
+           </v-flex>
+        </v-layout>
+      </v-container>
+    </v-content>
 
-    </div>
-
-    <navbar :show.sync='menuVisible' :info='info' :user='user' :categorys='categorys' />
-
-    <div class="blog-content-warpper">
-      <div class="blog-content md-layout md-gutter" v-show="showHeader">
-        <div class="md-layout-item  md-size-65 md-smail-size-100 md-xsmall-size-100">
-          <user-info :info='info' />
-        </div>
-        <div class="md-layout-item md-size-35 md-smail-size-100 md-xsmall-size-100">
-          <user-oper :info='info' />
-        </div>
-      </div>
-
-      <div class="blog-item-content md-layout md-gutter">
-
-        <div class="md-layout-item ">
-
-          <blog-item v-for="item in list" :key='item.id' :info='info' :item='item' />
-
-        </div>
-      </div>
-
-      <div class="blog-pagination md-layout md-gutter">
-        <div class="md-layout-item">
-          <blog-pagination :page='page' :preShow='hasPre' :nextShow='hasNext' @nextPerform='nextPerform' @prePerform='prePerform'/>
-        </div>
-      </div>
-
-    </div>
-
-    <div class="blog-footer md-padding md-alignment-center-center">
-      <div class="md-layout-item ">
-        <blog-footer/>
-      </div>
-    </div>
-
-  </div>
+  </v-app>
 </template>
 
 
@@ -88,18 +65,18 @@ export default {
       const id = this.$route.params.id
       const page = this.page + 1
       this.page = page
-      this.getBlogList({id, page})
+      this.getBlogList({ id, page })
     },
     prePerform () {
       const id = this.$route.params.id
       const page = this.page - 1
       this.page = page
-      this.getBlogList({id, page})
+      this.getBlogList({ id, page })
     }
   },
   created () {
     const id = this.$route.params.id
-    this.getBlogList({id: id, page: this.page})
+    this.getBlogList({ id: id, page: this.page })
     this.getUser(id)
     this.getCategory(id)
   },
@@ -134,7 +111,7 @@ export default {
 }
 
 .blog-content-warpper {
-  max-width: 900px;
+  width: 900px;
   margin: 0 auto;
 }
 
