@@ -8,50 +8,52 @@
         </div>
 
         <md-list>
-            <md-list-item md-expand :md-expanded.sync="expandNews">
-                <md-icon>whatshot</md-icon>
-                <span class="md-list-item-text">News</span>
+            <md-list-item v-for="item in categorys" :key="item.id" md-expand :md-expanded.sync="expandNews">
 
-                <md-list slot="md-expand">
-                    <md-list-item class="md-inset">World</md-list-item>
-                    <md-list-item class="md-inset">Europe</md-list-item>
-                    <md-list-item class="md-inset">South America</md-list-item>
-                </md-list>
+                <span class="md-list-item-text">{{item.name}}</span>
+                <div slot="md-expand">
+                    <md-field>
+      
+                        <md-input v-model="item.name"></md-input>
+                      
+                    </md-field>
+                    <md-button md-menu-trigger class="md-icon-button">
+                        <md-icon>create</md-icon>
+                    </md-button>
+
+                    <md-button md-menu-trigger class="md-icon-button">
+                        <md-icon>delete</md-icon>
+                    </md-button>
+                </div>
+                <!-- <md-menu  :md-offset-x="-140" :md-offset-y="-36">
+                    <md-button md-menu-trigger class="md-icon-button">
+                        <md-icon>settings</md-icon>
+                    </md-button>
+
+                    <md-menu-content>
+                        <md-menu-item  @click="showDialog(item)">
+                            <md-icon>create</md-icon>
+                            修改
+                        </md-menu-item>
+                        <md-menu-item  @click="">
+                            <md-icon>delete</md-icon>
+                            删除
+                        </md-menu-item>
+
+                    </md-menu-content>
+                </md-menu> -->
+
             </md-list-item>
 
-            <md-list-item md-expand>
-                <md-icon>videogame_asset</md-icon>
-                <span class="md-list-item-text">Games</span>
-
-                <md-list slot="md-expand">
-                    <md-list-item class="md-inset">Console</md-list-item>
-                    <md-list-item class="md-inset">PC</md-list-item>
-                    <md-list-item class="md-inset">Phone</md-list-item>
-                </md-list>
-            </md-list-item>
-
-            <md-list-item md-expand>
-                <md-icon>video_library</md-icon>
-                <span class="md-list-item-text">Video</span>
-
-                <md-list slot="md-expand">
-                    <md-list-item class="md-inset">Humor</md-list-item>
-                    <md-list-item class="md-inset">Music</md-list-item>
-                    <md-list-item class="md-inset">Movies</md-list-item>
-                    <md-list-item class="md-inset">TV Shows</md-list-item>
-                </md-list>
-            </md-list-item>
-
-            <md-list-item>
-                <md-icon>shopping_basket</md-icon>
-                <span class="md-list-item-text">Shop</span>
-            </md-list-item>
         </md-list>
+
+        <md-dialog-prompt :md-active.sync="active" v-model="paramas.name" md-title="修改类别" md-input-maxlength="10" md-input-placeholder="请输入" md-cancel-text='取消' md-confirm-text="确定" />
     </md-drawer>
 
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
 export default {
   name: 'editNav',
   props: {
@@ -63,10 +65,16 @@ export default {
   data () {
     return {
       avatar: require('../index/avatar.jpg'),
-      expandNews: []
+      expandNews: [],
+      active: false,
+      paramas: {
+        id: '',
+        name: ''
+      }
     }
   },
   computed: {
+    ...mapGetters(['user', 'categorys']),
     showNavigation: {
       get: function () {
         return this.show
@@ -76,7 +84,15 @@ export default {
       }
     }
   },
-  methods: {}
+  methods: {
+    ...mapActions(['getBlogList', 'getUser', 'getCategory']),
+    showDialog (item) {
+      this.paramas.id = item.id
+      //   this.paramas.name = item.name
+
+      this.active = true
+    }
+  }
 }
 </script>
 
@@ -86,4 +102,35 @@ export default {
   display: block;
   margin: 20px auto 15px;
 }
+
+/* .md-field input {
+  color: #448aff !important;
+
+  -webkit-text-fill-color: #448aff !important;
+
+}
+
+:root{
+  --md-theme-default-primary:#448aff !important;
+  --md-teheme-default-accent:#448aff  !important
+}
+
+
+.md-field.md-theme-default:after{
+   background-color:#448aff !important
+ }
+
+ .login-label {
+  color:#448aff !important;
+}
+.login-input {
+  color: white !important;
+} */
+
+/* .md-icon-font svg {
+  color: #448aff !important;
+  fill: #448aff !important;
+} */
+
+
 </style>

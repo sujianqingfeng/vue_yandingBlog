@@ -34,7 +34,7 @@
 
             <div class="md-layout-item">
 
-              <md-field md-clearable>
+              <md-field md-clearable id="name">
                 <label class="login-label">用户名</label>
                 <md-input class="login-input" v-model="params.username"></md-input>
               </md-field>
@@ -80,7 +80,9 @@ export default {
 </script>
 
 
-<style scope>
+
+
+<style scoped>
 .blog-login-warpper {
   max-width: 900px;
   margin: 0 auto;
@@ -111,8 +113,14 @@ export default {
   color: white !important;
 }
 
-.md-icon-font svg {
+svg {
   color: white !important;
+  fill: white !important;
+}
+
+
+.md-icon.md-theme-default.md-icon-image svg{
+   color: white !important;
   fill: white !important;
 }
 
@@ -153,7 +161,8 @@ export default {
 
 :root{
   --md-theme-default-primary:white !important;
-  --md-teheme-default-accent:white  !important
+  --md-teheme-default-accent:white  !important;
+  --md-theme-default-text-primary-on-background: white  !important;
 }
 
 .md-field.md-theme-default:after{
