@@ -1,59 +1,50 @@
 <template>
-  <div class="blog-container">
 
-    <div class="blog-head-warpper">
-      <md-button @click='$router.go(-1)' class="md-icon-button blog-head-icon">
-        <md-icon class="">arrow_back</md-icon>
-      </md-button>
-    </div>
+  <v-app>
 
-    <div class="blog-login-warpper md-layout">
+    <v-container fluid fill-height>
 
-      <div class="md-layout-item md-small-size-100 md-xsmall-size-100 blog-login-left-warpper" :style="back">
+      <v-card class="blog-login-warpper">
+        <v-container fluid grid-list-md px-1 py-1>
 
-      </div>
-      <div class="md-layout-item md-small-size-100 md-xsmall-size-100 blog-login-right-warpper md-layout md-alignment-center-center">
+          <v-layout row wrap>
+            <v-flex xs12 sm12 md6 :style="back" class="blog-login-left">
 
-        <div class="md-layout-item">
+            </v-flex>
 
-          <div class="blog-login-header md-layout-item md-layout">
-            <div class="md-layout-item blog-login-label-warpper">
-              <p>注册</p>
-              <p class="md-title">登录</p>
-            </div>
+            <v-flex xs12 sm12 md6 class="blog-login-right">
+              <v-layout column wrap>
+                <v-flex md12 d-flex>
+                  <v-layout>
+                    <v-flex>
+                      <p class="display-1">注册</p>
+                      <p class="display-2">登录</p>
+                    </v-flex>
 
-            <div class="md-layout-item blog-login-button-warpper md-layout md-alignment-center-right">
-              <md-button @click='clickLogin' class="md-icon-button md-raised">
-                <md-icon class="">keyboard_arrow_right</md-icon>
-              </md-button>
+                    <v-btn fab large color="white">
+                      <v-icon>keyboard_arrow_right</v-icon>
+                    </v-btn>
+                  </v-layout>
 
-            </div>
-          </div>
+                </v-flex>
 
-          <div class="blog-login-form-warpper md-layout md-alignment-center-center">
+                <v-flex d-flex>
+                  <v-text-field name="input-1" label="Label Text" id="testing"></v-text-field>
+                </v-flex>
 
-            <div class="md-layout-item">
+              </v-layout>
 
-              <md-field md-clearable id="name">
-                <label class="login-label">用户名</label>
-                <md-input class="login-input" v-model="params.username"></md-input>
-              </md-field>
+            </v-flex>
 
-              <md-field>
-                <label class="login-label">密码</label>
-                <md-input v-model="params.password" type="password"></md-input>
-              </md-field>
-            </div>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-container>
 
-          </div>
-        </div>
+  </v-app>
 
-      </div>
-
-    </div>
-
-  </div>
 </template>
+
 
 
 <script>
@@ -84,18 +75,18 @@ export default {
 
 <style scoped>
 .blog-login-warpper {
-  max-width: 900px;
+  min-width: 900px;
   margin: 0 auto;
   background-color: white;
   min-height: 600px;
 }
 
-.blog-login-left-warpper {
-  background-image: 'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
+.blog-login-left {
+  height: 600px;
 }
 
-.blog-login-right-warpper {
-  background-color: #AABCD4;
+.blog-login-right {
+  background-color: #aabcd4;
   padding: 18px;
   color: white;
 }
@@ -105,68 +96,7 @@ export default {
   width: 100%;
   height: 100%;
 }
-
-.login-label {
-  color: white !important;
+.material-icons {
+  line-height: 70px;
 }
-.login-input {
-  color: white !important;
-}
-
-svg {
-  color: white !important;
-  fill: white !important;
-}
-
-
-.md-icon.md-theme-default.md-icon-image svg{
-   color: white !important;
-  fill: white !important;
-}
-
-.md-field input {
-  color: white !important;
-  text-shadow: 0px 0px 0px white;
-  -webkit-text-fill-color: white !important;
-  outline-color: white !important;
-}
-
-.md-field input ::before {
-  color: white !important;
-  text-shadow: 0px 0px 0px white;
-  -webkit-text-fill-color: white !important;
-  outline-color: white !important;
-}
-
-.md-field input ::after {
-  color: white !important;
-  text-shadow: 0px 0px 0px white;
-  -webkit-text-fill-color: white !important;
-}
-
-.md-field input :focus {
-  outline-color: white !important;
-   outline-offset: -5px  !important;
-   outline-width: 10px;
-   border-bottom-color: white !important;
-}
-
-.md-field ::before{
-
-}
-
-.md-field.md-them-default.md-focused .md-input{
- color: #fff !important;
-}
-
-:root{
-  --md-theme-default-primary:white !important;
-  --md-teheme-default-accent:white  !important;
-  --md-theme-default-text-primary-on-background: white  !important;
-}
-
-.md-field.md-theme-default:after{
-   background-color: white !important
- }
-
 </style>
