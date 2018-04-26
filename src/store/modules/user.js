@@ -20,10 +20,9 @@ const actions = {
     http.get(apiConst.getUserInfo(id))
        .then(info => commit('setInfo', info.data))
   },
-  login: ({commit}, params) => {
-    http.post(apiConst.login(), params)
-       .then(res => commit('setUser', res.data))
-  },
+  login: ({commit}, params) => http.post(apiConst.login(), params)
+       .then(res => commit('setUser', res.data)),
+
   editUser: ({commit}, {id, params}) => {
     return http.patch(apiConst.editUser(id), params)
     .then(res => {
