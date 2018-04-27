@@ -1,48 +1,35 @@
 <template>
-  <md-card class="blog-item">
+  <v-card>
 
-    <md-card-header class="blog-item-header md-padding md-layout md-alignment-bottom-left" :style="header">
-      <span class="md-title">{{item.title}}</span>
-    </md-card-header>
+    <v-layout column mt-3>
 
-    <div class="md-padding  md-layout md-alignment-center-left">
-      <span>{{item.content}}</span>
-      <md-button :to="'/detail/'+item.id" class="md-primary">阅读更多</md-button>
-    </div>
+      <v-flex d-flex align-end pl-3 pb-3 :style="headerBg" class="blog-item-header display-1">dddd</v-flex>
+      <v-flex>
+        <v-layout align-center mx-2 my-2>
+          <v-flex>
+            <v-layout align-center>
+              <v-avatar :size="50">
+                <img :src="avatar" alt="avatar">
+              </v-avatar>
+              <v-layout column>
+                <p class="info-footer-text">252525</p>
+                <p class="info-footer-text">252525</p>
+              </v-layout>
+            </v-layout>
+          </v-flex>
+          <p>252525</p>
 
-    <div class="md-padding md-layout blog-item-footer md-alignment-center-left">
-      <div class="md-layout-item md-layout md-gutter">
-
-        <div class="md-layout-item md-size-10   md-smail-size-15 md-xsmall-size-20">
-          <md-avatar>
-            <img :src="info.icon?info.icon:avatar" alt="Avatar">
-          </md-avatar>
-        </div>
-
-        <div class="md-layout-item md-size-70  md-smail-size-85 md-xsmall-size-80 blog-item-footer-text-warpper">
-          <p>
-            <span class="blog-item-footer-text">{{info.username}}</span>
-          </p>
-          <span class="blog-item-footer-text">{{item.add_time}}
-            <span class="blog-item-footer-view">{{item.num+' view'}}</span>
-          </span>
-        </div>
-
-      </div>
-
-      <div class="md-layout-item md-layout md-alignment-center-right">
-        <p class="blog-item-category-text">{{item.category?item.category.name:'-'}}</p>
-      </div>
-    </div>
-
-  </md-card>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-card>
 </template>
 <script>
 export default {
   name: 'BlogItem',
   data: () => ({
     avatar: require('./avatar.jpg'),
-    header: {
+    headerBg: {
       backgroundImage:
         'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
     }
@@ -66,7 +53,6 @@ export default {
 
 .blog-item-header {
   height: 250px;
-  /* background-image: url("test.png"); */
   color: white;
 }
 
@@ -92,7 +78,7 @@ export default {
   color: "#607D8B";
 }
 
-.blog-item-footer-view{
-  margin-left: 16px
+.blog-item-footer-view {
+  margin-left: 16px;
 }
 </style>

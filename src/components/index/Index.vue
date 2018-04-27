@@ -2,24 +2,52 @@
 
   <v-app app>
     <v-toolbar app absolute color="transparent" flat scroll-off-screen>
-      <v-btn icon @click.native="ll">
+      <v-btn icon @click.native="drawerConfig.show=!drawerConfig.show">
         <v-icon>menu</v-icon>
       </v-btn>
-
     </v-toolbar>
+
+
+     <v-navigation-drawer
+      temporary
+      v-model="drawerConfig.show"
+      absolute
+    >
+      <navbar :categorys='categorys' :user='user' :info='info'/>
+     </v-navigation-drawer>
+
     <v-content class="blog-content-warpper">
       <v-container fluid>
-        <v-layout class="blog-header" offset-md1>
-          
-          <v-flex xs12 md8 mr-3>
-            <user-info/>
+        <v-layout column>
+          <v-flex>
+            <v-layout>
+
+              <v-flex xs12 md8 mr-3>
+                <user-info/>
+              </v-flex>
+              <v-flex xs12 md4>
+                <user-oper/>
+              </v-flex>
+            </v-layout>
+
           </v-flex>
-           <v-flex xs12 md4>
-             <user-oper/>
-           </v-flex>
+
+          <v-flex>
+            <blog-item/>
+          </v-flex>
+
+          <v-flex mt-3>
+            <blog-pagination :page='page' :preShow='hasPre' :nextShow='hasNext' @nextPerform='nextPerform' @prePerform='prePerform'/>
+          </v-flex>
+
         </v-layout>
+
       </v-container>
     </v-content>
+
+    <v-footer height="auto" app>
+      <blog-footer/>
+    </v-footer>
 
   </v-app>
 </template>
@@ -39,9 +67,10 @@ export default {
   name: 'index',
   data () {
     return {
-      menuVisible: false,
       avatar: require('./avatar.jpg'),
-      expandNews: [],
+      drawerConfig: {
+        show: false
+      },
       page: 1
     }
   },

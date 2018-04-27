@@ -1,28 +1,22 @@
 <template>
 
-    <div class="md-layout md-alignment-center-center blog-footer-warpper md-gutter">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-        
-        <div class="md-layout-item md-layout md-alignment-center-center md-size-10 md-medium-size-20  md-smail-size-100 md-xsmall-size-100">
-            <md-button class="md-icon-button md-dense font-color">
-                <md-icon class="fa fa-github"></md-icon>
-            </md-button>
+<v-container>
+ 
+    <v-layout align-center py-4>
+        <v-flex xl12 xm12 md3>
+            <v-btn icon>
+                <v-icon>fa fa-github</v-icon>
+            </v-btn>
+            <v-btn icon>
+                <v-icon>fa fa-link</v-icon>
+            </v-btn>
+        </v-flex>
+        <v-flex d-flex justify-center xl12 xm12 md6> Copyright © 2018 YanDing's Blog</v-flex>
+        <v-flex d-flex justify-end xl12 xm12 md3> Powered by Sujian</v-flex>
+    </v-layout>
+</v-container>
 
-            <md-button class="md-icon-button md-dense font-color">
-                 <md-icon class="fa fa-link"></md-icon>
-            </md-button>
-
-        </div>
-
-        <div class="md-layout-item md-layout md-alignment-center-center md-size-80 md-medium-size-60 md-smail-size-100 md-xsmall-size-100">
-            Copyright © 2018 YanDing's Blog
-        </div>
-
-        <div class="md-layout-item  md-layout md-alignment-center-center md-size-10 md-medium-size-20 md-smail-size-100 md-xsmall-size-100">
-            Powered by Sujian
-        </div>
-
-    </div>
+  
 </template>
 
 

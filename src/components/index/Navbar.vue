@@ -1,49 +1,90 @@
 <template>
-  <md-drawer :md-active.sync="showNavigation">
 
-    <div class="drawer-header md-layout md-alignment-center" :style="header">
+  <v-container px-0 py-0>
 
-      <router-link :to="user ? '/editUser' : '/login'">
-        <img :src="info.icon?info.icon:avatar" alt="Avatar" class="avatar-style">
-      
-      </router-link>
+    <v-layout column>
 
-    </div>
+      <v-flex align-center justify-center :style="headerBg" py-4>
+        <v-avatar :size="100">
+          <img :src="avatar" alt="avatar">
+        </v-avatar>
 
-    <md-list>
+      </v-flex>
 
-      <md-list-item :to="'/home/'+info.id">
-        <md-icon>home</md-icon>
-        <span class="md-list-item-text">主页</span>
-      </md-list-item>
+      <v-flex>
 
-      <md-list-item md-expand :md-expanded.sync="expandNews">
-        <md-icon>library_books</md-icon>
-        <span class="md-list-item-text">类别</span>
+        <v-list>
+          <v-list-tile>
+            <v-list-tile-action>
+              <v-icon>home</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Home</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
 
-        <md-list slot="md-expand">
-          <md-list-item class="md-inset">所有</md-list-item>
-          <md-list-item v-for="item in categorys" :key='item.id' class="md-inset">{{item.name}}</md-list-item>
-        </md-list>
-      </md-list-item>
+          <v-divider></v-divider>
 
-      <md-list-item :to="'about/'+info.id">
-        <md-icon>account_circle</md-icon>
-        <span class="md-list-item-text">关于我</span>
-      </md-list-item>
+          <v-list-group :prepend-icon="library_books" no-action>
 
-      <md-list-item to="/friend">
-        <md-icon class="fa fa-link"></md-icon>
-        <span class="md-list-item-text">友情链接</span>
-      </md-list-item>
+            <v-list-tile slot="activator">
+              <v-list-tile-action>
+                <v-icon>library_books</v-icon>
+              </v-list-tile-action>
+              <v-list-tile-content>
+                <v-list-tile-title>Category</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
 
-      <md-list-item v-show="user.id === info.id" to="/editBlog">
-        <md-icon >create</md-icon>
-        <span class="md-list-item-text">写博客</span>
-      </md-list-item>
+            <v-list-tile v-for="item in categorys" :key="item.id">
 
-    </md-list>
-  </md-drawer>
+              <v-list-tile-content>
+                <v-list-tile-title>{{item.name}}</v-list-tile-title>
+              </v-list-tile-content>
+            </v-list-tile>
+
+          </v-list-group>
+
+          <v-divider></v-divider>
+
+          <v-list-tile @click="$router.push('/about')">
+            <v-list-tile-action>
+              <v-icon>account_circle</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>About Me</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <v-divider></v-divider>
+
+          <v-list-tile>
+            <v-list-tile-action>
+              <v-icon>fa fa-link</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Friendly Link</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <v-divider></v-divider>
+
+          <v-list-tile  @click="$router.push({name:'edit'})">
+            <v-list-tile-action>
+              <v-icon>create</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Edit Blog</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+        </v-list>
+      </v-flex>
+
+    </v-layout>
+
+  </v-container>
+
 
 </template>
 
@@ -51,10 +92,6 @@
 export default {
   name: 'Navbar',
   props: {
-    show: {
-      type: Boolean,
-      default: false
-    },
     info: Object,
     user: Object,
     categorys: Array
@@ -63,7 +100,7 @@ export default {
     return {
       avatar: require('./avatar.jpg'),
       expandNews: [],
-      header: {
+      headerBg: {
         backgroundImage:
           'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
       }

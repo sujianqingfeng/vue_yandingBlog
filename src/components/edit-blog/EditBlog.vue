@@ -1,96 +1,69 @@
 <template>
-  <div class="edit-containert">
 
-    <div class="blog-header">
-      <md-button @click="menuVisible=true" class="md-icon-button">
-        <md-icon class="menu">menu</md-icon>
-      </md-button>
-    </div>
+  <v-app>
+    <v-toolbar absolute color="transparent" flat scroll-off-screen>
+      <v-btn icon @click.native="$router.go(-1)">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
 
-    <edit-nav :show.sync='menuVisible' />
+    </v-toolbar>
+    <v-container fluid fill-height>
+      <v-card class="card-warpper">
+        <v-container fluid grid-list-md px-1 py-1>
 
-    <div class="edit-warpper">
-      <md-card class="blog-edit-header">
-        <md-card-header class="blog-edit-header-bg  md-padding md-layout md-alignment-bottom-left" :style="editUserHeader">
+          <v-layout column>
 
-          <div class="title-warpper">
+            <v-flex d-flex align-end :style="editUserHeaderStyle" class="blog-edit-header-bg">
 
-            <md-field>
-              <md-input class="text-title" v-model="blog_params.title" placeholder="这里是标题"></md-input>
-            </md-field>
+              <v-layout column >
 
-            <md-field>
-              <transition name="slide-fade">
-                <md-input v-if="!showCategory" v-model="blog_params.category" placeholder="这里是分类"></md-input>
-              </transition>
-              <transition name="slide-fade">
-                <md-select v-if="showCategory" v-model="blog_params.category" name="movie" id="movie" placeholder="这里是分类">
-                  <md-option v-for="item in categorys" :key="item.id" :value="item.id">{{item.name}}</md-option>
+                <v-flex lg8>
+                </v-flex>
 
-                </md-select>
-              </transition>
+                <v-flex pl-5 pr-5 style="width:350px" >
 
-            </md-field>
+                  <v-text-field  dark color="white" clearable label="标题" id="title" :value='blog_params.title'></v-text-field>
+                  <v-select dark color="white" single-line autocomplete :items="categorys" item-text="name" item-value="id" v-model="blog_params.category" label="类别"></v-select>
+                </v-flex>
 
-          </div>
-          <md-button @click="categoryToggle" class="category-toggle md-icon-button">
-            <md-icon class="menu">cached</md-icon>
-          </md-button>
+              </v-layout>
 
-        </md-card-header>
+            </v-flex>
 
-        <div class="md-padding md-layout  blog-detail-info md-alignment-center-left">
+            <v-flex>
+              <v-layout align-center>
+                <v-flex>
+                  <v-layout align-center mx-2 my-2>
+                    <v-avatar :size="50">
+                      <img :src="avatar" alt="avatar">
+                    </v-avatar>
+                    <v-layout column mx-2 my-2>
+                      <p class="info-footer-text">252525</p>
+                      <p class="info-footer-text">252525</p>
+                    </v-layout>
+                  </v-layout>
+                </v-flex>
 
-          <div class="md-layout-item md-size-70 md-layout md-alignment-center-left">
+                <v-btn icon>
+                  <v-icon>check</v-icon>
+                </v-btn>
 
-            <div class="blog-detail-avatar">
-              <md-avatar>
-                <img :src="user.icon?user.icon:avatar" alt="Avatar">
-              </md-avatar>
-            </div>
+              </v-layout>
+            </v-flex>
 
-            <div class="blog-detail-text-warpper">
-              <p class="blog-edit-info-text">{{user.username}}</p>
-              <span class="blog-edit-info-text">{{createTimeF()}}</span>
-            </div>
+            <v-flex px-0 py-0 style="height:900px">
+              <mavon-editor ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-container>
 
-          </div>
+    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+      {{ snackbarConfig.text }}
+    </v-snackbar> -->
 
-          <div class="md-layout-item md-size-30 md-layout md-alignment-center-right">
-
-            <md-button class="md-icon-button" @click="saveBlog">
-              <md-icon>check</md-icon>
-            </md-button>
-
-          </div>
-        </div>
-
-        <div class="md-layout blog-edit-content">
-
-          <div class="editor">
-            <mavon-editor ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
-          </div>
-        </div>
-
-      </md-card>
-
-    </div>
-
-    <div class="md-layout md-gutter">
-      <div class="md-layout-item md-size-15">
-
-      </div>
-      <div class="md-layout-item  md-size-85">
-
-      </div>
-    </div>
-
-    <md-snackbar md-position="left" :md-duration="4000" :md-active.sync="showSnackbar">
-      <span>{{snackbarText}}</span>
-
-    </md-snackbar>
-
-  </div>
+  </v-app>
 
 </template>
 
@@ -108,7 +81,7 @@ export default {
     snackbarText: '',
     avatar: require('../index/avatar.jpg'),
     menuVisible: false,
-    editUserHeader: {
+    editUserHeaderStyle: {
       backgroundImage:
         'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
     },
@@ -254,7 +227,7 @@ export default {
 }
 </script>
 
-<style scope>
+<style scoped>
 .blog-header {
   height: 200px;
 }
@@ -262,13 +235,11 @@ export default {
   width: 100%;
   height: 1200px;
 }
-.edit-warpper {
-  max-width: 900px;
+.card-warpper {
+  width: 900px;
   margin: 0 auto;
-  padding-bottom: 100px;
 }
-.blog-edit-header {
-}
+
 .blog-edit-header-bg {
   height: 300px;
   color: white;
@@ -276,107 +247,13 @@ export default {
   background-position: right bottom;
 }
 
-.title-warpper {
-  width: 45%;
+
+.form-warpper {
+  width: 300px;
 }
 
-.category-toggle {
-  margin-bottom: 15px !important;
-}
-
-.category-toggle div div i {
-  color: white !important;
-}
-
-.blog-edit-info-text {
-  margin-left: 12px;
-  padding: 4px;
-}
-
-/* 可以设置不同的进入和离开动画 */
-/* 设置持续时间和动画函数 */
-.slide-fade-enter-active {
-  transition: all 3.5s ease;
-}
-.slide-fade-leave-active {
-  transition: all 0s cubic-bezier(1, 0.5, 0.8, 1);
-}
-.slide-fade-enter,
-.slide-fade-leave-to {
-  transform: translateY(50px);
-  opacity: 0;
-}
-
-input::-webkit-input-placeholder,
-textarea::-webkit-input-placeholder {
-  color: white !important;
-}
-input:-moz-placeholder,
-textarea:-moz-placeholder {
-  color: white !important;
-}
-input::-moz-placeholder,
-textarea::-moz-placeholder {
-  color: white !important;
-}
-input:-ms-input-placeholder,
-textarea:-ms-input-placeholder {
-  color: white !important;
-}
-
-.text-title::-webkit-input-placeholder,
-.text-title::-webkit-input-placeholder {
-  color: white !important;
-  font-size: 25px !important;
-}
-.text-title:-moz-placeholder,
-.text-title:-moz-placeholder {
-  color: white !important;
-  font-size: 25px !important;
-}
-.text-title::-moz-placeholder,
-.text-title::-moz-placeholder {
-  color: white !important;
-  font-size: 25px !important;
-}
-.text-title:-ms-input-placeholder,
-.text-title:-ms-input-placeholder {
-  color: white !important;
-  font-size: 25px !important;
-}
-
-.md-icon-font svg {
-  color: white !important;
-  fill: white !important;
-}
-
-.text-title {
+#title {
   font-size: 30px !important;
-}
-
-.md-field input {
-  color: white !important;
-
-  text-shadow: 0px 0px 0px white;
-  -webkit-text-fill-color: white !important;
-}
-
-:root {
-  --md-theme-default-primary: white !important;
-  --md-teheme-default-accent: white !important;
-}
-
-.md-field.md-theme-default:after {
-  background-color: white !important;
-}
-
-
-.md-snackbar.md-theme-default{
-  background-color:#E9EBEC
-}
-
-.md-snackbar.md-theme-default span{
- color: gray;
 }
 </style>
 

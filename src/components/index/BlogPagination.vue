@@ -1,23 +1,22 @@
 <template>
-    <div class="md-layout ">
+    <v-container>
+        <v-layout>
+            <v-flex>
+                 <v-btn v-show="preShow" @click.native="preClick" fab light>
+                    <v-icon>arrow_back</v-icon>
+                </v-btn>
+            </v-flex>
+            <v-flex d-flex justify-center align-center class="title">{{page}}</v-flex>
+            <v-flex>
+                <v-layout justify-end>
+                    <v-btn v-show="nextShow" @click.native="nextClick" fab light>
+                        <v-icon>arrow_forward</v-icon>
+                    </v-btn>
+                </v-layout>
 
-        <div class="md-layout-item md-layout md-alignment-center-left">
-            <md-button  @click="preClick" v-show="preShow" class="md-icon-button md-raised">
-                <md-icon>arrow_back</md-icon>
-            </md-button>
-        </div>
-
-        <div class="md-layout-item md-layout md-alignment-center-center">
-            {{page}}
-        </div>
-
-        <div class="md-layout-item  md-layout md-alignment-center-right">
-            <md-button @click="nextClick" v-show="nextShow" class="md-icon-button md-raised">
-                <md-icon>arrow_forward</md-icon>
-            </md-button>
-        </div>
-        
-    </div>
+            </v-flex>
+        </v-layout>
+    </v-container>
 </template>
 
 
@@ -44,9 +43,10 @@ export default {
 }
 </script>
 
-<style >
-.blog-pagination{
-   
+<style scoped>
+
+.material-icons {
+  line-height: 55px;
 }
 </style>
 
