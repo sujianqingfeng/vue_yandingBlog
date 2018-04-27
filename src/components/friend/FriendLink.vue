@@ -1,35 +1,36 @@
 <template>
-    <div class="blog-containert">
 
-        <div class="friend-header">
+  <v-app>
+    <v-toolbar absolute color="transparent" flat scroll-off-screen>
+      <v-btn icon @click.native="$router.go(-1)">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
+    </v-toolbar>
 
-        </div>
+    <v-container fluid fill-height class="friend-container">
 
-        <div class="friend-container">
-            <div class="md-layout md-gutter">
+      <v-layout>
 
-                <div class="md-layout-item md-size-33 md-smail-size-50 md-xsmall-size-100">
-                    <friend-item></friend-item>
-                </div>
+        <v-flex>
+          <friend-item/>
+        </v-flex>
 
-                <div class="md-layout-item md-size-33 md-smail-size-50 md-xsmall-size-100">
-                    <friend-item></friend-item>
-                </div>
+        <v-flex offset-md1>
+          <friend-item/>
+        </v-flex>
 
-                <div class="md-layout-item md-size-33 md-smail-size-50 md-xsmall-size-100">
-                    <friend-item></friend-item>
-                </div>
+        <v-flex offset-md1>
+          <friend-item/>
+        </v-flex>
 
-            </div>
-        </div>
+      </v-layout>
 
-        <div class="blog-footer md-padding md-alignment-center-center">
-            <div class="md-layout-item ">
-                <blog-footer/>
-            </div>
-        </div>
+    </v-container>
 
-    </div>
+    <v-footer height="auto">
+      <blog-footer/>
+    </v-footer>
+  </v-app>
 
 </template>
 
@@ -48,7 +49,7 @@ export default {
 
 <style>
 .friend-container {
-  max-width: 900px;
+  width: 900px;
   margin: 0 auto;
 }
 

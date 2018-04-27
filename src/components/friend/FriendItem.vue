@@ -1,23 +1,25 @@
 <template>
 
-    <md-content class="md-elevation-2 md-layout  friend-item">
+  <v-card>
 
-        <div class="friend-item-img">
-            <img :src="avatar" alt="Avatar">
-        </div>
+    <v-layout >
+     
+        <img :src="avatar" class="friend-item-img" />
+    
 
-        <div class="friend-text-warrper ">
+      <v-flex>
+        <v-layout column>
+          <v-flex>
+            <p class="display-1">fdifdjf</p>
 
-            <div class="friend-name md-title">
-                最是人间留不住
-            </div>
-          
-           <div class="md-subheading">
-                朱颜辞镜花辞树
-            </div>
-        </div>
-
-    </md-content>
+          </v-flex>
+          <v-flex>
+            <p class="title">fdfdff</p>
+          </v-flex>
+        </v-layout>
+      </v-flex>
+    </v-layout>
+  </v-card>
 
 </template>
 
@@ -38,14 +40,14 @@ export default {
 }
 
 .friend-item-img {
-  height: 60px;
-  width: 60px;
+  height: 80px;
+  width: 80px;
 }
 
-.friend-text-warrper{
-    margin-left: 16px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center
+.friend-text-warrper {
+  margin-left: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 </style>

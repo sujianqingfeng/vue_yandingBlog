@@ -1,5 +1,55 @@
 <template>
-  <div class="blog-containert">
+
+  <v-app>
+    <v-toolbar absolute color="transparent" flat scroll-off-screen>
+      <v-btn icon @click.native="$router.go(-1)">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
+
+    </v-toolbar>
+    <v-container fluid fill-height>
+
+      <v-card class="edit-user-warpper">
+        <v-container fluid grid-list-md px-1 py-1>
+
+          <v-layout column>
+
+            <v-flex d-flex py-4 align-center justify-center :style="editUserHeader">
+              <v-avatar :size="200">
+                <img :src="avatar" alt="avatar">
+              </v-avatar>
+            </v-flex>
+
+            <v-fle>
+              <v-container px-5 mt-5>
+
+                <v-text-field label="昵称" :value="userParams.name" disabled></v-text-field>
+
+                 <v-text-field label="头像" type="file" value="" ></v-text-field>
+
+
+                  <v-text-field label="昵称" value="Input text" disabled></v-text-field>
+
+                   <v-text-field label="昵称" value="Input text" disabled></v-text-field>
+              </v-container>
+
+            </v-fle>
+
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-container>
+
+    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+      {{ snackbarConfig.text }}
+    </v-snackbar> -->
+
+    <v-footer height="auto">
+      <blog-footer/>
+    </v-footer>
+  </v-app>
+
+  <!-- <div class="blog-containert">
 
     <div class="blog-head-warpper">
       <md-button @click='$router.go(-1)' class="md-icon-button blog-head-icon">
@@ -50,7 +100,7 @@
           </md-field>
 
           <md-datepicker v-model="userParams.birthday">
-            <!-- <label>出生年月</label> -->
+            <label>出生年月</label>
           </md-datepicker>
 
           <md-field>
@@ -84,7 +134,7 @@
      
     </md-snackbar>
 
-  </div>
+  </div> -->
 </template>
 
 
@@ -164,9 +214,9 @@ export default {
 </script>
 
 
-<style scope>
-.edit-user {
-  max-width: 900px;
+<style scoped>
+.edit-user-warpper {
+  width: 900px;
   margin: 0 auto;
 }
 
@@ -208,11 +258,11 @@ export default {
   background-color: white;
 }
 
-.md-snackbar.md-theme-default{
-  background-color:#E9EBEC
+.md-snackbar.md-theme-default {
+  background-color: #e9ebec;
 }
 
-.md-snackbar.md-theme-default span{
- color: gray;
+.md-snackbar.md-theme-default span {
+  color: gray;
 }
 </style>

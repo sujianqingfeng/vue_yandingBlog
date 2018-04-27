@@ -5,8 +5,9 @@
     <v-layout column>
 
       <v-flex align-center justify-center :style="headerBg" py-4>
-        <v-avatar :size="100">
-          <img :src="avatar" alt="avatar">
+ 
+        <v-avatar  :size="100">
+          <img  @click="$router.push('/editUser')" :src="avatar" alt="avatar">
         </v-avatar>
 
       </v-flex>
@@ -58,7 +59,7 @@
 
           <v-divider></v-divider>
 
-          <v-list-tile>
+          <v-list-tile @click="$router.push('/friend')">
             <v-list-tile-action>
               <v-icon>fa fa-link</v-icon>
             </v-list-tile-action>

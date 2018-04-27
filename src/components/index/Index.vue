@@ -11,8 +11,7 @@
      <v-navigation-drawer
       temporary
       v-model="drawerConfig.show"
-      absolute
-    >
+      absolute>
       <navbar :categorys='categorys' :user='user' :info='info'/>
      </v-navigation-drawer>
 
@@ -45,7 +44,7 @@
       </v-container>
     </v-content>
 
-    <v-footer height="auto" app>
+    <v-footer height="auto" >
       <blog-footer/>
     </v-footer>
 

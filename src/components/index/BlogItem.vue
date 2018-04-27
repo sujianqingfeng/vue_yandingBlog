@@ -4,6 +4,12 @@
     <v-layout column mt-3>
 
       <v-flex d-flex align-end pl-3 pb-3 :style="headerBg" class="blog-item-header display-1">dddd</v-flex>
+      
+      <v-flex mx-3 my-3>
+        fdjfkmdkfmdk 
+        <v-btn flat small color="primary" @click="$router.push('/detail/11')">查看更多</v-btn>
+      </v-flex>
+      <v-divider/>
       <v-flex>
         <v-layout align-center mx-2 my-2>
           <v-flex>

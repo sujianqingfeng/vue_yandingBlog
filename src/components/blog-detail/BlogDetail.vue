@@ -1,77 +1,64 @@
 <template>
-  <div class="blog-container">
-
-     <div class="blog-head-warpper">
-      <md-button @click='$router.go(-1)' class="md-icon-button blog-head-icon">
-        <md-icon class="">arrow_back</md-icon>
-      </md-button>
-
-      <blog-index :navigations='navigations'/>
-
-    </div>
 
 
-    <div class="blog-detail">
+  <v-app>
+    <v-toolbar absolute color="transparent" flat scroll-off-screen>
+      <v-btn icon @click.native="$router.go(-1)">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
 
-      <md-card class="blog-detail-header">
-        <md-card-header class="blog-detail-header-bg  md-padding md-layout md-alignment-bottom-left" :style="detailHeader">
-          <span class="md-title">{{blogInfo.title}}</span>
-        </md-card-header>
+    </v-toolbar>
+    <v-container fluid fill-height>
 
-        <div class="md-padding md-layout  blog-detail-info md-alignment-center-left">
+      <v-card class="card-blog-detail">
+        <v-container fluid grid-list-md px-1 py-1>
 
-          <div class="md-layout-item md-size-70 md-layout md-alignment-center-left">
+          <v-layout column>
 
-            <div class="blog-detail-avatar">
-               <md-avatar>
-              <img :src="avatar" alt="Avatar">
-            </md-avatar>
-            </div>
-           
-            <div class="blog-detail-text-warpper">
+            <v-flex px-3 py-3 d-flex align-end :style="detailHeaderStyle" class="blog-detail-header-bg">
+                <p  class="display-1">ffff</p>
+            
 
-              <p class="blog-detail-info-text">{{blogInfo.user?blogInfo.user.username:''}}</p>
-              <span class="blog-detail-info-text">{{blogInfo.add_time}}</span>
-              <span class="blog-detail-info-text">{{blogInfo.num}} view</span>
-            </div>
+            </v-flex>
 
-          </div>
+            <v-flex>
+              <v-layout align-center>
+                <v-flex>
+                  <v-layout align-center mx-1 my-1>
+                    <v-avatar :size="50">
+                      <img :src="avatar" alt="avatar">
+                    </v-avatar>
+                    <v-layout column mx-1 my-1>
+                      <p class="info-footer-text">252525</p>
+                      <p class="info-footer-text">252525</p>
+                    </v-layout>
+                  </v-layout>
+                </v-flex>
 
-          <div class="md-layout-item md-size-30 md-layout md-alignment-center-right">
+                <v-btn icon>
+                  <v-icon>check</v-icon>
+                </v-btn>
 
-          
+              </v-layout>
+            </v-flex>
 
-            <md-button @click="share"  class="md-icon-button">
-              <md-icon>share</md-icon>
-            </md-button>
+            <v-flex px-0 py-0 style="min-height:900px">
+             <mavon-editor ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px" class="blog-detail-content"  />
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-container>
 
-          </div>
-        </div>
+    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+      {{ snackbarConfig.text }}
+    </v-snackbar> -->
 
-        <div class="md-layout  blog-detail-content">
-         <!-- {{blogInfo.content}} -->
-            <mavon-editor  ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" class="blog-detail-content"  />
-        </div>
-
-      </md-card>
-
-    </div>
-    <div class="blog-footer md-padding md-alignment-center-center">
-      <div class="md-layout-item ">
-        <blog-footer/>
-      </div>
-    </div>
-
-    <div class="go-top">
-      <go-top/>
-    </div>
-
-     <md-snackbar md-position="center" :md-duration="4000" :md-active.sync="showSnackbar" >
-      <span>{{snackbarText}}</span>
-     
-    </md-snackbar>
-
-  </div>
+    <v-footer height="auto" >
+      <blog-footer/>
+    </v-footer>
+  </v-app>
+ 
 
 </template>
 
@@ -85,9 +72,8 @@ export default {
   name: 'blog-detail',
   data () {
     return {
-      showSnackbar: false,
-      snackbarText: '',
-      detailHeader: {
+
+      detailHeaderStyle: {
         backgroundImage:
         'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
       },
@@ -137,55 +123,25 @@ export default {
 </script>
 
 
-<style>
-.blog-detail {
-  max-width: 900px;
+<style scoped>
+.card-blog-detail {
+  width: 900px;
   margin: 0 auto;
 }
 
-.blog-detail-header {
 
-}
 
 .blog-detail-header-bg {
   height: 250px;
-  /* background-image: url("timg22.jpg"); */
   color: white;
 }
 
-.blog-detail-info {
-  /* border-bottom-color:  #c4c1bf; */
-  /* border-bottom-width: 1px;
-  border-style: solid; */
+.blog-detail-content{
+  min-height: 900px
 }
 
-.blog-detail-text-warpper {
 
-}
 
-.blog-detail-info-text {
-  margin-left: 12px;
-  padding: 4px;
-}
-
-.blog-detail-content {
-  width: 100%;
-  min-height: 1000px;
-}
-
-.blog-footer {
-  margin-top: 100px;
-  width: 100%;
-  background-color: white;
-}
-
-.md-snackbar.md-theme-default{
-  background-color:#E9EBEC
-}
-
-.md-snackbar.md-theme-default span{
- color: gray;
-}
 
 
 </style>

@@ -1,51 +1,63 @@
 <template>
-  <div class="blog-container">
-    <div class="blog-about">
+ 
+  <v-app>
+    <v-toolbar absolute color="transparent" flat scroll-off-screen>
+      <v-btn icon @click.native="$router.go(-1)">
+        <v-icon>arrow_back</v-icon>
+      </v-btn>
 
-      <md-card class="blog-detail-header">
-        <md-card-header class="blog-detail-header-bg  md-padding md-layout md-alignment-bottom-left">
-          <span class="md-title">花开堪折直须折，莫待无花空折枝</span>
-        </md-card-header>
+    </v-toolbar>
+    <v-container fluid fill-height>
 
-        <div class="md-padding md-layout  blog-detail-info md-alignment-center-left">
+      <v-card class="card-blog-detail">
+        <v-container fluid grid-list-md px-1 py-1>
 
-          <div class="md-layout-item md-size-70 md-layout md-alignment-center-left">
+          <v-layout column>
 
-            <div class="blog-detail-avatar">
-              <md-avatar>
-                <img :src="avatar" alt="Avatar">
-              </md-avatar>
-            </div>
+            <v-flex px-3 py-3 d-flex align-end :style="detailHeaderStyle" class="blog-detail-header-bg">
+                <p  class="display-1">ffff</p>
+            
 
-            <div class="blog-detail-text-warpper">
-              <p class="blog-detail-info-text">素笺淡墨染流年</p>
-            </div>
+            </v-flex>
 
-          </div>
+            <v-flex>
+              <v-layout align-center>
+                <v-flex>
+                  <v-layout align-center mx-1 my-1>
+                    <v-avatar :size="50">
+                      <img :src="avatar" alt="avatar">
+                    </v-avatar>
+                    <v-layout column mx-1 my-1>
+                      <p class="info-footer-text">252525</p>
+                      <p class="info-footer-text">252525</p>
+                    </v-layout>
+                  </v-layout>
+                </v-flex>
 
-          <div class="md-layout-item md-size-30 md-layout md-alignment-center-right">
+                <v-btn icon>
+                  <v-icon>check</v-icon>
+                </v-btn>
 
-            <md-button class="md-icon-button">
-              <md-icon>view_carousel</md-icon>
-            </md-button>
-          </div>
-        </div>
+              </v-layout>
+            </v-flex>
 
-        <div class="md-layout md-padding blog-detail-content">
-          春水初生，春林初盛，春风十里，不如你。
+            <v-flex px-0 py-0 style="min-height:900px">
+             <mavon-editor ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px" class="blog-detail-content"  />
+            </v-flex>
+          </v-layout>
+        </v-container>
+      </v-card>
+    </v-container>
 
-        </div>
+    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+      {{ snackbarConfig.text }}
+    </v-snackbar> -->
 
-      </md-card>
-
-    </div>
-    <div class="blog-footer md-padding md-alignment-center-center">
-      <div class="md-layout-item ">
-        <blog-footer/>
-      </div>
-    </div>
-
-  </div>
+    <v-footer height="auto" >
+      <blog-footer/>
+    </v-footer>
+  </v-app>
+ 
 
 </template>
 
@@ -77,7 +89,7 @@ export default {
 
 .blog-detail-header-bg {
   height: 250px;
-  background-image: url("timg22.jpg");
+  /* background-image: url("timg22.jpg"); */
   color: white;
 }
 
