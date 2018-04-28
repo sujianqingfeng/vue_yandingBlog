@@ -1,13 +1,13 @@
 <template>
     <v-container>
         <v-layout>
-            <v-flex>
+            <v-flex md4>
                  <v-btn v-show="preShow" @click.native="preClick" fab light>
                     <v-icon>arrow_back</v-icon>
                 </v-btn>
             </v-flex>
-            <v-flex d-flex justify-center align-center class="title">{{page}}</v-flex>
-            <v-flex>
+            <v-flex md4 d-flex justify-center align-center class="title">{{page}}</v-flex>
+            <v-flex md4>
                 <v-layout justify-end>
                     <v-btn v-show="nextShow" @click.native="nextClick" fab light>
                         <v-icon>arrow_forward</v-icon>

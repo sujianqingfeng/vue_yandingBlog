@@ -2,15 +2,12 @@
 
   <v-app>
     <v-toolbar absolute color="transparent" flat scroll-off-screen>
-      <v-btn icon @click.native="drawerConfig.show=!drawerConfig.show">
-        <v-icon>menu</v-icon>
+     <v-btn icon @click.native="$router.go(-1)">
+        <v-icon>arrow_back</v-icon>
       </v-btn>
 
     </v-toolbar>
 
-    <v-navigation-drawer  v-model="drawerConfig.show" absolute>
-      <edit-nav :categorys='categorys' :user='user' :info='info' />
-    </v-navigation-drawer>
 
     <v-container fluid fill-height>
       <v-card class="card-warpper">
@@ -28,7 +25,7 @@
                 <v-flex pl-5 pr-5 style="width:350px">
 
                   <v-text-field dark color="white" clearable label="标题" id="title" :value='blog_params.title'></v-text-field>
-                  <v-select dark color="white" single-line autocomplete :items="categorys" item-text="name" item-value="id" v-model="blog_params.category" label="类别"></v-select>
+              
                 </v-flex>
 
               </v-layout>
@@ -43,7 +40,7 @@
                       <img :src="avatar" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
-                      <p class="info-footer-text">252525</p>
+                      <p class="info-footer-text">{{user.username}}</p>
                       <p class="info-footer-text">252525</p>
                     </v-layout>
                   </v-layout>
@@ -55,6 +52,8 @@
 
               </v-layout>
             </v-flex>
+
+            <v-divider/>
 
             <v-flex px-0 py-0 style="height:900px">
               <mavon-editor ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
@@ -77,20 +76,16 @@
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import { mapActions, mapGetters } from 'vuex'
-import EditNav from './EditNav'
 import moment from 'moment'
 export default {
   name: 'editBlog',
   data: () => ({
     avatar: require('../index/avatar.jpg'),
-    drawerConfig: {
-      show: false
-    },
     editUserHeaderStyle: {
       backgroundImage:
         'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
     },
-    showCategory: true,
+
     img_file: {},
     createTime: '',
     blog_params: {
@@ -136,9 +131,7 @@ export default {
   }),
   methods: {
     ...mapActions(['uploadImg', 'save', 'update', 'getBlog']),
-    categoryToggle () {
-      this.showCategory = !this.showCategory
-    },
+
     $imgAdd (pos, $file) {
       // 缓存图片信息
       this.img_file[pos] = $file
@@ -226,13 +219,12 @@ export default {
   },
 
   components: {
-    mavonEditor,
-    EditNav
+    mavonEditor
   }
 }
 </script>
 
-<style scoped>
+<style >
 .blog-header {
   height: 200px;
 }
@@ -256,10 +248,14 @@ export default {
   width: 300px;
 }
 
-#title {
-  font-size: 30px !important;
+.v-note-op{
+      box-shadow: 0px 0.4px 0px grey !important;
+      
 }
 
+.v-note-panel{
+      box-shadow: 0px 0px 0px #fff !important;
+}
 
 .v-note-wrapper{
   z-index: 0;

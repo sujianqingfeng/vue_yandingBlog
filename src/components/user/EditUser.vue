@@ -20,20 +20,33 @@
               </v-avatar>
             </v-flex>
 
-            <v-fle>
+            <v-flex>
               <v-container px-5 mt-5>
 
-                <v-text-field label="昵称" :value="userParams.name" disabled></v-text-field>
+                <v-text-field label="昵称" prepend-icon="insert_emoticon" :value="userParams.name" disabled></v-text-field>
 
-                 <v-text-field label="头像" type="file" value="" ></v-text-field>
+                <upload label="头像" :value='fileName' @formData='picChange' />
 
+                <v-text-field label="描述" prepend-icon="spa" :value="userParams.desc"></v-text-field>
 
-                  <v-text-field label="昵称" value="Input text" disabled></v-text-field>
+                <v-select prepend-icon="fa fa-transgender" :items="sexOpt" item-text="label" item-value="value" v-model="userParams.sex" label="性别" single-line/>
 
-                   <v-text-field label="昵称" value="Input text" disabled></v-text-field>
+                <v-menu ref="menu2" lazy :close-on-content-click="false" v-model="menu2" transition="scale-transition" offset-y full-width :nudge-right="40" min-width="290px" :return-value.sync="userParams.birthday">
+                  <v-text-field slot="activator" label="出生年月" v-model="userParams.birthday" prepend-icon="event" readonly></v-text-field>
+                  <v-date-picker v-model="userParams.birthday" @input="$refs.menu2.save(userParams.birthday)"></v-date-picker>
+                </v-menu>
+
+                <v-text-field label="github" prepend-icon="fa fa-github" :value="userParams.github"></v-text-field>
+                <v-text-field label="ortherlink" prepend-icon="fa fa-link" :value="userParams.other_link"></v-text-field>
               </v-container>
 
-            </v-fle>
+            </v-flex>
+
+            <v-flex d-flex justify-center my-3 mx-5 px-5>
+
+              <v-btn  color="info" @click='save'>确定修改</v-btn>
+
+            </v-flex>
 
           </v-layout>
         </v-container>
@@ -49,92 +62,7 @@
     </v-footer>
   </v-app>
 
-  <!-- <div class="blog-containert">
-
-    <div class="blog-head-warpper">
-      <md-button @click='$router.go(-1)' class="md-icon-button blog-head-icon">
-        <md-icon class="">arrow_back</md-icon>
-      </md-button>
-
-    </div>
-
-    <div class="edit-user">
-
-      <md-card class="edit-user-card">
-
-        <div class="edit-user-header" :style="editUserHeader">
-          <div class="avatar-warpper md-layout md-alignment-center" :style="editUserHeader">
-            <img :src="avatar" class="avatar" />
-          </div>
-
-        </div>
-
-        <div class="user-form md-layout md-alignment-center">
-          <md-field>
-            <md-icon>insert_emoticon</md-icon>
-            <label>昵称</label>
-            <md-input disabled v-model="name" md-autogrow></md-input>
-          </md-field>
-
-          <md-field>
-            <label>头像</label>
-            <md-file @md-change="picChange" v-model="fileName" />
-          </md-field>
-
-          <md-field>
-            <md-icon>spa</md-icon>
-            <label>描述</label>
-            <md-textarea v-model="userParams.desc" md-autogrow md-counter="10"></md-textarea>
-          </md-field>
-
-          <md-field>
-            <md-icon class="fa fa-transgender"></md-icon>
-            <label>性别</label>
-            <md-select v-model="userParams.sex" name="movie" id="movie">
-              <md-option value="1">男</md-option>
-              <md-option value="2">女</md-option>
-              <md-option value="3">未知</md-option>
-
-            </md-select>
-
-          </md-field>
-
-          <md-datepicker v-model="userParams.birthday">
-            <label>出生年月</label>
-          </md-datepicker>
-
-          <md-field>
-            <md-icon class="fa fa-github"></md-icon>
-            <label>github</label>
-            <md-textarea v-model="userParams.github" md-autogrow md-counter="200"></md-textarea>
-          </md-field>
-
-          <md-field>
-            <md-icon class="fa fa-link"></md-icon>
-            <label>link</label>
-            <md-textarea v-model="userParams.other_link" md-autogrow md-counter="200"></md-textarea>
-          </md-field>
-
-          <md-button class="md-raised md-primary bt-save" @click='save'>确定修改</md-button>
-
-        </div>
-
-      </md-card>
-
-    </div>
-
-    <div class="blog-footer md-padding md-alignment-center-center">
-      <div class="md-layout-item">
-        <blog-footer/>
-      </div>
-    </div>
-
-    <md-snackbar md-position="left" md-duration="4000" :md-active.sync="showSnackbar" >
-      <span>{{snackbarText}}</span>
-     
-    </md-snackbar>
-
-  </div> -->
+  
 </template>
 
 
@@ -142,6 +70,7 @@
 import BlogFooter from '../index/BlogFooter'
 import { mapActions, mapGetters } from 'vuex'
 import moment from 'moment'
+import Upload from './Upload'
 export default {
   name: 'editUser',
   data: () => ({
@@ -160,11 +89,16 @@ export default {
       github: '',
       other_link: ''
     },
-    showSnackbar: false,
-    snackbarText: ''
+    menu2: '',
+    sexOpt: [
+      { label: '男', value: 1 },
+      { label: '女', value: 2 },
+      { label: '未知', value: 3 }
+    ]
   }),
   components: {
-    BlogFooter
+    BlogFooter,
+    Upload
   },
   methods: {
     ...mapActions(['editUser']),
@@ -195,9 +129,9 @@ export default {
           this.showSnackbar = true
         })
     },
-    picChange (FileList) {
-      if (FileList[0]) {
-        this.userParams.icon = FileList[0]
+    picChange (files) {
+      if (files[0]) {
+        this.userParams.icon = files[0]
       }
     }
   },

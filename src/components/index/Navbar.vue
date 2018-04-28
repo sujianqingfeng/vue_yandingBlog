@@ -5,9 +5,9 @@
     <v-layout column>
 
       <v-flex align-center justify-center :style="headerBg" py-4>
- 
-        <v-avatar  :size="100">
-          <img  @click="$router.push('/editUser')" :src="avatar" alt="avatar">
+
+        <v-avatar :size="100">
+          <img @click="$router.push('/editUser')" :src="avatar" alt="avatar">
         </v-avatar>
 
       </v-flex>
@@ -70,12 +70,34 @@
 
           <v-divider></v-divider>
 
-          <v-list-tile  @click="$router.push({name:'edit'})">
+          <v-list-tile @click="$router.push({name:'edit'})">
             <v-list-tile-action>
               <v-icon>create</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>Edit Blog</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <v-divider></v-divider>
+
+          <v-list-tile @click="$router.push('/editAbout/1')">
+            <v-list-tile-action>
+              <v-icon>create</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Manager Links</v-list-tile-title>
+            </v-list-tile-content>
+          </v-list-tile>
+
+          <v-divider></v-divider>
+
+          <v-list-tile @click="$router.push('/editAbout/1')">
+            <v-list-tile-action>
+              <v-icon>create</v-icon>
+            </v-list-tile-action>
+            <v-list-tile-content>
+              <v-list-tile-title>Edit About</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
@@ -85,7 +107,6 @@
     </v-layout>
 
   </v-container>
-
 
 </template>
 

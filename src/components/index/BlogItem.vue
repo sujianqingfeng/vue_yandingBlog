@@ -3,10 +3,12 @@
 
     <v-layout column mt-3>
 
-      <v-flex d-flex align-end pl-3 pb-3 :style="headerBg" class="blog-item-header display-1">dddd</v-flex>
+      <v-flex d-flex align-end pl-3 pb-3 :style="headerBg" class="blog-item-header display-1">
+        {{blog.title}}
+      </v-flex>
       
       <v-flex mx-3 my-3>
-        fdjfkmdkfmdk 
+         {{blog.content}}
         <v-btn flat small color="primary" @click="$router.push('/detail/11')">查看更多</v-btn>
       </v-flex>
       <v-divider/>
@@ -15,15 +17,15 @@
           <v-flex>
             <v-layout align-center>
               <v-avatar :size="50">
-                <img :src="avatar" alt="avatar">
+                <img :src="blog.user.icon?blog.user.icon:avatar" alt="avatar">
               </v-avatar>
               <v-layout column>
-                <p class="info-footer-text">252525</p>
-                <p class="info-footer-text">252525</p>
+                <p class="info-footer-text">{{blog.user.username}}</p>
+                <p class="info-footer-text">{{blog.add_time}}  <span class="blog-item-footer-text">{{blog.num}} view</span></p> 
               </v-layout>
             </v-layout>
           </v-flex>
-          <p>252525</p>
+          <p>{{blog.category.name}}</p>
 
         </v-layout>
       </v-flex>
@@ -41,12 +43,7 @@ export default {
     }
   }),
   props: {
-    title: String,
-    time: String,
-    content: String,
-    img_url: String,
-    item: Object,
-    info: Object
+    blog: Object
   }
 }
 </script>

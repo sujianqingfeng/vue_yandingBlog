@@ -1,8 +1,7 @@
 <template>
 
-<v-container>
- 
-    <v-layout align-center py-4>
+<v-container py-0 >
+    <v-layout  align-center>
         <v-flex xl12 xm12 md3>
             <v-btn icon>
                 <v-icon>fa fa-github</v-icon>

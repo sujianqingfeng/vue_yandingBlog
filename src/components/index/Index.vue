@@ -18,21 +18,21 @@
     <v-content class="blog-content-warpper">
       <v-container fluid>
         <v-layout column>
-          <v-flex>
+          <v-flex v-show="showHeader">
             <v-layout>
 
               <v-flex xs12 md8 mr-3>
-                <user-info/>
+                <user-info :info='info'/>
               </v-flex>
               <v-flex xs12 md4>
-                <user-oper/>
+                <user-oper :info='info'/>
               </v-flex>
             </v-layout>
 
           </v-flex>
 
           <v-flex>
-            <blog-item/>
+            <blog-item v-for="item in list" :key="item.id" :blog='item'/>
           </v-flex>
 
           <v-flex mt-3>

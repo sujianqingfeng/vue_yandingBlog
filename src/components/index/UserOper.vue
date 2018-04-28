@@ -3,13 +3,13 @@
         <v-layout column>
             <v-flex d-flex justify-center align-center :style="headerBg" class="user-header">
                 <v-avatar :size="100">
-                    <img :src="avatar" alt="avatar">
+                     <img :src="info.icon?info.icon:avatar" alt="avatar">
                 </v-avatar>
             </v-flex>
             <v-flex>
                 <v-layout align-center mx-2 my-2>
                     <v-flex>
-                        <p class="info-footer-text">252525</p>
+                        <p class="info-footer-text">{{info.username}}'s Blog</p>
 
                     </v-flex>
 

@@ -1,8 +1,9 @@
 <template>
     <transition name='bounce'>
-        <md-button @click="goTop" v-show='show' class="md-icon-button md-raised">
-            <md-icon>expand_less</md-icon>
-        </md-button>
+
+        <v-btn light fab color="white"  @click="goTop" v-show='show' >
+          <v-icon>expand_less</v-icon>
+        </v-btn>
     </transition>
 
 </template>
@@ -55,12 +56,16 @@ export default {
 </script>
 
 
-<style>
+<style scoped>
 .bounce-enter-active {
   animation: bounce-in 0.5s;
 }
 .bounce-leave-active {
   animation: bounce-in 0.5s reverse;
+}
+
+.material-icons {
+  line-height: 55px;
 }
 @keyframes bounce-in {
   0% {

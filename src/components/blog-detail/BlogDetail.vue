@@ -1,6 +1,5 @@
 <template>
 
-
   <v-app>
     <v-toolbar absolute color="transparent" flat scroll-off-screen>
       <v-btn icon @click.native="$router.go(-1)">
@@ -8,7 +7,7 @@
       </v-btn>
 
     </v-toolbar>
-    <v-container fluid fill-height>
+    <v-container fluid fill-height mb-5>
 
       <v-card class="card-blog-detail">
         <v-container fluid grid-list-md px-1 py-1>
@@ -16,8 +15,7 @@
           <v-layout column>
 
             <v-flex px-3 py-3 d-flex align-end :style="detailHeaderStyle" class="blog-detail-header-bg">
-                <p  class="display-1">ffff</p>
-            
+              <p class="display-1">{{blogInfo.title}}</p>
 
             </v-flex>
 
@@ -26,39 +24,44 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                      <img :src="avatar" alt="avatar">
+                      <img :src="blogInfo.user.icon?blogInfo.user.icon:avatar" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
-                      <p class="info-footer-text">252525</p>
-                      <p class="info-footer-text">252525</p>
+                      <p class="info-footer-text">{{blogInfo.user.username}}</p>
+                      <p class="info-footer-text">{{blogInfo.add_time}}
+                        <span class="view-text">{{blogInfo.num}} view</span>
+                      </p>
                     </v-layout>
                   </v-layout>
                 </v-flex>
 
-                <v-btn icon>
-                  <v-icon>check</v-icon>
+                <v-btn @click='share' icon>
+                  <v-icon>share</v-icon>
                 </v-btn>
 
               </v-layout>
             </v-flex>
 
+            <v-divider/>
+
             <v-flex px-0 py-0 style="min-height:900px">
-             <mavon-editor ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px" class="blog-detail-content"  />
+              <mavon-editor ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px;z-index:0" class="blog-detail-content" />
             </v-flex>
           </v-layout>
         </v-container>
       </v-card>
     </v-container>
 
-    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
-      {{ snackbarConfig.text }}
-    </v-snackbar> -->
+    <go-top class="go-top" />
 
-    <v-footer height="auto" >
+    <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+      {{ snackbarConfig.text }}
+    </v-snackbar>
+
+    <v-footer height="180px">
       <blog-footer/>
     </v-footer>
   </v-app>
- 
 
 </template>
 
@@ -72,16 +75,19 @@ export default {
   name: 'blog-detail',
   data () {
     return {
-
+      snackbarConfig: {
+        time: 4000,
+        color: 'success',
+        show: false,
+        text: ''
+      },
       detailHeaderStyle: {
         backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
+          'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
       },
       avatar: require('../index/avatar.jpg'),
       blogInfo: {},
-      toolbars: {
-
-      },
+      toolbars: {},
       navigations: []
     }
   },
@@ -101,8 +107,8 @@ export default {
     },
     share () {
       this.$copyText(window.location.href).then(e => {
-        this.snackbarText = '复制到剪贴板'
-        this.showSnackbar = true
+        this.snackbarConfig.text = '复制到剪贴板'
+        this.snackbarConfig.show = true
       })
     }
   },
@@ -123,25 +129,31 @@ export default {
 </script>
 
 
-<style scoped>
+<style>
 .card-blog-detail {
   width: 900px;
   margin: 0 auto;
 }
-
-
 
 .blog-detail-header-bg {
   height: 250px;
   color: white;
 }
 
-.blog-detail-content{
-  min-height: 900px
+.blog-detail-content {
+  min-height: 900px;
 }
 
+.view-text {
+  color: gray;
+  margin-left: 12px;
+  padding: 4px;
+}
 
-
-
-
+.v-note-wrapper {
+  z-index: 0;
+}
+.blog-detail-content .v-note-panel {
+  box-shadow: 0px 0px 0px #fff !important;
+}
 </style>
