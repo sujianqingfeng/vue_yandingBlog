@@ -50,6 +50,11 @@ export default new Router({
           path: '/editAbout/:id',
           name: 'editAbout',
           component: resolve => require(['components/edit-about/EditAbout'], resolve)
+        },
+        {
+          path: '/management-link/',
+          name: 'managementLink',
+          component: resolve => require(['components/management-link/ManagementLink'], resolve)
         }
       ]
     }

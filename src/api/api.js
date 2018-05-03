@@ -10,3 +10,4 @@ export const saveBlog = () => `${baseUrl}blogs/`
 export const updateBlog = (id) => `${baseUrl}blogs/${id}/`
 export const getCategorys = (id) => `${baseUrl}category/${id}/category_list/`
 export const updateCategory = (id) => `${baseUrl}category/${id}/`
+export const getAbout = (id) => `${baseUrl}about/${id}/`

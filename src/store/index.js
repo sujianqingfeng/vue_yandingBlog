@@ -5,6 +5,7 @@ import home from './modules/home'
 import user from './modules/user'
 import editblog from './modules/editblog'
 import category from './modules/category'
+import about from './modules/about'
 
 Vue.use(Vuex)
 
@@ -13,6 +14,7 @@ export default new Vuex.Store({
     home,
     user,
     editblog,
-    category
+    category,
+    about
   }
 })

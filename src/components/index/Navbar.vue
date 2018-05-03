@@ -48,7 +48,7 @@
 
           <v-divider></v-divider>
 
-          <v-list-tile @click="$router.push('/about')">
+          <v-list-tile @click="$router.push('/about/1')">
             <v-list-tile-action>
               <v-icon>account_circle</v-icon>
             </v-list-tile-action>
@@ -81,12 +81,12 @@
 
           <v-divider></v-divider>
 
-          <v-list-tile @click="$router.push('/editAbout/1')">
+          <v-list-tile @click="$router.push('/management-link')">
             <v-list-tile-action>
               <v-icon>create</v-icon>
-            </v-list-tile-action>
+            </v-list-tile-action>下·
             <v-list-tile-content>
-              <v-list-tile-title>Manager Links</v-list-tile-title>
+              <v-list-tile-title>Management Links</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
