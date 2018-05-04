@@ -28,18 +28,20 @@
                      <img :src="info.icon?info.icon:avatar" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
-                      <p class="info-footer-text">{{info.username}}</p>
-                      <p class="info-footer-text">{{about.add_time}}</p>
+                      <p class="blog-detail-info-text">{{info.username}}</p>
+                      <p class="blog-detail-info-text">{{about.add_time}}</p>
                     </v-layout>
                   </v-layout>
                 </v-flex>
 
-                <v-btn icon>
-                  <v-icon>check</v-icon>
+                 <v-btn @click='share' icon>
+                  <v-icon>share</v-icon>
                 </v-btn>
 
               </v-layout>
             </v-flex>
+
+           <v-divider/>
 
             <v-flex px-0 py-0 style="min-height:900px">
              <mavon-editor ref=md v-model="about.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px" class="blog-detail-content"  />
@@ -49,11 +51,12 @@
       </v-card>
     </v-container>
 
-    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+    <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
       {{ snackbarConfig.text }}
-    </v-snackbar> -->
+    </v-snackbar>
 
-    <v-footer height="auto" >
+   
+    <v-footer height="180px">
       <blog-footer/>
     </v-footer>
   </v-app>
@@ -75,11 +78,23 @@ export default {
         backgroundImage:
           'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
       },
-      toolbars: {}
+      toolbars: {},
+      snackbarConfig: {
+        time: 4000,
+        color: 'success',
+        show: false,
+        text: ''
+      }
     }
   },
   methods: {
-    ...mapActions(['getAbout', 'getUser'])
+    ...mapActions(['getAbout', 'getUser']),
+    share () {
+      this.$copyText(window.location.href).then(e => {
+        this.snackbarConfig.text = '复制到剪贴板'
+        this.snackbarConfig.show = true
+      })
+    }
   },
 
   components: {
@@ -102,15 +117,12 @@ export default {
 </script>
 
 
-<style>
+<style >
 .blog-about {
   width: 900px;
   margin: 0 auto;
 }
 
-.blog-detail-header {
-  margin-top: 200px;
-}
 
 .blog-detail-header-bg {
   height: 250px;
@@ -118,27 +130,19 @@ export default {
   color: white;
 }
 
-.blog-detail-info {
-  border-bottom-color: grey;
-  border-bottom-width: 1px;
-  border-style: solid;
-}
-
-.blog-detail-text-warpper {
-}
 
 .blog-detail-info-text {
   margin-left: 12px;
-  padding: 4px;
+
 }
 
 .blog-detail-content {
   height: 1000px;
 }
 
-.blog-footer {
-  margin-top: 100px;
-  width: 100%;
-  background-color: white;
+
+
+.blog-detail-content .v-note-panel {
+  box-shadow: 0px 0px 0px #000 !important;
 }
 </style>

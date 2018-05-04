@@ -44,7 +44,7 @@
       </v-container>
     </v-content>
 
-    <v-footer height="auto" >
+    <v-footer height="180px">
       <blog-footer/>
     </v-footer>
 

@@ -27,7 +27,7 @@ export default new Router({
           component: resolve => require(['components/about-me/AboutMe'], resolve)
         },
         {
-          path: '/friend/',
+          path: '/friend/:id',
           name: 'friend',
           component: resolve => require(['components/friend/FriendLink'], resolve)
         },

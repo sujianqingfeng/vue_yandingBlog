@@ -9,7 +9,7 @@
       
       <v-flex mx-3 my-3>
          {{blog.content}}
-        <v-btn flat small color="primary" @click="$router.push('/detail/11')">查看更多</v-btn>
+        <v-btn flat small color="primary" @click="$router.push('/detail/'+blog.id)">查看更多</v-btn>
       </v-flex>
       <v-divider/>
       <v-flex>

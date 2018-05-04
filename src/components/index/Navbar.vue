@@ -24,7 +24,7 @@
             </v-list-tile-content>
           </v-list-tile>
 
-          <v-divider></v-divider>
+ 
 
           <v-list-group :prepend-icon="library_books" no-action>
 
@@ -46,9 +46,9 @@
 
           </v-list-group>
 
-          <v-divider></v-divider>
+   
 
-          <v-list-tile @click="$router.push('/about/1')">
+          <v-list-tile @click="$router.push('/about/'+info.id)">
             <v-list-tile-action>
               <v-icon>account_circle</v-icon>
             </v-list-tile-action>
@@ -57,9 +57,9 @@
             </v-list-tile-content>
           </v-list-tile>
 
-          <v-divider></v-divider>
+          
 
-          <v-list-tile @click="$router.push('/friend')">
+          <v-list-tile @click="$router.push('/friend/'+info.id)">
             <v-list-tile-action>
               <v-icon>fa fa-link</v-icon>
             </v-list-tile-action>
@@ -68,9 +68,9 @@
             </v-list-tile-content>
           </v-list-tile>
 
-          <v-divider></v-divider>
 
-          <v-list-tile @click="$router.push({name:'edit'})">
+
+          <v-list-tile  v-show="user&&user.id==info.id" @click="$router.push({name:'edit'})">
             <v-list-tile-action>
               <v-icon>create</v-icon>
             </v-list-tile-action>
@@ -79,20 +79,19 @@
             </v-list-tile-content>
           </v-list-tile>
 
-          <v-divider></v-divider>
 
-          <v-list-tile @click="$router.push('/management-link')">
+          <v-list-tile v-show="user&&user.id==info.id" @click="$router.push('/management-link')">
             <v-list-tile-action>
               <v-icon>create</v-icon>
-            </v-list-tile-action>下·
+            </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>Management Links</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
-          <v-divider></v-divider>
 
-          <v-list-tile @click="$router.push('/editAbout/1')">
+
+          <v-list-tile v-show="user&&user.id==info.id" @click="$router.push('/editAbout/1')">
             <v-list-tile-action>
               <v-icon>create</v-icon>
             </v-list-tile-action>

@@ -6,6 +6,7 @@ import user from './modules/user'
 import editblog from './modules/editblog'
 import category from './modules/category'
 import about from './modules/about'
+import friend from './modules/friend'
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
     user,
     editblog,
     category,
-    about
+    about,
+    friend
   }
 })

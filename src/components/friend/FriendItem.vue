@@ -4,17 +4,18 @@
 
     <v-layout >
      
-        <img :src="avatar" class="friend-item-img" />
+        <img :src="item.icon?item.icon:avatar" class="friend-item-img" />
+   
     
 
       <v-flex>
-        <v-layout column>
+        <v-layout px-3 column>
           <v-flex>
-            <p class="display-1">fdifdjf</p>
+            <p class="display-1">{{item.title}}</p>
 
           </v-flex>
           <v-flex>
-            <p class="title">fdfdff</p>
+            <p class="title">{{item.desc}}</p>
           </v-flex>
         </v-layout>
       </v-flex>
@@ -25,7 +26,11 @@
 
 <script>
 export default {
+
   name: 'friend-item',
+  props: {
+    item: Array
+  },
   data: () => ({
     avatar: require('../index/avatar.jpg')
   })
@@ -33,6 +38,9 @@ export default {
 </script>
 
 <style>
+
+
+
 .friend-item {
   height: 60px;
   background-color: gold;
