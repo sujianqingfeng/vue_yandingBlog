@@ -27,7 +27,7 @@ axios.defaults.headers = {
 }
 axios.defaults.timeout = 10000
 
-const request = (method, url, param) => (new Promise((resolve, reject) => {
+const request = (method, url, param) => new Promise((resolve, reject) => {
   axios({
     method: method,
     url,
@@ -35,8 +35,10 @@ const request = (method, url, param) => (new Promise((resolve, reject) => {
     data: method !== 'get' ? param : ''
   }).then(res => {
     resolve(res)
-  }).catch(error => reject(error))
-}))
+  }).catch(error => {
+    reject(error)
+  })
+})
 
 export default {
   get (url, param) {

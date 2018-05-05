@@ -1,7 +1,7 @@
 <template>
     <v-card color="white">
         <v-layout column>
-            <v-flex d-flex justify-center align-center :style="headerBg" class="user-header">
+            <v-flex d-flex justify-center align-center  class="user-header">
                 <v-avatar :size="100">
                      <img :src="info.icon?info.icon:avatar" alt="avatar">
                 </v-avatar>

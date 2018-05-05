@@ -26,12 +26,10 @@
 
  
 
-          <v-list-group :prepend-icon="library_books" no-action>
+          <v-list-group prepend-icon="library_books" no-action>
 
             <v-list-tile slot="activator">
-              <v-list-tile-action>
-                <v-icon>library_books</v-icon>
-              </v-list-tile-action>
+             
               <v-list-tile-content>
                 <v-list-tile-title>Category</v-list-tile-title>
               </v-list-tile-content>

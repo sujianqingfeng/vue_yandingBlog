@@ -12,8 +12,12 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "graceful-fs": "^4.1.11",
+    "lodash.cond": "^4.5.2",
     "mavon-editor": "^2.5.5",
+    "minimatch": "^3.0.4",
     "moment": "^2.22.1",
+    "tryit": "^1.0.3",
     "vue": "^2.5.2",
     "vue-analytics": "^5.10.2",
     "vue-clipboard2": "^0.1.0",

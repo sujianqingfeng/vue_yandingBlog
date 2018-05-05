@@ -61,7 +61,6 @@ import BlogPagination from './BlogPagination'
 import BlogFooter from './BlogFooter'
 import Navbar from './Navbar'
 import { mapGetters, mapActions } from 'vuex'
-
 export default {
   name: 'index',
   data () {
@@ -104,6 +103,7 @@ export default {
   },
   created () {
     const id = this.$route.params.id
+
     this.getBlogList({ id: id, page: this.page })
     this.getUser(id)
     this.getCategory(id)

@@ -1,6 +1,7 @@
 
-const baseUrl = 'http://127.0.0.1:8000/'
-
+const baseUrl = process.env.NODE_ENV === 'production' ? 'http://yandingblog.cn:8000/' : 'http://127.0.0.1:8000/'
+// const baseUrl = 'http://yandingblog.cn:8000/'
+// const baseUrl = 'http:127.0.0.1:8000/'
 export const getUserInfo = (id) => `${baseUrl}users/${id}/`
 export const getBlogList = (id) => `${baseUrl}blogs/${id}/blog_list/`
 export const login = () => `${baseUrl}login/`
