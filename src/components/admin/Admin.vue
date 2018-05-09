@@ -12,20 +12,36 @@
       temporary
       v-model="drawerConfig.show"
       absolute>
-      <navbar :categorys='categorys' :user='user' :info='info'/>
+      <admin-nav />
      </v-navigation-drawer>
+
+
+      <v-content>
+        <router-view/>
+      </v-content>
+ 
 </v-app>
   
 </template>
 
 <script>
+import AdminNav from './AdminNav'
 export default {
   name: 'admin',
   data: () => ({
     drawerConfig: {
       show: false
     }
-  })
+  }),
+  components: {
+    AdminNav
+  }
 }
 </script>
+
+
+<style scoped>
+
+</style>
+
 

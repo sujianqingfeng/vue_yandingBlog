@@ -9,7 +9,7 @@
     </v-toolbar>
     <v-container fluid fill-height mb-5>
 
-      <v-card class="card-blog-detail">
+      <v-card class="blog-container">
         <v-container fluid grid-list-md px-1 py-1>
 
           <v-layout column>
@@ -130,10 +130,7 @@ export default {
 
 
 <style>
-.card-blog-detail {
-  width: 900px;
-  margin: 0 auto;
-}
+
 
 .blog-detail-header-bg {
   height: 250px;

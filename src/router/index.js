@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import store from 'store/index.js'
+// import store from 'store/index.js'
 
 Vue.use(Router)
 
@@ -51,25 +51,37 @@ const router = new Router({
           component: resolve => require(['components/admin/Admin'], resolve),
           children: [
             {
-              path: '/editBlog/:id?',
-              name: 'edit',
-              component: resolve => require(['components/edit-blog/EditBlog'], resolve)
+              path: '',
+              name: 'adminHome',
+              component: resolve => require(['components/admin-home/AdminHome'], resolve)
             },
             {
-              path: '/editUser',
+              path: 'editUser',
               name: 'editUser',
               component: resolve => require(['components/user/EditUser'], resolve)
             },
             {
-              path: '/editAbout/:id',
+              path: 'admin-blog',
+              name: 'adminBlog',
+              component: resolve => require(['components/admin-blog/AdminBlog'], resolve)
+            },
+            {
+              path: 'editBlog/:id?',
+              name: 'edit',
+              component: resolve => require(['components/edit-blog/EditBlog'], resolve)
+            },
+
+            {
+              path: 'editAbout/:id',
               name: 'editAbout',
               component: resolve => require(['components/edit-about/EditAbout'], resolve)
             },
             {
-              path: '/management-link/',
-              name: 'managementLink',
-              component: resolve => require(['components/management-link/ManagementLink'], resolve)
+              path: 'admin-link/',
+              name: 'link',
+              component: resolve => require(['components/admin-link/AdminLink'], resolve)
             }
+
           ]
         }
       ]
@@ -77,9 +89,9 @@ const router = new Router({
   ]
 })
 
-router.beforeEach((to, from, next) => {
-  to.name === 'admin' && !store.getters.user && next({name: 'login'})
-  next()
-})
+// router.beforeEach((to, from, next) => {
+//   to.name === 'admin' && !store.getters.user && next({name: 'login'})
+//   next()
+// })
 
 export default router
