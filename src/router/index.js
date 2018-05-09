@@ -78,7 +78,7 @@ const router = new Router({
             },
             {
               path: 'admin-link/',
-              name: 'link',
+              name: 'adminLink',
               component: resolve => require(['components/admin-link/AdminLink'], resolve)
             }
 

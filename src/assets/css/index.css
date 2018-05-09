@@ -25,3 +25,10 @@ text-white{
   width: 900px;
   margin: 0 auto;
 }
+
+.blog-header-height{
+  height: 250px;
+  background: url('../../assets/imgs/blog_header_bg.jpg');
+  color: white;
+}
+

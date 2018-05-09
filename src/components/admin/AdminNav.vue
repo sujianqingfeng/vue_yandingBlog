@@ -47,7 +47,7 @@
           </v-list-tile>
 
 
-          <v-list-tile  @click="$router.push('/management-link')">
+          <v-list-tile  @click="$router.push({name:'adminLink'})">
             <v-list-tile-action>
               <v-icon>create</v-icon>
             </v-list-tile-action>
@@ -58,7 +58,7 @@
 
 
 
-          <v-list-tile  @click="$router.push('/editAbout/1')">
+          <v-list-tile  @click="$router.push({name:'adminLink'})">
             <v-list-tile-action>
               <v-icon>create</v-icon>
             </v-list-tile-action>
