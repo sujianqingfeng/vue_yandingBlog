@@ -3,7 +3,7 @@
 
     <v-layout column mt-3>
 
-      <v-flex d-flex align-end pl-3 pb-3 :style="headerBg" class="blog-item-header display-1">
+      <v-flex d-flex align-end pl-3 pb-3  class="blog-item-header blog-header-bg display-1">
         {{blog.title}}
       </v-flex>
       
@@ -17,7 +17,7 @@
           <v-flex>
             <v-layout align-center>
               <v-avatar :size="50">
-                <img :src="blog.user.icon?blog.user.icon:avatar" alt="avatar">
+                <img :src="blog.user.icon?blog.user.icon:'~assets/imgs/avatar.jpg'" alt="avatar">
               </v-avatar>
               <v-layout column>
                 <p class="info-footer-text">{{blog.user.username}}</p>
@@ -36,11 +36,7 @@
 export default {
   name: 'BlogItem',
   data: () => ({
-    avatar: require('./avatar.jpg'),
-    headerBg: {
-      backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-    }
+
   }),
   props: {
     blog: Object

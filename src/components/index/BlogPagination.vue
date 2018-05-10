@@ -30,7 +30,7 @@ export default {
     nextShow: Boolean
   },
   data: () => ({
-    avatar: require('./avatar.jpg')
+
   }),
   methods: {
     nextClick () {

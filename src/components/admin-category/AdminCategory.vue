@@ -4,7 +4,7 @@
     <v-layout class="blog-header-height blog-header-bg display-1" d-flex align-end px-3 py-3>
 
       <v-flex>
-        <span>博客管理</span>
+        <span>类别管理</span>
       </v-flex>
 
       <v-flex>

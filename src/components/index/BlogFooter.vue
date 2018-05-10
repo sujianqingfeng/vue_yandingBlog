@@ -24,7 +24,7 @@
 export default {
   name: 'userInfo',
   data: () => ({
-    avatar: require('./avatar.jpg')
+
   })
 }
 </script>

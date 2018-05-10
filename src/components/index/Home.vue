@@ -15,7 +15,7 @@
       <navbar :categorys='categorys' :user='user' :info='info'/>
      </v-navigation-drawer>
 
-    <v-content class="blog-content-warpper">
+    <v-content class="blog-container">
       <v-container fluid>
         <v-layout column>
           <v-flex v-show="showHeader">
@@ -65,7 +65,6 @@ export default {
   name: 'index',
   data () {
     return {
-      avatar: require('./avatar.jpg'),
       drawerConfig: {
         show: false
       },
@@ -120,10 +119,6 @@ export default {
 </script>
 
 <style >
-.blog-containert {
-  width: 100%;
-  height: 100%;
-}
 
 .blog-header {
   width: 100%;
@@ -138,10 +133,6 @@ export default {
   /* background-image: url("test.png"); */
 }
 
-.blog-content-warpper {
-  width: 900px;
-  margin: 0 auto;
-}
 
 .blog-content {
   width: 100%;

@@ -14,7 +14,7 @@
 
           <v-layout column>
 
-            <v-flex px-3 py-3 d-flex align-end :style="detailHeaderStyle" class="blog-detail-header-bg">
+            <v-flex px-3 py-3 d-flex align-end  class="blog-header-height blog-header-bg">
               <p class="display-1">{{blogInfo.title}}</p>
 
             </v-flex>
@@ -24,7 +24,7 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                      <img :src="blogInfo.user.icon?blogInfo.user.icon:avatar" alt="avatar">
+                      <img :src="blogInfo.user.icon?blogInfo.user.icon:'~assets/imgs/avatar.jpg'" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
                       <p class="info-footer-text">{{blogInfo.user.username}}</p>
@@ -81,11 +81,7 @@ export default {
         show: false,
         text: ''
       },
-      detailHeaderStyle: {
-        backgroundImage:
-          'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-      },
-      avatar: require('../index/avatar.jpg'),
+
       blogInfo: {},
       toolbars: {},
       navigations: []
@@ -132,14 +128,8 @@ export default {
 <style>
 
 
-.blog-detail-header-bg {
-  height: 250px;
-  color: white;
-}
 
-.blog-detail-content {
-  min-height: 900px;
-}
+
 
 .view-text {
   color: gray;

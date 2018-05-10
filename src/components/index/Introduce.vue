@@ -2,9 +2,9 @@
     <v-app>
         <v-content>
 
-            <v-container class="introduce-container">
+            <v-container class="blog-container">
                 <v-card>
-                    <v-layout class="introduce-head display-1"  d-flex align-end px-3 py-3 :style="introduceHeaderBg">
+                    <v-layout class="blog-header-height blog-header-bg display-1"  d-flex align-end px-3 py-3 >
                         <span class="introduce-title">项目介绍</span>
                     </v-layout>
 
@@ -35,23 +35,12 @@
 export default {
   name: 'introduce',
   data: () => ({
-    introduceHeaderBg: {
-      backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-    }
+
   })
 }
 </script>
 
 <style scoped>
-.introduce-container {
-  width: 900px;
-  margin: 0 auto;
-}
-
-.introduce-head {
-  height: 250px;
-}
 
 .introduce-title{
     color: white;

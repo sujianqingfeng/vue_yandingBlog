@@ -9,12 +9,12 @@
     </v-toolbar>
     <v-container fluid fill-height>
 
-      <v-card class="blog-about">
+      <v-card class="blog-container">
         <v-container fluid grid-list-md px-1 py-1>
 
           <v-layout column>
 
-            <v-flex px-3 py-3 d-flex align-end :style="aboutHeaderStyle" class="blog-detail-header-bg">
+            <v-flex px-3 py-3 d-flex align-end  class="blog-header-height blog-header-bg">
                 <p  class="display-1">About Me</p>
             
 
@@ -25,7 +25,7 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                     <img :src="info.icon?info.icon:avatar" alt="avatar">
+                     <img src="~assets/imgs/avatar.jpg" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
                       <p class="blog-detail-info-text">{{info.username}}</p>
@@ -73,11 +73,7 @@ export default {
   name: 'blog-detail',
   data () {
     return {
-      avatar: require('../index/avatar.jpg'),
-      aboutHeaderStyle: {
-        backgroundImage:
-          'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-      },
+
       toolbars: {},
       snackbarConfig: {
         time: 4000,
@@ -118,17 +114,8 @@ export default {
 
 
 <style >
-.blog-about {
-  width: 900px;
-  margin: 0 auto;
-}
 
 
-.blog-detail-header-bg {
-  height: 250px;
-  /* background-image: url("timg22.jpg"); */
-  color: white;
-}
 
 
 .blog-detail-info-text {

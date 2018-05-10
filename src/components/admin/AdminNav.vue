@@ -4,10 +4,10 @@
 
     <v-layout column>
 
-      <v-flex align-center justify-center :style="headerBg" py-4>
+      <v-flex align-center justify-center class="blog-header-bg" py-4>
 
         <v-avatar :size="100">
-          <img @click="$router.push('/editUser')" :src="avatar" alt="avatar">
+          <img @click="$router.push('/editUser')" src="~assets/imgs/avatar.jpg" alt="avatar">
         </v-avatar>
 
       </v-flex>
@@ -26,7 +26,7 @@
           </v-list-tile>
 
 
-          <v-list-tile @click="$router.push('/admin/editUser/')">
+          <v-list-tile @click="$router.push({name:'adminUser'})">
             <v-list-tile-action>
               <v-icon>fa fa-link</v-icon>
             </v-list-tile-action>
@@ -47,12 +47,12 @@
           </v-list-tile>
 
 
-          <v-list-tile  @click="$router.push({name:'adminLink'})">
+          <v-list-tile  @click="$router.push({name:'adminCategory'})">
             <v-list-tile-action>
               <v-icon>create</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>分类管理</v-list-tile-title>
+              <v-list-tile-title>类别管理</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
@@ -67,7 +67,7 @@
             </v-list-tile-content>
           </v-list-tile>
 
-           <v-list-tile  @click="$router.push('/editAbout/1')">
+           <v-list-tile  @click="$router.push({name:'adminAbout'})">
             <v-list-tile-action>
               <v-icon>create</v-icon>
             </v-list-tile-action>
@@ -95,12 +95,9 @@ export default {
   },
   data () {
     return {
-      avatar: require('../../assets/imgs/avatar.jpg'),
-      expandNews: [],
-      headerBg: {
-        backgroundImage:
-          'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-      }
+
+      expandNews: []
+
     }
   },
   computed: {

@@ -56,8 +56,8 @@ const router = new Router({
               component: resolve => require(['components/admin-home/AdminHome'], resolve)
             },
             {
-              path: 'editUser',
-              name: 'editUser',
+              path: 'admin-user',
+              name: 'adminUser',
               component: resolve => require(['components/user/EditUser'], resolve)
             },
             {
@@ -70,11 +70,16 @@ const router = new Router({
               name: 'edit',
               component: resolve => require(['components/edit-blog/EditBlog'], resolve)
             },
+            {
+              path: 'admin-category',
+              name: 'adminCategory',
+              component: resolve => require(['components/admin-category/AdminCategory'], resolve)
+            },
 
             {
-              path: 'editAbout/:id',
-              name: 'editAbout',
-              component: resolve => require(['components/edit-about/EditAbout'], resolve)
+              path: 'admin-about',
+              name: 'adminAbout',
+              component: resolve => require(['components/admin-about/AdminAbout'], resolve)
             },
             {
               path: 'admin-link/',

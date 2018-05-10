@@ -10,12 +10,12 @@
 
 
     <v-container fluid fill-height>
-      <v-card class="card-warpper">
+      <v-card class="blog-container">
         <v-container fluid grid-list-md px-1 py-1>
 
           <v-layout column>
 
-            <v-flex d-flex align-end :style="editUserHeaderStyle" class="blog-edit-header-bg">
+            <v-flex d-flex align-end  class="blog-edit-header-bg blog-header-bg">
 
               <v-layout column>
 
@@ -80,11 +80,6 @@ import moment from 'moment'
 export default {
   name: 'editBlog',
   data: () => ({
-    avatar: require('../index/avatar.jpg'),
-    editUserHeaderStyle: {
-      backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-    },
 
     img_file: {},
     createTime: '',
@@ -231,10 +226,6 @@ export default {
 .editor {
   width: 100%;
   height: 1200px;
-}
-.card-warpper {
-  width: 900px;
-  margin: 0 auto;
 }
 
 .blog-edit-header-bg {

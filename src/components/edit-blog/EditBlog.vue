@@ -13,12 +13,12 @@
     </v-navigation-drawer>
 
     <v-container fluid fill-height>
-      <v-card class="card-warpper">
+      <v-card class="blog-container">
         <v-container fluid grid-list-md px-1 py-1>
 
           <v-layout column>
 
-            <v-flex d-flex align-end :style="editUserHeaderStyle" class="blog-edit-header-bg">
+            <v-flex d-flex align-end  class="blog-header-height blog-header-bg">
 
               <v-layout column>
 
@@ -40,7 +40,7 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                      <img :src="avatar" alt="avatar">
+                      <img src="~assets/imgs/avatar.jpg" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
                       <p class="info-footer-text">252525</p>
@@ -82,14 +82,11 @@ import moment from 'moment'
 export default {
   name: 'editBlog',
   data: () => ({
-    avatar: require('../index/avatar.jpg'),
+
     drawerConfig: {
       show: false
     },
-    editUserHeaderStyle: {
-      backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-    },
+
     showCategory: true,
     img_file: {},
     createTime: '',
@@ -240,17 +237,7 @@ export default {
   width: 100%;
   height: 1200px;
 }
-.card-warpper {
-  width: 900px;
-  margin: 0 auto;
-}
 
-.blog-edit-header-bg {
-  height: 250px;
-  color: white;
-  background-repeat: no-repeat;
-  background-position: right bottom;
-}
 
 .form-warpper {
   width: 300px;

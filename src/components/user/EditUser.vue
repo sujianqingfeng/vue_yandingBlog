@@ -1,29 +1,24 @@
 <template>
 
   <v-app>
-    <v-toolbar absolute color="transparent" flat scroll-off-screen>
-      <v-btn icon @click.native="$router.go(-1)">
-        <v-icon>arrow_back</v-icon>
-      </v-btn>
 
-    </v-toolbar>
     <v-container fluid fill-height>
 
-      <v-card class="edit-user-warpper">
+      <v-card class="blog-container">
         <v-container fluid grid-list-md px-1 py-1>
 
           <v-layout column>
 
-            <v-flex d-flex py-4 align-center justify-center :style="editUserHeader">
+            <v-flex d-flex py-4 align-center justify-center class="blog-header-bg">
               <v-avatar :size="200">
-                <img :src="avatar" alt="avatar">
+                <img src="~assets/imgs/avatar.jpg" alt="avatar">
               </v-avatar>
             </v-flex>
 
             <v-flex>
               <v-container px-5 mt-5>
 
-                <v-text-field label="昵称" prepend-icon="insert_emoticon" :value="userParams.name" disabled></v-text-field>
+                <v-text-field label="昵称" prepend-icon="insert_emoticon" :value="userParams.username" disabled></v-text-field>
 
                 <upload label="头像" :value='fileName' @formData='picChange' />
 
@@ -44,7 +39,7 @@
 
             <v-flex d-flex justify-center my-3 mx-5 px-5>
 
-              <v-btn  color="info" @click='save'>确定修改</v-btn>
+              <v-btn color="info" @click='save'>确定修改</v-btn>
 
             </v-flex>
 
@@ -62,7 +57,6 @@
     </v-footer>
   </v-app>
 
-  
 </template>
 
 
@@ -74,12 +68,8 @@ import Upload from './Upload'
 export default {
   name: 'editUser',
   data: () => ({
-    avatar: require('../index/avatar.jpg'),
+
     name: '',
-    editUserHeader: {
-      backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-    },
     fileName: '',
     userParams: {
       sex: '',
@@ -87,7 +77,8 @@ export default {
       desc: '',
       icon: null,
       github: '',
-      other_link: ''
+      other_link: '',
+      username: ''
     },
     menu2: '',
     sexOpt: [
@@ -141,29 +132,18 @@ export default {
     })
   },
   created () {
-    let user = this.user
-    this.userParams = user
+    // let user = this.user
+    // this.userParams = user
   }
 }
 </script>
 
 
 <style scoped>
-.edit-user-warpper {
-  width: 900px;
-  margin: 0 auto;
-}
-
 .edit-user-card {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-.edit-user-header {
-  background-image: "url(" + require("../../assets/imgs/blog_header_bg.jpg") +
-    ")";
-  width: 100%;
 }
 
 .avatar-warpper {

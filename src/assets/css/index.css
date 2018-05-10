@@ -28,7 +28,12 @@ text-white{
 
 .blog-header-height{
   height: 250px;
-  background: url('../../assets/imgs/blog_header_bg.jpg');
+  color: white;
+}
+
+
+.blog-header-bg{
+  background: url('~assets/imgs/blog_header_bg.jpg');
   color: white;
 }
 

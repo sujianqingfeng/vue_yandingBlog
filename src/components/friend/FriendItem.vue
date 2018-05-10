@@ -4,7 +4,7 @@
 
     <v-layout >
      
-        <img :src="item.icon?item.icon:avatar" class="friend-item-img" />
+        <img :src="item.icon?item.icon:'~assets/imgs/avatar.jpg'" class="friend-item-img" />
    
     
 
@@ -32,7 +32,7 @@ export default {
     item: Array
   },
   data: () => ({
-    avatar: require('../index/avatar.jpg')
+
   })
 }
 </script>

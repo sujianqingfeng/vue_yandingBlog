@@ -4,10 +4,10 @@
 
     <v-layout column>
 
-      <v-flex align-center justify-center :style="headerBg" py-4>
+      <v-flex align-center justify-center class="blog-header-bg" py-4>
 
         <v-avatar :size="100">
-          <img @click="$router.push('/editUser')" :src="avatar" alt="avatar">
+          <img @click="$router.push('/editUser')" src="~assets/imgs/avatar.jpg" alt="avatar">
         </v-avatar>
 
       </v-flex>
@@ -117,12 +117,9 @@ export default {
   },
   data () {
     return {
-      avatar: require('./avatar.jpg'),
-      expandNews: [],
-      headerBg: {
-        backgroundImage:
-          'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
-      }
+
+      expandNews: []
+
     }
   },
   computed: {

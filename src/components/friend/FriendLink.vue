@@ -7,7 +7,7 @@
       </v-btn>
     </v-toolbar>
 
-    <v-container fluid fill-height class="friend-container">
+    <v-container fluid fill-height class="blog-container">
 
       <v-layout>
 
@@ -53,10 +53,7 @@ export default {
 </script>
 
 <style>
-.friend-container {
-  width: 900px;
-  margin: 0 auto;
-}
+
 
 .friend-header {
   height: 100px;
