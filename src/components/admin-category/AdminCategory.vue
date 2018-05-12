@@ -9,7 +9,7 @@
 
       <v-flex>
         <v-layout justify-end class="layout-add-style">
-          <v-btn fab dark color="pink">
+          <v-btn fab dark color="pink" @click="addBtn">
             <v-icon dark>add</v-icon>
           </v-btn>
         </v-layout>
@@ -17,19 +17,18 @@
       </v-flex>
     </v-layout>
 
-
-    <v-data-table :headers="headers" :items="desserts" id="table-admin-blog" :rows-per-page-items="pageConfig">
+    <v-data-table :headers="headers" :items="categorys"  :loading="loading" id="table-admin-blog" :rows-per-page-items="pageConfig" no-data-text='没有数据'>
       <template slot="items" slot-scope="props">
         <td>
-          <a href="wwww.baidu.com">{{ props.item.name }}</a>
+          {{ props.item.name }}
         </td>
-        <td class="text-xs-left">{{ props.item.value }}</td>
+
         <td class="text-xs-left">
-          <v-btn color="primary" fab small dark>
+          <v-btn color="primary" fab small dark @click="updateBtn(props.item)">
             <v-icon>edit</v-icon>
           </v-btn>
 
-          <v-btn color="primary" fab small dark>
+          <v-btn color="primary" fab small dark @click="deleteCategory(props.item)">
             <v-icon>delete</v-icon>
           </v-btn>
         </td>
@@ -37,10 +36,36 @@
       </template>
     </v-data-table>
 
+    <v-dialog v-model="dialogConfig.show" persistent max-width="500px">
+
+      <v-card>
+        <v-card-title>
+          <span class="headline">添加类别</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container grid-list-md>
+            <v-layout wrap>
+
+              <v-flex xs12>
+                <v-text-field v-model="category_params.name" required @keyup.enter.native='dialogConfirm'></v-text-field>
+              </v-flex>
+
+            </v-layout>
+          </v-container>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1" flat @click.native="dialogConfig.show = false">关闭</v-btn>
+          <v-btn color="blue darken-1" flat @click.native="dialogConfirm">确定</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
   </v-card>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
@@ -51,55 +76,73 @@ export default {
       headers: [
         {
           text: '标题',
-
           sortable: false
         },
-        { text: '时间', value: 'calories', sortable: false },
         { text: '操作', value: 'fat', sortable: false, width: '180px' }
       ],
-      desserts: [
-        {
-          value: false,
-          name: 'Frozen Yogurt'
-        },
-        {
-          value: false,
-          name: 'Ice cream sandwich'
-        },
-        {
-          value: false,
-          name: 'Eclair'
-        },
-        {
-          value: false,
-          name: 'Cupcake'
-        },
-        {
-          value: false,
-          name: 'Gingerbread'
-        },
-        {
-          value: false,
-          name: 'Jelly bean'
-        },
-        {
-          value: false,
-          name: 'Lollipop'
-        },
-        {
-          value: false,
-          name: 'Honeycomb'
-        },
-        {
-          value: false,
-          name: 'Donut'
-        },
-        {
-          value: false,
-          name: 'KitKat'
-        }
-      ]
+      categorys: [],
+      dialogConfig: {
+        show: false,
+        title: '添加类别',
+        action: 0
+      },
+
+      category_params: {
+        name: '',
+        id: ''
+      },
+      loading: false
     }
+  },
+  methods: {
+    ...mapActions(['getCategoryByAdmin', 'createCategory', 'updateCategoryF', 'deleteCategoryF']),
+    addBtn () {
+      this.category_params.name = ''
+      this.dialogConfig.action = 1
+      this.dialogConfig.title = '添加类别'
+      this.dialogConfig.show = true
+    },
+    updateBtn (row) {
+      this.category_params.name = row.name
+      this.category_params.id = row.id
+      this.dialogConfig.action = 2
+      this.dialogConfig.title = '修改类别'
+      this.dialogConfig.show = true
+    },
+    dialogConfirm () {
+      if (this.dialogConfig.action === 1) {
+        this.saveCategory()
+      } else {
+        this.updateCategory()
+      }
+    },
+    updateCategory () {
+      this.updateCategoryF({id: this.category_params.id, params: {name: this.category_params.name}}).then(res => {
+        this.dialogConfig.show = false
+        this.getCategorys()
+      })
+    },
+    deleteCategory (row) {
+      this.deleteCategoryF(row.id).then(res => {
+        this.getCategorys()
+      })
+    },
+    saveCategory () {
+      this.createCategory(this.category_params.name).then(res => {
+        this.dialogConfig.show = false
+        this.getCategorys()
+      })
+    },
+    getCategorys () {
+      this.loading = true
+      this.getCategoryByAdmin().then(res => {
+        this.loading = false
+        this.categorys = res
+      })
+    }
+  },
+  created () {
+    this.getCategorys()
   }
 }
 </script>
@@ -121,7 +164,6 @@ export default {
 .layout-add-style button .material-icons {
   line-height: 56px;
 }
-
 
 .layout-add-style {
   position: relative;

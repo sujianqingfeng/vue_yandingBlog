@@ -18,11 +18,11 @@
             <v-flex>
               <v-container px-5 mt-5>
 
-                <v-text-field label="昵称" prepend-icon="insert_emoticon" :value="userParams.username" disabled></v-text-field>
+                <v-text-field label="昵称" prepend-icon="insert_emoticon" v-model="userParams.username" disabled></v-text-field>
 
                 <upload label="头像" :value='fileName' @formData='picChange' />
 
-                <v-text-field label="描述" prepend-icon="spa" :value="userParams.desc"></v-text-field>
+                <v-text-field label="描述" prepend-icon="spa" v-model="userParams.desc"></v-text-field>
 
                 <v-select prepend-icon="fa fa-transgender" :items="sexOpt" item-text="label" item-value="value" v-model="userParams.sex" label="性别" single-line/>
 
@@ -31,8 +31,8 @@
                   <v-date-picker v-model="userParams.birthday" @input="$refs.menu2.save(userParams.birthday)"></v-date-picker>
                 </v-menu>
 
-                <v-text-field label="github" prepend-icon="fa fa-github" :value="userParams.github"></v-text-field>
-                <v-text-field label="ortherlink" prepend-icon="fa fa-link" :value="userParams.other_link"></v-text-field>
+                <v-text-field label="github" prepend-icon="fa fa-github" v-model="userParams.github"></v-text-field>
+                <v-text-field label="ortherlink" prepend-icon="fa fa-link" v-model="userParams.other_link"></v-text-field>
               </v-container>
 
             </v-flex>
@@ -48,9 +48,9 @@
       </v-card>
     </v-container>
 
-    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+    <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
       {{ snackbarConfig.text }}
-    </v-snackbar> -->
+    </v-snackbar>
 
     <v-footer height="auto">
       <blog-footer/>
@@ -68,7 +68,6 @@ import Upload from './Upload'
 export default {
   name: 'editUser',
   data: () => ({
-
     name: '',
     fileName: '',
     userParams: {
@@ -85,7 +84,13 @@ export default {
       { label: '男', value: 1 },
       { label: '女', value: 2 },
       { label: '未知', value: 3 }
-    ]
+    ],
+    snackbarConfig: {
+      text: '',
+      time: 4000,
+      show: false,
+      color: 'info'
+    }
   }),
   components: {
     BlogFooter,
@@ -112,12 +117,14 @@ export default {
 
       this.editUser({ id: this.user.id, params: formdata })
         .then(() => {
-          this.snackbarText = '修改成功'
-          this.showSnackbar = true
+          this.snackbarConfig.text = '修改成功'
+
+          this.snackbarConfig.show = true
         })
         .catch(() => {
-          this.snackbarText = '修改失败'
-          this.showSnackbar = true
+          this.snackbarConfig.text = '修改失败'
+          this.snackbarConfig.color = 'error'
+          this.snackbarConfig.show = true
         })
     },
     picChange (files) {
@@ -132,8 +139,8 @@ export default {
     })
   },
   created () {
-    // let user = this.user
-    // this.userParams = user
+    let user = this.user
+    this.userParams = user
   }
 }
 </script>

@@ -12,7 +12,7 @@
         <v-container fluid grid-list-md px-1 py-1>
 
           <v-layout row wrap>
-            <v-flex xs12 sm12 md6 :style="leftBg" class="blog-login-left"></v-flex>
+            <v-flex xs12 sm12 md6  class="blog-login-left blog-header-bg"></v-flex>
 
             <v-flex xs12 sm12 md6 class="blog-login-right">
               <v-layout column wrap>
@@ -67,10 +67,6 @@ export default {
     params: {
       username: 'sujian',
       password: 'admin123'
-    },
-    leftBg: {
-      backgroundImage:
-        'url(' + require('../../assets/imgs/blog_header_bg.jpg') + ')'
     },
     e1: true,
     snackbarConfig: {

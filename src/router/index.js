@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-// import store from 'store/index.js'
+import store from 'store/index.js'
 
 Vue.use(Router)
 
@@ -94,9 +94,9 @@ const router = new Router({
   ]
 })
 
-// router.beforeEach((to, from, next) => {
-//   to.name === 'admin' && !store.getters.user && next({name: 'login'})
-//   next()
-// })
+router.beforeEach((to, from, next) => {
+  to.path.includes('admin') && !store.getters.user && next({name: 'login'})
+  next()
+})
 
 export default router
