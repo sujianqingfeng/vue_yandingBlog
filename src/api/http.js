@@ -47,8 +47,8 @@ export default {
   post (url, param) {
     return request('post', url, param)
   },
-  detlete (url, param) {
-    return request('detlete', url, param)
+  delete (url, param) {
+    return request('delete', url, param)
   },
   patch (url, param) {
     return request('patch', url, param)

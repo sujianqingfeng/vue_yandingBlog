@@ -1,16 +1,7 @@
 <template>
 
   <v-app>
-    <v-toolbar absolute color="transparent" flat scroll-off-screen>
-      <v-btn icon @click.native="drawerConfig.show=!drawerConfig.show">
-        <v-icon>menu</v-icon>
-      </v-btn>
 
-    </v-toolbar>
-
-    <v-navigation-drawer  v-model="drawerConfig.show" absolute>
-      <edit-nav :categorys='categorys' :user='user' :info='info' />
-    </v-navigation-drawer>
 
     <v-container fluid fill-height>
       <v-card class="blog-container">
@@ -27,7 +18,7 @@
 
                 <v-flex pl-5 pr-5 style="width:350px">
 
-                  <v-text-field dark color="white" clearable label="标题" id="title" :value='blog_params.title'></v-text-field>
+                  <v-text-field dark color="white" clearable label="标题" id="title" v-model='blog_params.title'></v-text-field>
                   <v-select dark color="white" single-line autocomplete :items="categorys" item-text="name" item-value="id" v-model="blog_params.category" label="类别"></v-select>
                 </v-flex>
 
@@ -43,13 +34,13 @@
                       <img src="~assets/imgs/avatar.jpg" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
-                      <p class="info-footer-text">252525</p>
-                      <p class="info-footer-text">252525</p>
+                      <p class="info-footer-text">{{user.username}}</p>
+                      <p class="info-footer-text">{{createTimeF()}}</p>
                     </v-layout>
                   </v-layout>
                 </v-flex>
 
-                <v-btn icon>
+                <v-btn @click="saveBlog" icon>
                   <v-icon>check</v-icon>
                 </v-btn>
 
@@ -77,19 +68,16 @@
 import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import { mapActions, mapGetters } from 'vuex'
-import EditNav from './EditNav'
 import moment from 'moment'
 export default {
   name: 'editBlog',
   data: () => ({
-
     drawerConfig: {
       show: false
     },
-
-    showCategory: true,
     img_file: {},
     createTime: '',
+    categorys: [],
     blog_params: {
       title: '',
       category: '',
@@ -132,10 +120,7 @@ export default {
     }
   }),
   methods: {
-    ...mapActions(['uploadImg', 'save', 'update', 'getBlog']),
-    categoryToggle () {
-      this.showCategory = !this.showCategory
-    },
+    ...mapActions(['uploadImg', 'save', 'update', 'getBlog', 'getCategoryByAdmin']),
     $imgAdd (pos, $file) {
       // 缓存图片信息
       this.img_file[pos] = $file
@@ -216,15 +201,16 @@ export default {
         this.blog_params.content = res.data.content
         this.blog_params.title = res.data.title
       })
+
+    this.getCategoryByAdmin().then(res => { this.categorys = res })
   },
 
   computed: {
-    ...mapGetters(['user', 'categorys'])
+    ...mapGetters(['user'])
   },
 
   components: {
-    mavonEditor,
-    EditNav
+    mavonEditor
   }
 }
 </script>

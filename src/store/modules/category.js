@@ -10,7 +10,7 @@ const getters = {
 
 const actions = {
   getCategory: ({commit}, id) => http.get(apiConst.getCategorys(id)).then(res => commit('setCategory', res.data)),
-  deleteCategoryF: ({commit}, id) => http.detlete(apiConst.updateCategory(id)),
+  deleteCategoryF: ({commit}, id) => http.delete(apiConst.updateCategory(id)),
   updateCategoryF: ({commit}, {id, params}) => http.patch(apiConst.updateCategory(id), params),
   getCategoryByAdmin: ({commit}) => http.get(apiConst.category()).then(res => res.data),
   createCategory: ({commit}, name) => http.post(apiConst.category(), {name})

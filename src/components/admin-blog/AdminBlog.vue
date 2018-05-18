@@ -9,7 +9,7 @@
 
       <v-flex>
         <v-layout justify-end class="layout-add-style">
-          <v-btn fab dark color="pink">
+          <v-btn @click="$router.push('/admin/editBlog')" fab dark color="pink">
             <v-icon dark>add</v-icon>
           </v-btn>
         </v-layout>
@@ -17,19 +17,34 @@
       </v-flex>
     </v-layout>
 
+    <v-layout mx-3 my-4>
 
-    <v-data-table :headers="headers" :items="desserts" id="table-admin-blog" :rows-per-page-items="pageConfig">
+      <v-flex md4>
+        <v-text-field v-model="search" label="Search" single-line hide-details></v-text-field>
+      </v-flex>
+
+      <v-flex ml-4>
+        <v-btn color="primary" class="white--text" @click.native="loader = 'loading3'">
+          搜索
+          <v-icon right dark>search</v-icon>
+        </v-btn>
+      </v-flex>
+
+    </v-layout>
+
+    <v-data-table :headers="headers" :items="desserts" id="table-admin-blog" :rows-per-page-items="pageConfig" :pagination.sync="pagination" :total-items="totalDesserts" :loading="loading">
       <template slot="items" slot-scope="props">
         <td>
-          <a href="wwww.baidu.com">{{ props.item.name }}</a>
+          <a @click="$router.push('/detail/'+props.item.id)">{{ props.item.title }}</a>
         </td>
-        <td class="text-xs-left">{{ props.item.value }}</td>
+        <td class="text-xs-left">{{ props.item.category.name }}</td>
+        <td class="text-xs-left">{{ props.item.add_time }}</td>
         <td class="text-xs-left">
-          <v-btn color="primary" fab small dark>
+          <v-btn @click="$router.push('/admin/editBlog/'+props.item.id)" color="primary" fab small dark>
             <v-icon>edit</v-icon>
           </v-btn>
 
-          <v-btn color="primary" fab small dark>
+          <v-btn @click="deleteBtn(props.item.id)" color="primary" fab small dark>
             <v-icon>delete</v-icon>
           </v-btn>
         </td>
@@ -41,65 +56,52 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 export default {
   data () {
     return {
-      pagination: {
-        sortBy: 'name'
-      },
+      pagination: {},
+      loading: false,
+      totalDesserts: 0,
       pageConfig: [10, 25, { text: 'All', value: -1 }],
       headers: [
-        {
-          text: '标题',
-
-          sortable: false
-        },
-        { text: '时间', value: 'calories', sortable: false },
-        { text: '操作', value: 'fat', sortable: false, width: '180px' }
+        { text: '标题', sortable: false },
+        { text: '类别', sortable: false },
+        { text: '时间', sortable: false },
+        { text: '操作', sortable: false, width: '180px' }
       ],
-      desserts: [
-        {
-          value: false,
-          name: 'Frozen Yogurt'
-        },
-        {
-          value: false,
-          name: 'Ice cream sandwich'
-        },
-        {
-          value: false,
-          name: 'Eclair'
-        },
-        {
-          value: false,
-          name: 'Cupcake'
-        },
-        {
-          value: false,
-          name: 'Gingerbread'
-        },
-        {
-          value: false,
-          name: 'Jelly bean'
-        },
-        {
-          value: false,
-          name: 'Lollipop'
-        },
-        {
-          value: false,
-          name: 'Honeycomb'
-        },
-        {
-          value: false,
-          name: 'Donut'
-        },
-        {
-          value: false,
-          name: 'KitKat'
-        }
-      ]
+      desserts: []
     }
+  },
+  methods: {
+    ...mapActions([
+      'getBlogsByAdmin',
+      'deleteBlog'
+    ]),
+    deleteBtn (id) {
+      this.deleteBlog(id).then(res => {
+        this.getBlogs()
+      })
+    },
+    getBlogs () {
+      this.loading = true
+      const { page, rowsPerPage } = this.pagination
+
+      this.getBlogsByAdmin({ page: page, page_seze: rowsPerPage }).then(res => {
+        this.loading = false
+        this.desserts = res.results
+        this.totalDesserts = res.count
+      })
+    }
+  },
+  watch: {
+    pagination: {
+      handler: 'getBlogs',
+      deep: true
+    }
+  },
+  created () {
+    this.getBlogs()
   }
 }
 </script>
@@ -121,7 +123,6 @@ export default {
 .layout-add-style button .material-icons {
   line-height: 56px;
 }
-
 
 .layout-add-style {
   position: relative;
