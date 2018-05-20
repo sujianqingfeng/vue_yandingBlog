@@ -24,7 +24,7 @@
       </v-flex>
 
       <v-flex ml-4>
-        <v-btn color="primary" class="white--text" @click.native="loader = 'loading3'">
+        <v-btn color="primary" class="white--text" @click.native="getBlogs">
           搜索
           <v-icon right dark>search</v-icon>
         </v-btn>
@@ -70,7 +70,8 @@ export default {
         { text: '时间', sortable: false },
         { text: '操作', sortable: false, width: '180px' }
       ],
-      desserts: []
+      desserts: [],
+      search: ''
     }
   },
   methods: {
@@ -86,8 +87,11 @@ export default {
     getBlogs () {
       this.loading = true
       const { page, rowsPerPage } = this.pagination
+      const search = this.search
 
-      this.getBlogsByAdmin({ page: page, page_seze: rowsPerPage }).then(res => {
+      const params = { page: page, page_seze: rowsPerPage, title: search }
+
+      this.getBlogsByAdmin(params).then(res => {
         this.loading = false
         this.desserts = res.results
         this.totalDesserts = res.count

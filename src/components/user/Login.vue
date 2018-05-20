@@ -80,7 +80,9 @@ export default {
     ...mapActions(['login']),
     clickLogin () {
       this.login(this.params)
-        .then(() => {})
+        .then(() => {
+          this.$router.push('/admin')
+        })
         .catch(() => {
           this.snackbarConfig.color = 'error'
           this.snackbarConfig.text = '登陆失败'

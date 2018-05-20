@@ -10,7 +10,7 @@ const getters = {
 
 const actions = {
   getAbout: ({commit}, id) => {
-    http.get(apiConst.getAbout(id)).then(res => {
+    http.get(apiConst.aboutId(id)).then(res => {
       commit('setAbout', res.data)
     })
   }

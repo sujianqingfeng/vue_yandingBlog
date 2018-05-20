@@ -8,6 +8,7 @@ import category from './modules/category'
 import about from './modules/about'
 import friend from './modules/friend'
 import blog from './modules/blog'
+import link from './modules/link'
 
 Vue.use(Vuex)
 
@@ -15,6 +16,7 @@ export default new Vuex.Store({
   modules: {
     home,
     user,
+    link,
     editblog,
     category,
     about,

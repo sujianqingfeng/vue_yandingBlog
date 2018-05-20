@@ -1,12 +1,6 @@
 <template>
 
   <v-app>
-    <v-toolbar absolute color="transparent" flat scroll-off-screen>
-     <v-btn icon @click.native="$router.go(-1)">
-        <v-icon>arrow_back</v-icon>
-      </v-btn>
-
-    </v-toolbar>
 
 
     <v-container fluid fill-height>
@@ -24,7 +18,7 @@
 
                 <v-flex pl-5 pr-5 style="width:350px">
 
-                  <v-text-field dark color="white" clearable label="标题" id="title" :value='blog_params.title'></v-text-field>
+                   <p  class="display-1">About Me</p>
               
                 </v-flex>
 
@@ -37,11 +31,11 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                      <img :src="avatar" alt="avatar">
+                      <img :src="user.icon?user.icon:avatar" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
                       <p class="info-footer-text">{{user.username}}</p>
-                      <p class="info-footer-text">252525</p>
+                      <p class="info-footer-text">{{user}}</p>
                     </v-layout>
                   </v-layout>
                 </v-flex>
@@ -78,9 +72,9 @@ import 'mavon-editor/dist/css/index.css'
 import { mapActions, mapGetters } from 'vuex'
 import moment from 'moment'
 export default {
-  name: 'editBlog',
+  name: 'editAbout',
   data: () => ({
-
+    avatar: require('assets/imgs/avatar.jpg'),
     img_file: {},
     createTime: '',
     blog_params: {
@@ -125,7 +119,7 @@ export default {
     }
   }),
   methods: {
-    ...mapActions(['uploadImg', 'save', 'update', 'getBlog']),
+    ...mapActions(['uploadImg', 'save', 'update', 'getAbout']),
 
     $imgAdd (pos, $file) {
       // 缓存图片信息
@@ -198,15 +192,7 @@ export default {
     }
   },
   created () {
-    const params = this.$route.params
-    params &&
-      params.id &&
-      this.getBlog(params.id).then(res => {
-        this.createTime = res.data.add_time
-        this.blog_params.category = res.data.category.id
-        this.blog_params.content = res.data.content
-        this.blog_params.title = res.data.title
-      })
+    this.getAbout()
   },
 
   computed: {
