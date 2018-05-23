@@ -39,7 +39,7 @@
 
             <v-flex d-flex justify-center my-3 mx-5 px-5>
 
-              <v-btn color="info" @click='save'>确定修改</v-btn>
+              <v-btn round color="info" @click='save'>确定修改</v-btn>
 
             </v-flex>
 

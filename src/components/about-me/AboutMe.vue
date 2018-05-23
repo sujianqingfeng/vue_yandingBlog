@@ -73,7 +73,7 @@ export default {
   name: 'blog-detail',
   data () {
     return {
-
+      about: {},
       toolbars: {},
       snackbarConfig: {
         time: 4000,
@@ -99,13 +99,14 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'info',
-      'about'
+      'info'
     ])
   },
   created () {
     const id = this.$route.params.id
-    this.getAbout(id)
+    this.getAbout(id).then(res => {
+      this.about = res
+    })
 
     TextUtil.isEmpty(this.info) && this.getUser(id)
   }
@@ -126,7 +127,6 @@ export default {
 .blog-detail-content {
   height: 1000px;
 }
-
 
 
 .blog-detail-content .v-note-panel {

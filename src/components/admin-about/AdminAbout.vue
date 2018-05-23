@@ -35,12 +35,12 @@
                     </v-avatar>
                     <v-layout column mx-1 my-1>
                       <p class="info-footer-text">{{user.username}}</p>
-                      <p class="info-footer-text">{{user}}</p>
+                      <p class="info-footer-text">{{createTimeF()}}</p>
                     </v-layout>
                   </v-layout>
                 </v-flex>
 
-                <v-btn icon>
+                <v-btn @click="saveBtn" icon>
                   <v-icon>check</v-icon>
                 </v-btn>
 
@@ -50,16 +50,16 @@
             <v-divider/>
 
             <v-flex px-0 py-0 style="height:900px">
-              <mavon-editor ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
+              <mavon-editor ref=md v-model="aboutParams.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
             </v-flex>
           </v-layout>
         </v-container>
       </v-card>
     </v-container>
 
-    <!-- <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
+    <v-snackbar right :timeout="snackbarConfig.time" :color="snackbarConfig.color" v-model="snackbarConfig.show">
       {{ snackbarConfig.text }}
-    </v-snackbar> -->
+    </v-snackbar>
 
   </v-app>
 
@@ -71,55 +71,27 @@ import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import { mapActions, mapGetters } from 'vuex'
 import moment from 'moment'
+import {markdownConfig} from './../../config'
 export default {
   name: 'editAbout',
   data: () => ({
     avatar: require('assets/imgs/avatar.jpg'),
     img_file: {},
     createTime: '',
-    blog_params: {
-      title: '',
-      category: '',
+    aboutParams: {
       content: ''
     },
-    toolbars: {
-      bold: true, // 粗体
-      italic: true, // 斜体
-      header: true, // 标题
-      underline: true, // 下划线
-      strikethrough: true, // 中划线
-      mark: true, // 标记
-      superscript: true, // 上角标
-      subscript: true, // 下角标
-      quote: true, // 引用
-      ol: false, // 有序列表
-      ul: false, // 无序列表
-      link: true, // 链接
-      imagelink: true, // 图片链接
-      code: true, // code
-      table: true, // 表格
-      fullscreen: true, // 全屏编辑
-      readmodel: true, // 沉浸式阅读
-      htmlcode: false, // 展示html源码
-      help: true, // 帮助
-      /* 1.3.5 */
-      undo: false, // 上一步
-      redo: false, // 下一步
-      trash: false, // 清空
-      save: false, // 保存（触发events中的save事件）
-      /* 1.4.2 */
-      navigation: true, // 导航目录
-      /* 2.1.8 */
-      alignleft: true, // 左对齐
-      aligncenter: true, // 居中
-      alignright: true, // 右对齐
-      /* 2.2.1 */
-      subfield: false, // 单双栏模式
-      preview: true // 预览
+    toolbars: markdownConfig,
+    isSave: false,
+    snackbarConfig: {
+      time: 4000,
+      color: 'success',
+      show: false,
+      text: ''
     }
   }),
   methods: {
-    ...mapActions(['uploadImg', 'save', 'update', 'getAbout']),
+    ...mapActions(['getAbout', 'createAbout', 'updateAbout']),
 
     $imgAdd (pos, $file) {
       // 缓存图片信息
@@ -141,62 +113,60 @@ export default {
           this.$refs.md.$img2Url('./' + i, imgs[i])
         }
 
-        let params = this.$route.params
-        if (params.id) {
-          this.updateTheBlog(params.id)
-          return
-        }
-
-        this.saveTheBlog()
+        this.beforeSave()
       })
     },
-    saveBlog () {
-      let params = this.$route.params
-      if (params.id) {
-        if (this.img_file.lenght > 0) {
-          this.uploadimg()
-        } else {
-          this.updateTheBlog(params.id)
-        }
-        return
-      }
-
+    saveBtn () {
       if (this.img_file.lenght > 0) {
         this.uploadimg()
       } else {
-        this.saveTheBlog()
+        this.beforeSave()
       }
     },
-    saveTheBlog () {
-      this.save(this.blog_params)
+    beforeSave () {
+      if (this.isSave) { this.startSaveAbout() } else this.startUpdateAbout()
+    },
+    startSaveAbout () {
+      this.createAbout(this.aboutParams)
         .then(res => {
-          this.$router.push('/detail/' + res.data.id)
+          this.$router.push('/about/' + this.user.id)
         })
         .catch(error => {
-          this.snackbarText = '保存失败' + error.data
-          this.showSnackbar = true
+          this.snackbarConfig.color = 'error'
+          this.snackbarConfig.text = '保存失败' + error.data
+          this.snackbarConfig.show = true
         })
     },
-    updateTheBlog (id) {
-      this.update({ id: id, params: this.blog_params })
-        .then(res => this.$router.push('/detail/' + res.data.id))
+    startUpdateAbout () {
+      this.updateAbout({ id: this.user.id, params: this.aboutParams })
+        .then(res => this.$router.push('/about/' + this.user.id))
         .catch(error => {
-          this.snackbarText = '修改失败' + error.data
-          this.showSnackbar = true
+          this.snackbarConfig.color = 'error'
+          this.snackbarConfig.text = '修改失败' + error.data
+          this.snackbarConfig.show = true
         })
+    },
+    startGetAbout () {
+      this.getAbout(this.user.id).then(res => {
+        this.aboutParams.content = res.content
+        this.createTime = res.add_time
+        this.isSave = false
+      }).catch(res => {
+        this.isSave = true
+      })
     },
     createTimeF () {
       return this.createTime
-        ? this.createTime
+        ? moment(this.createTime).format('YYYY-MM-DD')
         : moment(new Date()).format('YYYY-MM-DD')
     }
   },
   created () {
-    this.getAbout()
+    this.user && this.startGetAbout()
   },
 
   computed: {
-    ...mapGetters(['user', 'categorys'])
+    ...mapGetters(['user'])
   },
 
   components: {
@@ -226,16 +196,17 @@ export default {
 }
 
 .v-note-op{
-      box-shadow: 0px 0.4px 0px grey !important;
-      
+      box-shadow: 0px 0.4px 0px grey !important; 
 }
 
 .v-note-panel{
       box-shadow: 0px 0px 0px #fff !important;
 }
 
+
 .v-note-wrapper{
-  z-index: 0;
+  z-index: 0 !important
 }
+
 </style>
 

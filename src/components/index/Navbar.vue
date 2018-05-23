@@ -7,7 +7,7 @@
       <v-flex align-center justify-center class="blog-header-bg" py-4>
 
         <v-avatar :size="100">
-          <img @click="$router.push('/editUser')" src="~assets/imgs/avatar.jpg" alt="avatar">
+          <img  src="~assets/imgs/avatar.jpg" alt="avatar">
         </v-avatar>
 
       </v-flex>
@@ -20,7 +20,7 @@
               <v-icon>home</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>Home</v-list-tile-title>
+              <v-list-tile-title>首页</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
@@ -31,7 +31,7 @@
             <v-list-tile slot="activator">
              
               <v-list-tile-content>
-                <v-list-tile-title>Category</v-list-tile-title>
+                <v-list-tile-title>类别</v-list-tile-title>
               </v-list-tile-content>
             </v-list-tile>
 
@@ -44,14 +44,14 @@
 
           </v-list-group>
 
-   
+  
 
           <v-list-tile @click="$router.push('/about/'+info.id)">
             <v-list-tile-action>
               <v-icon>account_circle</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>About Me</v-list-tile-title>
+              <v-list-tile-title>关于</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
@@ -59,44 +59,14 @@
 
           <v-list-tile @click="$router.push('/friend/'+info.id)">
             <v-list-tile-action>
-              <v-icon>fa fa-link</v-icon>
+              <v-icon>link</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
-              <v-list-tile-title>Friendly Link</v-list-tile-title>
+              <v-list-tile-title>友链</v-list-tile-title>
             </v-list-tile-content>
           </v-list-tile>
 
 
-
-          <v-list-tile  v-show="user&&user.id==info.id" @click="$router.push({name:'edit'})">
-            <v-list-tile-action>
-              <v-icon>create</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Edit Blog</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-
-
-          <v-list-tile v-show="user&&user.id==info.id" @click="$router.push('/management-link')">
-            <v-list-tile-action>
-              <v-icon>create</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Management Links</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
-
-
-
-          <v-list-tile v-show="user&&user.id==info.id" @click="$router.push('/editAbout/1')">
-            <v-list-tile-action>
-              <v-icon>create</v-icon>
-            </v-list-tile-action>
-            <v-list-tile-content>
-              <v-list-tile-title>Edit About</v-list-tile-title>
-            </v-list-tile-content>
-          </v-list-tile>
 
         </v-list>
       </v-flex>

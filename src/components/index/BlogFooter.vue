@@ -4,10 +4,19 @@
     <v-layout  align-center>
         <v-flex xl12 xm12 md3>
             <v-btn icon>
-                <v-icon>fa fa-github</v-icon>
+                <v-icon>mdi-github-circle</v-icon>
             </v-btn>
+
             <v-btn icon>
-                <v-icon>fa fa-link</v-icon>
+                <v-icon>mdi-email-outline</v-icon>
+            </v-btn>
+            
+            <v-btn icon>
+                <v-icon>mdi-qqchat</v-icon>
+            </v-btn>
+           
+            <v-btn icon>
+                <v-icon>mdi-link-variant</v-icon>
             </v-btn>
         </v-flex>
         <v-flex d-flex justify-center xl12 xm12 md6> Copyright © 2018 YanDing's Blog</v-flex>

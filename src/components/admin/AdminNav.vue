@@ -7,7 +7,7 @@
       <v-flex align-center justify-center class="blog-header-bg" py-4>
 
         <v-avatar :size="100">
-          <img @click="$router.push('/editUser')" src="~assets/imgs/avatar.jpg" alt="avatar">
+          <img  src="~assets/imgs/avatar.jpg" alt="avatar">
         </v-avatar>
 
       </v-flex>
@@ -18,7 +18,7 @@
     
           <v-list-tile @click="$router.push('/admin/')">
             <v-list-tile-action>
-              <v-icon>account_circle</v-icon>
+              <v-icon >sentiment_very_satisfied</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>首页</v-list-tile-title>
@@ -28,7 +28,7 @@
 
           <v-list-tile @click="$router.push({name:'adminUser'})">
             <v-list-tile-action>
-              <v-icon>fa fa-link</v-icon>
+              <v-icon >settings_input_svideo</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>信息管理</v-list-tile-title>
@@ -39,7 +39,7 @@
 
           <v-list-tile   @click="$router.push({name:'adminBlog'})">
             <v-list-tile-action>
-              <v-icon>create</v-icon>
+              <v-icon>ac_unit</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>博客管理</v-list-tile-title>
@@ -49,7 +49,7 @@
 
           <v-list-tile  @click="$router.push({name:'adminCategory'})">
             <v-list-tile-action>
-              <v-icon>create</v-icon>
+              <v-icon >spa</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>类别管理</v-list-tile-title>
@@ -60,7 +60,7 @@
 
           <v-list-tile  @click="$router.push({name:'adminLink'})">
             <v-list-tile-action>
-              <v-icon>create</v-icon>
+              <v-icon>opacity</v-icon>
             </v-list-tile-action>
             <v-list-tile-content>
               <v-list-tile-title>友链管理</v-list-tile-title>
