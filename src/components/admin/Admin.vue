@@ -1,28 +1,19 @@
-<template>
+<template lang='pug'>
 
-  <v-app app>
-    <v-toolbar app absolute color="transparent" flat scroll-off-screen>
-      <v-btn icon @click.native="drawerConfig.show=!drawerConfig.show">
-        <v-icon>menu</v-icon>
-      </v-btn>
-    </v-toolbar>
+  v-app(app)
+    v-toolbar(app,absolute,flat,scroll-off-screen,color="transparent")
+      v-btn(icon,@click.native="drawerConfig.show=!drawerConfig.show")
+        v-icon menu
 
+    v-navigation-drawer(temporary,absolute,v-model="drawerConfig.show")
+      admin-nav
 
-     <v-navigation-drawer
-      temporary
-      v-model="drawerConfig.show"
-      absolute>
-      <admin-nav />
-     </v-navigation-drawer>
+    v-content
+      transition(name='fade-transverse')
+        router-view 
 
-
-      <v-content>
-        <router-view/>
-      </v-content>
- 
-</v-app>
-  
 </template>
+
 
 <script>
 import AdminNav from './AdminNav'
@@ -40,8 +31,8 @@ export default {
 </script>
 
 
-<style scoped>
-
+<style scoped  lang='stylus'>
+@import '~@/assets/css/vue_transition.styl';
 </style>
 
 
