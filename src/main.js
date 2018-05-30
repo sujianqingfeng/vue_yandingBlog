@@ -8,8 +8,6 @@ import Vuetify from 'vuetify'
 import VueClipboard from 'vue-clipboard2'
 import VueAnalytics from 'vue-analytics'
 
-import Icon from 'vue-svg-icon/Icon.vue'
-
 import 'vuetify/dist/vuetify.min.css'
 import 'assets/css/index.css'
 import 'static/reset.css'
@@ -20,8 +18,6 @@ Vue.config.productionTip = false
 
 Vue.use(VueClipboard)
 Vue.use(Vuetify)
-
-Vue.component('icon', Icon)
 
 Vue.use(VueAnalytics, {
   id: 'UA-116815221-1',

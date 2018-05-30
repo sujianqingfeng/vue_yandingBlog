@@ -16,8 +16,9 @@
                     v-flex Powered by Sujian
                     v-flex(d-flex,align-center)
                         span 托管于
-                        icon(name='a',:scale="20")
-                        //- img.youpaiyun(src='~assets/imgs/youpaiyun.png')
+                        img.youpaiyun(src='~assets/imgs/youpaiyun.svg')
+                        
+                        
 </template>
 
 <script>
@@ -31,7 +32,8 @@ export default {
 
 <style scoped lang='stylus'>
     .youpaiyun
-        width 80px
+        width 60px
         height 40px
+ 
 </style>
 
