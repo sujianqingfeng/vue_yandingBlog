@@ -10,7 +10,7 @@
                     v-icon mdi-qqchat
                 v-btn(icon)
                     v-icon mdi-link-variant
-            v-flex(d-flex,justify-center,xl12,xm12,md6) Copyright  2018 YanDing's Blog
+            v-flex(d-flex,justify-center,xl12,xm12,md6)©2018 · yandingblog · 蜀ICP备18015595号
             v-flex(xl12,xm12,md3) 
                 v-layout(column,align-end)
                     v-flex Powered by Sujian
