@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 
-import store from 'store/index.js'
+import {getCookie} from '../utils/cookie'
+// import store from 'store/index.js'
 
 Vue.use(Router)
 
@@ -95,7 +96,7 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  to.path.includes('admin') && !store.getters.user && next({name: 'login'})
+  to.path.includes('admin') && !getCookie('csrftoken') && next({name: 'login'})
   next()
 })
 

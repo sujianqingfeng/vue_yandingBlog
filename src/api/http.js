@@ -1,10 +1,10 @@
 // 引入axios
 import axios from 'axios'
-import {getCookie} from '../utils/cookie'
+// import {getCookie} from '../utils/cookie'
 
 axios.interceptors.request.use(config => {
-  let token = getCookie('token')
-  if (token) config.headers.Authorization = `JWT ${token}`
+  // let token = getCookie('token')
+  // if (token) config.headers.Authorization = `JWT ${token}`
   return config
 }, error => {
   return Promise.reject(error)
@@ -32,7 +32,8 @@ const request = (method, url, param) => new Promise((resolve, reject) => {
     method: method,
     url,
     params: method === 'get' ? param : '',
-    data: method !== 'get' ? param : ''
+    data: method !== 'get' ? param : '',
+    withCredentials: true
   }).then(res => {
     resolve(res)
   }).catch(error => {

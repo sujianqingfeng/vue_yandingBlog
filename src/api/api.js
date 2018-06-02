@@ -3,7 +3,7 @@ const baseUrl = process.env.NODE_ENV === 'production' ? 'http://yandingblog.cn:8
 
 export const getUserInfo = (id) => `${baseUrl}users/${id}/`
 
-export const login = () => `${baseUrl}login/`
+export const login = () => `${baseUrl}oauth/login/`
 export const editUser = (id) => `${baseUrl}users/${id}/`
 
 export const getCategorys = (id) => `${baseUrl}category/${id}/category_list/`
