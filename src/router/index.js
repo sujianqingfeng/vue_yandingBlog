@@ -45,6 +45,18 @@ const router = new Router({
           name: 'login',
           component: resolve => require(['components/user/Login'], resolve)
         },
+        {
+          path: '/oauth',
+          name: 'oauth',
+          component: resolve => require(['components/user/OAuth'], resolve),
+          children: [
+            {
+              path: '/oauth-success',
+              name: 'oauthSuccess',
+              component: resolve => require(['components/user/OAuthSuccess'], resolve)
+            }
+          ]
+        },
 
         {
           path: '/admin/',

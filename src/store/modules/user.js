@@ -11,7 +11,8 @@ const getters = {
   user: state => {
     let user = getCookie('user')
     return JSON.parse(user)
-  }
+  },
+  githubLoginUrl: state => apiConst.githubLogin
 
 }
 
@@ -24,7 +25,7 @@ const actions = {
   login: ({commit}, params) => http.post(apiConst.login(), params)
        .then(res => commit('setUser', res.data)),
 
-  github_login: ({commit}) => http.get(apiConst.githubLogin),
+  githubCheck: ({commit}, params) => http.get(apiConst.githubCheck, params),
 
   editUser: ({commit}, {id, params}) => {
     return http.patch(apiConst.editUser(id), params)

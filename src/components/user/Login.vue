@@ -80,7 +80,8 @@
 
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   name: 'login',
   data: () => ({
@@ -94,22 +95,43 @@ export default {
       time: 4000,
       show: false,
       color: 'info'
-    }
+    },
+    token: ''
   }),
+  computed: {
+    ...mapGetters(['githubLoginUrl'])
+  },
   methods: {
-    ...mapActions(['login', 'github_login']),
+    ...mapActions(['login']),
     clickLogin () {
-      this.login(this.params)
+      let that = this
+      that.login(that.params)
         .then(() => {
-          this.$router.push('/admin')
+          that.$router.push('/admin')
         })
         .catch(() => {
-          this.snackbarConfig.color = 'error'
-          this.snackbarConfig.text = '登陆失败'
-          this.snackbarConfig.show = true
+          that.snackbarConfig.color = 'error'
+          that.snackbarConfig.text = '登陆失败'
+          that.snackbarConfig.show = true
         })
     },
-    gihubLoginBtn () {},
+    gihubLoginBtn () {
+      let that = this
+
+      let win = window.open(
+        that.githubLoginUrl,
+        'GitHub登陆',
+        'width=600, height=400'
+      )
+
+      that.timer = window.setInterval(_ => {
+        if (win.document.URL.indexOf('oauth-success') !== -1) {
+          window.clearInterval(that.timer)
+          win.close()
+          that.$router.push('/admin')
+        }
+      }, 100)
+    },
     noLoginBtn () {
       this.snackbarConfig.color = 'error'
       this.snackbarConfig.text = '第三方登录未实现'
