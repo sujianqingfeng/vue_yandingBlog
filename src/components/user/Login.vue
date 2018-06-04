@@ -1,6 +1,6 @@
 <template>
 
-  <v-app >
+  <v-app>
     <v-toolbar absolute color="transparent" flat scroll-off-screen>
       <v-btn icon @click.native="$router.go(-1)">
         <v-icon>arrow_back</v-icon>
@@ -12,7 +12,7 @@
         <v-container fluid grid-list-md px-1 py-1>
 
           <v-layout row wrap>
-            <v-flex xs12 sm12 md6  class="blog-login-left blog-header-bg"></v-flex>
+            <v-flex xs12 sm12 md6 class="blog-login-left blog-header-bg"></v-flex>
 
             <v-flex xs12 sm12 md6 class="blog-login-right">
               <v-layout column wrap>
@@ -22,7 +22,7 @@
                       <p class="display-1">注册</p>
                       <p class="display-2">登录</p>
                     </v-flex>
-                    <v-btn fab large color="white" @click.stop='clickLogin'>
+                    <v-btn fab  color="white" @click.stop='clickLogin'>
                       <v-icon>keyboard_arrow_right</v-icon>
                     </v-btn>
                   </v-layout>
@@ -36,6 +36,26 @@
                     </v-flex>
                     <v-flex>
                       <v-text-field :append-icon="e1 ? 'visibility' : 'visibility_off'" :append-icon-cb="() => (e1 = !e1)" :type="e1 ? 'password' : 'text'" dark color="white" label="密码" :value='params.password'></v-text-field>
+                    </v-flex>
+
+                    <v-flex d-flex justify-center>
+                      OR
+                    </v-flex>
+                    <v-flex>
+                      <v-layout justify-center>
+                        <v-btn small icon @click.stop='gihubLoginBtn'>
+                          <v-icon color='white'>mdi-github-circle</v-icon>
+                        </v-btn>
+
+                         <v-btn small icon @click.stop='noLoginBtn'>
+                          <v-icon color='white'>mdi-qqchat</v-icon>
+                        </v-btn>
+
+                         <v-btn small icon @click.stop='noLoginBtn'>
+                          <v-icon color='white'>mdi-wechat</v-icon>
+                        </v-btn>
+                      </v-layout>
+
                     </v-flex>
                   </v-layout>
                 </v-flex>
@@ -77,7 +97,7 @@ export default {
     }
   }),
   methods: {
-    ...mapActions(['login']),
+    ...mapActions(['login', 'github_login']),
     clickLogin () {
       this.login(this.params)
         .then(() => {
@@ -88,6 +108,12 @@ export default {
           this.snackbarConfig.text = '登陆失败'
           this.snackbarConfig.show = true
         })
+    },
+    gihubLoginBtn () {},
+    noLoginBtn () {
+      this.snackbarConfig.color = 'error'
+      this.snackbarConfig.text = '第三方登录未实现'
+      this.snackbarConfig.show = true
     }
   }
 }
@@ -119,7 +145,5 @@ export default {
   width: 100%;
   height: 100%;
 }
-.material-icons {
-  line-height: 70px;
-}
+
 </style>
