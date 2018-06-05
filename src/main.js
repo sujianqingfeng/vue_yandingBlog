@@ -7,6 +7,7 @@ import router from './router'
 import Vuetify from 'vuetify'
 import VueClipboard from 'vue-clipboard2'
 import VueAnalytics from 'vue-analytics'
+import moment from 'moment'
 
 import 'vuetify/dist/vuetify.min.css'
 import 'assets/css/index.css'
@@ -28,6 +29,11 @@ Vue.use(VueAnalytics, {
 Vue.prototype.$log = function (msg) {
   console.log(msg)
 }
+
+Vue.filter('timeformat', function (value) {
+  if (!value) return ''
+  return moment(value).format('YYYY-MM-DD')
+})
 
 /* eslint-disable no-new */
 new Vue({

@@ -24,11 +24,11 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                      <img :src="blogInfo.user.icon?blogInfo.user.icon:'~assets/imgs/avatar.jpg'" alt="avatar">
+                      <img :src="blogInfo.user.icon" alt="avatar">
                     </v-avatar>
-                    <v-layout column mx-1 my-1>
+                    <v-layout column mx-3 my-1>
                       <p class="info-footer-text">{{blogInfo.user.username}}</p>
-                      <p class="info-footer-text">{{blogInfo.add_time}}
+                      <p class="info-footer-text">{{blogInfo.add_time | timeformat}}
                         <span class="view-text">{{blogInfo.num}} view</span>
                       </p>
                     </v-layout>
@@ -44,7 +44,7 @@
 
             <v-divider/>
 
-            <v-flex px-0 py-0 style="min-height:900px">
+            <v-flex px-0 py-0 style="min-height:900px" >
               <mavon-editor ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px;z-index:0" class="blog-detail-content" />
             </v-flex>
           </v-layout>
@@ -81,10 +81,15 @@ export default {
         show: false,
         text: ''
       },
-
       blogInfo: {},
       toolbars: {},
       navigations: []
+    }
+  },
+  computed: {
+    md2html: function () {
+      let md = mavonEditor.getMarkdownIt()
+      return md.render(this.blogInfo.content)
     }
   },
   methods: {
@@ -133,7 +138,7 @@ export default {
 
 .view-text {
   color: gray;
-  margin-left: 12px;
+  margin-left: 4px;
   padding: 4px;
 }
 

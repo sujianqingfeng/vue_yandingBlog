@@ -7,7 +7,7 @@ bady-color {
   background-color: "#E9EBEC"
 }
 
-text-white{
+.text-white{
   color:white
 }
 
@@ -24,6 +24,7 @@ text-white{
 .blog-container{
   width: 900px;
   margin: 0 auto;
+  min-height: 1200px
 }
 
 .blog-header-height{
