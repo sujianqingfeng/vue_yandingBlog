@@ -11,6 +11,7 @@ import moment from 'moment'
 
 import 'vuetify/dist/vuetify.min.css'
 import 'assets/css/index.css'
+import 'assets/css/markdown.css'
 import 'static/reset.css'
 
 import store from 'store/index.js'

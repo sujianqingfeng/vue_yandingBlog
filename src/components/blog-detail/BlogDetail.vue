@@ -9,47 +9,60 @@
     </v-toolbar>
     <v-container fluid fill-height mb-5>
 
-      <v-card class="blog-container">
-        <v-container fluid grid-list-md px-1 py-1>
+      <v-layout column>
+        <v-flex>
+          <v-card class="blog-container">
+            <v-container fluid grid-list-md px-1 py-1>
 
-          <v-layout column>
+              <v-layout column>
 
-            <v-flex px-3 py-3 d-flex align-end  class="blog-header-height blog-header-bg">
-              <p class="display-1">{{blogInfo.title}}</p>
+                <v-flex px-3 py-3 d-flex align-end class="blog-header-height blog-header-bg">
+                  <p class="display-1">{{blogInfo.title}}</p>
 
-            </v-flex>
+                </v-flex>
 
-            <v-flex>
-              <v-layout align-center>
                 <v-flex>
-                  <v-layout align-center mx-1 my-1>
-                    <v-avatar :size="50">
-                      <img :src="blogInfo.user.icon" alt="avatar">
-                    </v-avatar>
-                    <v-layout column mx-3 my-1>
-                      <p class="info-footer-text">{{blogInfo.user.username}}</p>
-                      <p class="info-footer-text">{{blogInfo.add_time | timeformat}}
-                        <span class="view-text">{{blogInfo.num}} view</span>
-                      </p>
-                    </v-layout>
+                  <v-layout align-center>
+                    <v-flex>
+                      <v-layout align-center mx-1 my-1>
+                        <v-avatar :size="50">
+                          <img :src="blogInfo.user.icon" alt="avatar">
+                        </v-avatar>
+                        <v-layout column mx-3 my-1>
+                          <p class="info-footer-text">{{blogInfo.user.username}}</p>
+                          <p class="info-footer-text">{{blogInfo.add_time | timeformat}}
+                            <span class="view-text">{{blogInfo.num}} view</span>
+                          </p>
+                        </v-layout>
+                      </v-layout>
+                    </v-flex>
+
+                    <v-btn @click='share' icon>
+                      <v-icon>share</v-icon>
+                    </v-btn>
+
                   </v-layout>
                 </v-flex>
 
-                <v-btn @click='share' icon>
-                  <v-icon>share</v-icon>
-                </v-btn>
+                <v-divider/>
+
+                <v-flex px-3 py-4 class='markdown-body blog-content' v-html='md2html'>
+
+                </v-flex>
 
               </v-layout>
-            </v-flex>
+            </v-container>
+          </v-card>
+        </v-flex>
 
-            <v-divider/>
+        <v-flex>
+          <v-card class="review-reply">
+            <blog-review-reply/>
+          </v-card>
+        </v-flex>
+        
+      </v-layout>
 
-            <v-flex px-0 py-0 style="min-height:900px" >
-              <mavon-editor ref=md v-model="blogInfo.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px;z-index:0" class="blog-detail-content" />
-            </v-flex>
-          </v-layout>
-        </v-container>
-      </v-card>
     </v-container>
 
     <go-top class="go-top" />
@@ -69,8 +82,9 @@
 import BlogFooter from '../index/BlogFooter'
 import GoTop from 'components/go-top/GoTop'
 import BlogIndex from './BlogIndex'
+import BlogReviewReply from './BlogReviewReply'
 import { mapActions } from 'vuex'
-import { mavonEditor } from 'mavon-editor'
+import markdown from 'utils/markdown'
 export default {
   name: 'blog-detail',
   data () {
@@ -88,8 +102,7 @@ export default {
   },
   computed: {
     md2html: function () {
-      let md = mavonEditor.getMarkdownIt()
-      return md.render(this.blogInfo.content)
+      return markdown.render(this.blogInfo.content)
     }
   },
   methods: {
@@ -116,7 +129,7 @@ export default {
   created () {
     this.getBlog(this.$route.params.id).then(res => {
       this.blogInfo = res.data
-      setTimeout(this.generateNavigation, 1000)
+      // setTimeout(this.generateNavigation, 1000)
     })
   },
 
@@ -124,28 +137,26 @@ export default {
     BlogFooter,
     GoTop,
     BlogIndex,
-    mavonEditor
+    BlogReviewReply
   }
 }
 </script>
 
-
-<style>
-
-
-
-
-
+<style lang="stylus" scoped>
 .view-text {
   color: gray;
   margin-left: 4px;
   padding: 4px;
 }
 
-.v-note-wrapper {
-  z-index: 0;
+.blog-content {
+  min-height: 900px;
 }
-.blog-detail-content .v-note-panel {
-  box-shadow: 0px 0px 0px #fff !important;
-}
+
+.review-reply
+  max-width 900px
+  margin: 0 auto;
 </style>
+
+
+

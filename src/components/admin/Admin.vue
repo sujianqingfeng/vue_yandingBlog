@@ -6,26 +6,38 @@
         v-icon menu
 
     v-navigation-drawer(temporary,absolute,v-model="drawerConfig.show")
-      admin-nav
+      admin-nav(:user='userInfo')
 
     v-content
       transition(name='fade-transverse')
-        router-view 
+        router-view(:user='userInfo')
 
 </template>
 
 
 <script>
+import {mapActions} from 'vuex'
 import AdminNav from './AdminNav'
 export default {
   name: 'admin',
   data: () => ({
     drawerConfig: {
       show: false
+    },
+    userInfo: {
+      icon: ''
     }
   }),
   components: {
     AdminNav
+  },
+  methods: {
+    ...mapActions(['getMyInfo'])
+  },
+  created () {
+    this.getMyInfo().then(res => {
+      this.userInfo = res.data
+    })
   }
 }
 </script>

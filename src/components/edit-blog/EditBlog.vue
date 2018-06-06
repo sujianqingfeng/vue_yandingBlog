@@ -2,7 +2,6 @@
 
   <v-app>
 
-
     <v-container fluid fill-height>
       <v-card class="blog-container">
         <v-container fluid grid-list-md px-1 py-1>
@@ -17,7 +16,6 @@
                 </v-flex>
 
                 <v-flex pl-5 pr-5 style="width:350px">
-
                   <v-text-field dark color="white" clearable label="标题" id="title" v-model='blog_params.title'></v-text-field>
                   <v-select dark color="white" single-line autocomplete :items="categorys" item-text="name" item-value="id" v-model="blog_params.category" label="类别"></v-select>
                 </v-flex>
@@ -31,9 +29,9 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                      <img src="~assets/imgs/avatar.jpg" alt="avatar">
+                      <img :src="user.icon" alt="avatar">
                     </v-avatar>
-                    <v-layout column mx-1 my-1>
+                    <v-layout column mx-3 my-1>
                       <p class="info-footer-text">{{user.username}}</p>
                       <p class="info-footer-text">{{createTimeF()}}</p>
                     </v-layout>
@@ -48,7 +46,7 @@
             </v-flex>
 
             <v-flex px-0 py-0 style="height:900px">
-              <mavon-editor ref=md v-model="blog_params.content" :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
+              <mavon-editor ref=md v-model="blog_params.content" :boxShadow='false' :toolbars="toolbars" @imgAdd="$imgAdd" @imgDel="$imgDel" defaultOpen="edit" style="height: 100%" />
             </v-flex>
           </v-layout>
         </v-container>
@@ -72,6 +70,9 @@ import {markdownConfig} from './../../config'
 import moment from 'moment'
 export default {
   name: 'editBlog',
+  props: {
+    user: Object
+  },
   data: () => ({
     drawerConfig: {
       show: false
@@ -173,7 +174,7 @@ export default {
   },
 
   computed: {
-    ...mapGetters(['user'])
+    ...mapGetters(['aaa'])
   },
 
   components: {
@@ -199,7 +200,6 @@ export default {
 #title {
   font-size: 30px !important;
 }
-
 
 .v-note-wrapper{
   z-index: 0;

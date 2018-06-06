@@ -38,7 +38,7 @@
           <a @click="$router.push('/detail/'+props.item.id)">{{ props.item.title }}</a>
         </td>
         <td class="text-xs-left">{{ props.item.category.name }}</td>
-        <td class="text-xs-left">{{ props.item.add_time }}</td>
+        <td class="text-xs-left">{{ props.item.add_time| timeformat }}</td>
         <td class="text-xs-left">
           <v-btn @click="$router.push('/admin/editBlog/'+props.item.id)" color="primary" fab small dark>
             <v-icon>edit</v-icon>

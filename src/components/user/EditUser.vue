@@ -67,6 +67,9 @@ import moment from 'moment'
 import Upload from './Upload'
 export default {
   name: 'editUser',
+  props: {
+    user: Object
+  },
   data: () => ({
     name: '',
     fileName: '',
@@ -135,12 +138,11 @@ export default {
   },
   computed: {
     ...mapGetters({
-      user: 'user'
+      dfd: '11'
     })
   },
   created () {
-    let user = this.user
-    this.userParams = user
+    this.userParams = this.user
   }
 }
 </script>

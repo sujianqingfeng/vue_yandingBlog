@@ -1,10 +1,10 @@
 // 引入axios
 import axios from 'axios'
-// import {getCookie} from '../utils/cookie'
+import {getCookie} from '../utils/cookie'
 
 axios.interceptors.request.use(config => {
-  // let token = getCookie('token')
-  // if (token) config.headers.Authorization = `JWT ${token}`
+  let csrftoken = getCookie('csrftoken')
+  if (csrftoken) config.headers['X-CSRFToken'] = `${csrftoken}`
   return config
 }, error => {
   return Promise.reject(error)

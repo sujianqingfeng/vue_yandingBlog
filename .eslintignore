@@ -1,2 +1,5 @@
 build/*.js
 config/*.js
+lib/*.js
+common/*.js
+common/*.vue

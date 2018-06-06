@@ -22,10 +22,12 @@ const actions = {
        .then(info => commit('setInfo', info.data))
   },
 
-  login: ({commit}, params) => http.post(apiConst.login(), params)
+  login: ({commit}, params) => http.post(apiConst.login, params)
        .then(res => commit('setUser', res.data)),
 
   githubCheck: ({commit}, params) => http.get(apiConst.githubCheck, params),
+
+  getMyInfo: ({commit}) => http.get(apiConst.myInfo),
 
   editUser: ({commit}, {id, params}) => {
     return http.patch(apiConst.editUser(id), params)

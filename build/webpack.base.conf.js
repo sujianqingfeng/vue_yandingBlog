@@ -28,7 +28,8 @@ module.exports = {
       'assets': resolve('src/assets'),
       'static': resolve('static'),
       'store':resolve('src/store'),
-      'api':resolve('src/api')
+      'api':resolve('src/api'),
+      'utils':resolve('src/utils')
     }
   },
   module: {

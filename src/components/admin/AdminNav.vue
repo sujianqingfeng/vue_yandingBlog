@@ -7,9 +7,8 @@
       <v-flex align-center justify-center class="blog-header-bg" py-4>
 
         <v-avatar :size="100">
-          <img  src="~assets/imgs/avatar.jpg" alt="avatar">
+          <img  :src="user.icon" alt="avatar">
         </v-avatar>
-
       </v-flex>
 
       <v-flex>
@@ -89,9 +88,7 @@
 export default {
   name: 'Navbar',
   props: {
-    info: Object,
-    user: Object,
-    categorys: Array
+    user: Object
   },
   data () {
     return {
