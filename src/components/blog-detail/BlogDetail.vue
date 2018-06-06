@@ -60,7 +60,13 @@
             <blog-review-reply/>
           </v-card>
         </v-flex>
+
         
+         <v-flex>
+          <v-card class="review-reply">
+            <blog-reivew-display></blog-reivew-display>
+          </v-card>
+        </v-flex>
       </v-layout>
 
     </v-container>
@@ -83,6 +89,7 @@ import BlogFooter from '../index/BlogFooter'
 import GoTop from 'components/go-top/GoTop'
 import BlogIndex from './BlogIndex'
 import BlogReviewReply from './BlogReviewReply'
+import BlogReivewDisplay from './BlogReivewDisplay'
 import { mapActions } from 'vuex'
 import markdown from 'utils/markdown'
 export default {
@@ -137,7 +144,8 @@ export default {
     BlogFooter,
     GoTop,
     BlogIndex,
-    BlogReviewReply
+    BlogReviewReply,
+    BlogReivewDisplay
   }
 }
 </script>
