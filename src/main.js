@@ -8,6 +8,7 @@ import Vuetify from 'vuetify'
 import VueClipboard from 'vue-clipboard2'
 import VueAnalytics from 'vue-analytics'
 import moment from 'moment'
+import mavonEditor from 'mavon-editor'
 
 import 'vuetify/dist/vuetify.min.css'
 import 'assets/css/index.css'
@@ -20,6 +21,7 @@ Vue.config.productionTip = false
 
 Vue.use(VueClipboard)
 Vue.use(Vuetify)
+Vue.use(mavonEditor)
 
 Vue.use(VueAnalytics, {
   id: 'UA-116815221-1',
@@ -29,6 +31,10 @@ Vue.use(VueAnalytics, {
 
 Vue.prototype.$log = function (msg) {
   console.log(msg)
+}
+
+Vue.prototype.$md2html = function (md) {
+  return mavonEditor.markdownIt.render(md)
 }
 
 Vue.filter('timeformat', function (value) {

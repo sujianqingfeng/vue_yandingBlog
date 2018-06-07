@@ -64,9 +64,7 @@ export default {
   animation: bounce-in 0.5s reverse;
 }
 
-.material-icons {
-  line-height: 55px;
-}
+
 @keyframes bounce-in {
   0% {
     transform: scale(0);

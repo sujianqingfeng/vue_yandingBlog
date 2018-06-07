@@ -63,7 +63,6 @@
 
 
 <script>
-import { mavonEditor } from 'mavon-editor'
 import 'mavon-editor/dist/css/index.css'
 import { mapActions, mapGetters } from 'vuex'
 import {markdownConfig} from './../../config'
@@ -175,10 +174,6 @@ export default {
 
   computed: {
     ...mapGetters(['aaa'])
-  },
-
-  components: {
-    mavonEditor
   }
 }
 </script>

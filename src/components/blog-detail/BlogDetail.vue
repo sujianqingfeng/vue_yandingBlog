@@ -1,7 +1,7 @@
 <template>
 
   <v-app>
-    <v-toolbar absolute color="transparent" flat scroll-off-screen>
+    <v-toolbar color="transparent" flat scroll-off-screen>
       <v-btn icon @click.native="$router.go(-1)">
         <v-icon>arrow_back</v-icon>
       </v-btn>
@@ -46,7 +46,7 @@
 
                 <v-divider/>
 
-                <v-flex px-3 py-4 class='markdown-body blog-content' v-html='md2html'>
+                <v-flex px-3 py-4 class='markdown-body blog-content' v-html='$md2html(blogInfo.content)'>
 
                 </v-flex>
 
@@ -78,7 +78,7 @@
     </v-snackbar>
 
     <v-footer height="180px">
-      <blog-footer/>
+      <blog-footer :info='blogInfo.user'/>
     </v-footer>
   </v-app>
 
@@ -91,7 +91,7 @@ import BlogIndex from './BlogIndex'
 import BlogReviewReply from './BlogReviewReply'
 import BlogReivewDisplay from './BlogReivewDisplay'
 import { mapActions } from 'vuex'
-import markdown from 'utils/markdown'
+
 export default {
   name: 'blog-detail',
   data () {
@@ -102,14 +102,14 @@ export default {
         show: false,
         text: ''
       },
-      blogInfo: {},
+      blogInfo: {
+        user: {
+          icon: ''
+        },
+        content: ''
+      },
       toolbars: {},
       navigations: []
-    }
-  },
-  computed: {
-    md2html: function () {
-      return markdown.render(this.blogInfo.content)
     }
   },
   methods: {
@@ -164,6 +164,11 @@ export default {
 .review-reply
   max-width 900px
   margin: 0 auto;
+
+.go-top
+  position fixed
+  bottom 130px
+  right 50px
 </style>
 
 

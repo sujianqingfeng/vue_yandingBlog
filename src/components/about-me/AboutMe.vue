@@ -25,11 +25,11 @@
                 <v-flex>
                   <v-layout align-center mx-1 my-1>
                     <v-avatar :size="50">
-                     <img src="~assets/imgs/avatar.jpg" alt="avatar">
+                     <img :src="info.icon" alt="avatar">
                     </v-avatar>
                     <v-layout column mx-1 my-1>
                       <p class="blog-detail-info-text">{{info.username}}</p>
-                      <p class="blog-detail-info-text">{{about.add_time}}</p>
+                      <p class="blog-detail-info-text">{{about.add_time | timeformat}}</p>
                     </v-layout>
                   </v-layout>
                 </v-flex>
@@ -43,8 +43,8 @@
 
            <v-divider/>
 
-            <v-flex px-0 py-0 style="min-height:900px">
-             <mavon-editor ref=md v-model="about.content" :navigation='false' :subfield='false' :toolbarsFlag='false' :toolbars="toolbars" defaultOpen="preview" style="min-height:900px" class="blog-detail-content"  />
+            <v-flex px-3 py-3 style="min-height:900px" class="markdown-body" v-html="$md2html(about.content)">
+    
             </v-flex>
           </v-layout>
         </v-container>
@@ -57,7 +57,7 @@
 
    
     <v-footer height="180px">
-      <blog-footer/>
+      <blog-footer :info='info'/>
     </v-footer>
   </v-app>
  
@@ -68,12 +68,13 @@
 import BlogFooter from '../index/BlogFooter'
 import { mapGetters, mapActions } from 'vuex'
 import TextUtil from '../../utils/TextUtils'
-import { mavonEditor } from 'mavon-editor'
 export default {
   name: 'blog-detail',
   data () {
     return {
-      about: {},
+      about: {
+        content: ''
+      },
       toolbars: {},
       snackbarConfig: {
         time: 4000,
@@ -81,6 +82,7 @@ export default {
         show: false,
         text: ''
       }
+
     }
   },
   methods: {
@@ -91,11 +93,11 @@ export default {
         this.snackbarConfig.show = true
       })
     }
+
   },
 
   components: {
-    BlogFooter,
-    mavonEditor
+    BlogFooter
   },
   computed: {
     ...mapGetters([
@@ -114,8 +116,7 @@ export default {
 </script>
 
 
-<style >
-
+<style scoped>
 
 
 
@@ -129,7 +130,4 @@ export default {
 }
 
 
-.blog-detail-content .v-note-panel {
-  box-shadow: 0px 0px 0px #000 !important;
-}
 </style>

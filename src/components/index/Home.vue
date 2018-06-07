@@ -45,7 +45,7 @@
     </v-content>
 
     <v-footer height="180px">
-      <blog-footer/>
+      <blog-footer :info='info'/>
     </v-footer>
 
   </v-app>

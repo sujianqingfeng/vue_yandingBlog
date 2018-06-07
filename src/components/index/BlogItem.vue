@@ -8,7 +8,7 @@
       </v-flex>
       
       <v-flex mx-3 my-3>
-         {{blog.content}}
+         {{blog.excerpt}}
         <v-btn flat small color="primary" @click="$router.push('/detail/'+blog.id)">查看更多</v-btn>
       </v-flex>
       <v-divider/>
@@ -17,11 +17,11 @@
           <v-flex>
             <v-layout align-center>
               <v-avatar :size="50">
-                <img :src="blog.user.icon?blog.user.icon:'~assets/imgs/avatar.jpg'" alt="avatar">
+                <img :src="blog.user.icon" alt="avatar">
               </v-avatar>
               <v-layout column>
                 <p class="info-footer-text">{{blog.user.username}}</p>
-                <p class="info-footer-text">{{blog.add_time}}  <span class="blog-item-footer-text">{{blog.num}} view</span></p> 
+                <p class="info-footer-text">{{blog.add_time | timeformat}}  <span class="blog-item-footer-text">{{blog.num}} view</span></p> 
               </v-layout>
             </v-layout>
           </v-flex>

@@ -3,7 +3,6 @@
   <v-app>
 
     <v-container fluid fill-height>
-
       <v-card class="blog-container">
         <v-container fluid grid-list-md px-1 py-1>
 
@@ -134,6 +133,12 @@ export default {
       if (files[0]) {
         this.userParams.icon = files[0]
       }
+    },
+    judgeSex (value) {
+      const sexOpt = this.sexOpt
+      for (let i = 0; i < sexOpt.length; i++) {
+        if (value === sexOpt[i].label) return sexOpt[i].value
+      }
     }
   },
   computed: {
@@ -142,7 +147,16 @@ export default {
     })
   },
   created () {
-    this.userParams = this.user
+    let that = this
+    that.userParams = that.user
+    if (that.user.sex) that.userParams.sex = that.judgeSex(that.userParams.sex)
+  },
+  watch: {
+    user: function (value) {
+      let that = this
+      that.userParams = value
+      that.userParams.sex = that.judgeSex(that.userParams.sex)
+    }
   }
 }
 </script>
