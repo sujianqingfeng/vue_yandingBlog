@@ -26,3 +26,6 @@ export const linkId = (id) => `${baseUrl}/friend/${id}/`
 
 export const aboutId = (id) => `${baseUrl}/about/${id}/`
 export const about = `${baseUrl}/about/`
+
+export const summaryId = (id) => `${baseUrl}/summary-img/${id}/`
+export const summary = `${baseUrl}/summary-img/`

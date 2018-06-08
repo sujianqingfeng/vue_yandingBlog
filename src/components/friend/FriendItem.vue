@@ -1,12 +1,10 @@
 <template>
 
-  <v-card>
+  <v-card :href="item.link">
 
-    <v-layout >
-     
-        <img :src="item.icon?item.icon:'~assets/imgs/avatar.jpg'" class="friend-item-img" />
-   
-    
+    <v-layout>
+
+      <img :src="item.icon" class="friend-item-img" />
 
       <v-flex>
         <v-layout px-3 column>
@@ -26,21 +24,15 @@
 
 <script>
 export default {
-
   name: 'friend-item',
   props: {
-    item: Array
+    item: Object
   },
-  data: () => ({
-
-  })
+  data: () => ({})
 }
 </script>
 
 <style>
-
-
-
 .friend-item {
   height: 60px;
   background-color: gold;

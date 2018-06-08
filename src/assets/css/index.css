@@ -38,3 +38,14 @@ bady-color {
   color: white;
 }
 
+
+.layout-add-style {
+  position: relative;
+  top: 45px;
+}
+
+.datatable thead tr th,
+.datatable tbody tr td {
+  vertical-align: middle;
+}
+

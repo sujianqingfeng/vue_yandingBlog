@@ -98,6 +98,11 @@ const router = new Router({
               path: 'admin-link/',
               name: 'adminLink',
               component: resolve => require(['components/admin-link/AdminLink'], resolve)
+            },
+            {
+              path: 'admin-summary/',
+              name: 'adminSummary',
+              component: resolve => require(['components/admin-summary-img/AdminSummary'], resolve)
             }
 
           ]
