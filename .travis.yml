@@ -1,7 +1,7 @@
 language: node_js
 
 addons:
-  ssh_known_hosts: yandingblog.cn:10086
+  ssh_known_hosts: ${HOST}:${PORT}
 
 node_js:
   - '8'
@@ -23,8 +23,9 @@ script:
   - npm run build
 
 after_script:
-  - scp -P 10086 -r ./dist/. root@yandingblog.cn:/var/www/yanding
+  - scp -P ${PORT} -r ./dist/. ${USER}@${HOST}:/var/www/yanding
 
 before_install:
+  - cat /dev/null > ~/.ssh/know_hosts
   - openssl aes-256-cbc -K $encrypted_3b2878a3d558_key -iv $encrypted_3b2878a3d558_iv -in travis.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
