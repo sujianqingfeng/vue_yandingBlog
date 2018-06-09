@@ -23,7 +23,7 @@ script:
   - npm run build
 
 after_script:
-  - scp -P 10086 -r ./dist/. root@yandingblog.cn:/var/www/yanding
+  - scp -P ${PORT} -r ./dist/. ${USER}@${HOST}:/var/www/yanding
 
 before_install:
   - openssl aes-256-cbc -K $encrypted_3b2878a3d558_key -iv $encrypted_3b2878a3d558_iv -in travis.enc -out ~/.ssh/id_rsa -d
