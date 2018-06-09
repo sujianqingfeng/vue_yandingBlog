@@ -1,0 +1,28 @@
+language: node_js
+
+addons:
+  apt:
+    packages:
+    - sshpass
+
+node_js:
+  - '8'
+
+sudo: false
+
+branches:
+  only:
+    - master
+
+cache: 
+  dirctories:
+    - node_modules
+
+install:
+  - npm install
+
+script:
+  - npm run build
+
+after_script:
+  - cd ./dist
