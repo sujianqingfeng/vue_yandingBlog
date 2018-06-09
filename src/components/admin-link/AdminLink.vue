@@ -17,7 +17,7 @@
       </v-flex>
     </v-layout>
 
-    <v-data-table :headers="headers" :items="desserts" id="table-admin-blog" :rows-per-page-items="pageConfig">
+    <v-data-table :headers="headers" :items="linkList" id="table-admin-blog" :rows-per-page-items="pageConfig">
       <template slot="items" slot-scope="props">
         <td>
           <a :href="props.item.link">{{ props.item.title }}</a>
@@ -78,7 +78,8 @@
 
 <script>
 import Upload from '../user/Upload'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data: _ => ({
     fileName: '',
@@ -99,10 +100,11 @@ export default {
       { text: '标题', sortable: false },
         { text: '描述', sortable: false },
         { text: '操作', sortable: false, width: '180px' }
-    ],
-    desserts: []
+    ]
   }),
-
+  computed: {
+    ...mapGetters(['linkList'])
+  },
   methods: {
     ...mapActions([
       'createLink',
@@ -153,9 +155,7 @@ export default {
       }
     },
     getLinks () {
-      this.linksAdmin().then(res => {
-        this.desserts = res
-      })
+      this.linksAdmin()
     }
   },
   created () {

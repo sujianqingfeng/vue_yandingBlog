@@ -87,7 +87,7 @@ export default {
     toolbars: markdownConfig
   }),
   methods: {
-    ...mapActions(['uploadImg', 'save', 'update', 'getBlog', 'getCategoryByAdmin']),
+    ...mapActions(['uploadImg', 'save', 'update', 'getBlogDetail', 'getCategoryByAdmin']),
     $imgAdd (pos, $file) {
       // 缓存图片信息
       this.img_file[pos] = $file
@@ -162,18 +162,20 @@ export default {
     const params = this.$route.params
     params &&
       params.id &&
-      this.getBlog(params.id).then(res => {
-        this.createTime = res.data.add_time
-        this.blog_params.category = res.data.category.id
-        this.blog_params.content = res.data.content
-        this.blog_params.title = res.data.title
-      })
-
+      this.getBlogDetail(params.id)
     this.getCategoryByAdmin().then(res => { this.categorys = res })
   },
 
   computed: {
-    ...mapGetters(['aaa'])
+    ...mapGetters(['blogDetail'])
+  },
+  watch: {
+    blogDetail: function (detail) {
+      this.createTime = detail.add_time
+      this.blog_params.category = detail.category.id
+      this.blog_params.content = detail.content
+      this.blog_params.title = detail.title
+    }
   }
 }
 </script>

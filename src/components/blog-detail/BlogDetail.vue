@@ -17,7 +17,7 @@
               <v-layout column>
 
                 <v-flex px-3 py-3 d-flex align-end class="blog-header-height blog-header-bg">
-                  <p class="display-1">{{blogInfo.title}}</p>
+                  <p class="display-1">{{blogDetail.title}}</p>
 
                 </v-flex>
 
@@ -26,12 +26,12 @@
                     <v-flex>
                       <v-layout align-center mx-1 my-1>
                         <v-avatar :size="50">
-                          <img :src="blogInfo.user.icon" alt="avatar">
+                          <img :src="blogDetail.user.icon" alt="avatar">
                         </v-avatar>
                         <v-layout column mx-3 my-1>
-                          <p class="info-footer-text">{{blogInfo.user.username}}</p>
-                          <p class="info-footer-text">{{blogInfo.add_time | timeformat}}
-                            <span class="view-text">{{blogInfo.num}} view</span>
+                          <p class="info-footer-text">{{blogDetail.user.username}}</p>
+                          <p class="info-footer-text">{{blogDetail.add_time | timeformat}}
+                            <span class="view-text">{{blogDetail.num}} view</span>
                           </p>
                         </v-layout>
                       </v-layout>
@@ -46,7 +46,7 @@
 
                 <v-divider/>
 
-                <v-flex px-3 py-4 class='markdown-body blog-content' v-html='$md2html(blogInfo.content)'>
+                <v-flex px-3 py-4 class='markdown-body blog-content' v-html='$md2html(blogDetail.content)'>
 
                 </v-flex>
 
@@ -90,7 +90,7 @@ import GoTop from 'components/go-top/GoTop'
 import BlogIndex from './BlogIndex'
 import BlogReviewReply from './BlogReviewReply'
 import BlogReivewDisplay from './BlogReivewDisplay'
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'blog-detail',
@@ -102,18 +102,15 @@ export default {
         show: false,
         text: ''
       },
-      blogInfo: {
-        user: {
-          icon: ''
-        },
-        content: ''
-      },
       toolbars: {},
       navigations: []
     }
   },
+  computed: {
+    ...mapGetters(['blogDetail'])
+  },
   methods: {
-    ...mapActions(['getBlog']),
+    ...mapActions(['getBlogDetail']),
     generateNavigation () {
       let navigations = []
       let childs = document.querySelector('.v-show-content').childNodes
@@ -137,8 +134,7 @@ export default {
     }
   },
   created () {
-    this.getBlog(this.$route.params.id).then(res => {
-      this.blogInfo = res.data
+    this.getBlogDetail(this.$route.params.id).then(res => {
       // setTimeout(this.generateNavigation, 1000)
     })
   },

@@ -30,9 +30,9 @@ v-container(px-0,py-0)
         
         v-list-tile(@click="$router.push({name:'adminSummary'})")
           v-list-tile-action
-            v-icon opacity
+            v-icon mdi-image
           v-list-tile-content
-            v-list-tile-title 摘要图管理
+            v-list-tile-title 摘要管理
 
         v-list-tile(@click="$router.push({name:'adminCategory'})")
           v-list-tile-action

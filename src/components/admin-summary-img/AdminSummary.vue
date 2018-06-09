@@ -7,7 +7,7 @@ v-card.blog-container
                 v-btn(fab,dark,color='pink',@click='addBtn')
                     v-icon(dark) add
     
-    v-data-table(:headers='headers',:items='items',:loading='loading',:rows-per-page-items="pageConfig")
+    v-data-table(:headers='headers',:items='summaryList',:loading='loading',:rows-per-page-items="pageConfig")
         template(slot='items',slot-scope='props')
             td {{props.item.sumary_url}}
             td
@@ -39,7 +39,7 @@ v-card.blog-container
 
 <script>
 import Upload from '../user/Upload'
-import {mapActions} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
 export default {
   data: () => ({
     headers: [{
@@ -47,7 +47,6 @@ export default {
       sortable: false
     },
     { text: '操作', sortable: false, width: '180px' }],
-    items: [],
     dialogConfig: {
       show: false,
       title: '',
@@ -61,6 +60,9 @@ export default {
     fileName: '',
     pageConfig: [10, 25, { text: 'All', value: -1 }]
   }),
+  computed: {
+    ...mapGetters(['summaryList'])
+  },
   methods: {
     ...mapActions(['getSummarys', 'createSummary', 'updateSummary', 'deleteSummary']),
     addBtn () {
@@ -106,9 +108,7 @@ export default {
       }
     },
     start () {
-      this.getSummarys().then(res => {
-        this.items = res.data
-      })
+      this.getSummarys()
     }
   },
   created () {

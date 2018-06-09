@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 
 import home from './modules/home'
 import user from './modules/user'
-import editblog from './modules/editblog'
 import category from './modules/category'
 import about from './modules/about'
 import friend from './modules/friend'
@@ -18,7 +17,6 @@ export default new Vuex.Store({
     home,
     user,
     link,
-    editblog,
     category,
     about,
     friend,
