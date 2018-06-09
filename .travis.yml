@@ -1,23 +1,30 @@
 language: node_js
+
 addons:
-  apt:
-    packages:
-    - sshpass
+  ssh_known_hosts: yandingblog.cn:10086
+
 node_js:
-- '8'
+  - '8'
+
 sudo: false
+
 branches:
   only:
   - master
+
 cache:
   dirctories:
   - node_modules
+
 install:
-- npm install
+   - npm install
+
 script:
-- npm run build
+  - npm run build
+
 after_script:
-- cd ./dist
+  - scp -P 10086 ./dist root@yandingblog.cn:/var/www/yanding
+
 before_install:
-- openssl aes-256-cbc -K $encrypted_3b2878a3d558_key -iv $encrypted_3b2878a3d558_iv
-  -in travis.enc -out travis -d
+  - openssl aes-256-cbc -K $encrypted_3b2878a3d558_key -iv $encrypted_3b2878a3d558_iv -in travis.enc -out ~/.ssh/id_rsa -d
+  - chmod 600 ~/.ssh/id_rsa
