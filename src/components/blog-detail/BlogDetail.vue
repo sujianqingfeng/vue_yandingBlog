@@ -57,7 +57,7 @@
 
         <v-flex>
           <v-card class="review-reply">
-            <blog-review-reply/>
+            <blog-review-reply @replay='replay'/>
           </v-card>
         </v-flex>
 
@@ -119,7 +119,6 @@ export default {
       let childs = document.querySelector('.v-show-content').childNodes
       childs.forEach((element, index) => {
         if (element.localName === 'h1' || element.localName === 'h2') {
-          console.log(element.outerText)
           element.id = 'n' + navigations.length
           navigations.push(element.outerText)
         }
@@ -131,6 +130,10 @@ export default {
         this.snackbarConfig.text = '复制到剪贴板'
         this.snackbarConfig.show = true
       })
+    },
+    replay (str) {
+      this.snackbarConfig.text = '暂未实现'
+      this.snackbarConfig.show = true
     }
   },
   created () {

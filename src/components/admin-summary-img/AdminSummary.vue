@@ -51,7 +51,8 @@ export default {
     dialogConfig: {
       show: false,
       title: '',
-      action: 0
+      action: 0,
+      id: ''
     },
     summaryParams: {
       sumary_url: ''
@@ -61,10 +62,10 @@ export default {
     pageConfig: [10, 25, { text: 'All', value: -1 }]
   }),
   methods: {
-    ...mapActions(['getSummarys', 'createSummary']),
+    ...mapActions(['getSummarys', 'createSummary', 'updateSummary', 'deleteSummary']),
     addBtn () {
       let that = this
-      that.dialogConfig.title = '添加摘要图'
+      that.dialogConfig.title = '添加摘要'
       that.dialogConfig.action = 1
       that.dialogConfig.show = true
     },
@@ -77,7 +78,27 @@ export default {
           that.dialogConfig.show = false
           that.start()
         })
+      } else {
+        const id = that.dialogConfig.id
+        that.updateSummary({id: id, params: data}).then(res => {
+          that.dialogConfig.show = false
+          that.start()
+        })
       }
+    },
+    updateBtn (item) {
+      console.log(item)
+      let that = this
+      that.dialogConfig.title = '修改摘要'
+      that.dialogConfig.action = 2
+      that.dialogConfig.id = item.id
+      that.dialogConfig.show = true
+    },
+    deleteBtn (item) {
+      let that = this
+      that.deleteSummary(item.id).then(res => {
+        that.start()
+      })
     },
     iconChange (files) {
       if (files[0]) {

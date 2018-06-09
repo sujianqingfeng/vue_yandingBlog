@@ -14,7 +14,6 @@
 </template>
 
 <script>
-import markdown from 'utils/markdown'
 
 export default {
   name: 'review-reply',
@@ -27,13 +26,7 @@ export default {
   }),
   methods: {
     submit () {
-
-    }
-  },
-
-  computed: {
-    md2html: function () {
-      return markdown.render(this.reply)
+      this.$emit('reply', this.reply)
     }
   }
 }
