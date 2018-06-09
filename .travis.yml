@@ -1,7 +1,7 @@
 language: node_js
 
 addons:
-  ssh_known_hosts: yandingblog.cn:10086
+  ssh_known_hosts: ${HOST}:${PORT}
 
 node_js:
   - '8'
