@@ -1,28 +1,23 @@
 language: node_js
-
 addons:
   apt:
     packages:
     - sshpass
-
 node_js:
-  - '8'
-
+- '8'
 sudo: false
-
 branches:
   only:
-    - master
-
-cache: 
+  - master
+cache:
   dirctories:
-    - node_modules
-
+  - node_modules
 install:
-  - npm install
-
+- npm install
 script:
-  - npm run build
-
+- npm run build
 after_script:
-  - cd ./dist
+- cd ./dist
+before_install:
+- openssl aes-256-cbc -K $encrypted_3b2878a3d558_key -iv $encrypted_3b2878a3d558_iv
+  -in travis.enc -out travis -d
