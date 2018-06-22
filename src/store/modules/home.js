@@ -16,8 +16,8 @@ const getters = {
 }
 
 const actions = {
-  getBlogList: ({commit}, {id, page}) => {
-    http.get(apiConst.getBlogList(id), {page: page})
+  getBlogsByName: ({commit}, {name, page}) => {
+    http.get(apiConst.blogsName, {name: name}, {page: page})
        .then(res => {
          commit('setList', res.data.results)
          commit('setNext', !TextUtils.isEmpty(res.data.next))

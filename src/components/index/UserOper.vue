@@ -3,7 +3,7 @@
         <v-layout column>
             <v-flex d-flex justify-center align-center  class="user-header">
                 <v-avatar :size="100">
-                     <img :src="info.icon?info.icon:'~assets/imgs/avatar.jpg'" alt="avatar">
+                     <img :src="info.icon" alt="avatar">
                 </v-avatar>
             </v-flex>
             <v-flex>

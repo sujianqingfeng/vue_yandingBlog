@@ -5,20 +5,23 @@ export const login = `${baseUrl}/oauth/pc_login/`
 export const githubLogin = `${baseUrl}/oauth/github_login`
 export const githubCheck = `${baseUrl}/oauth/pc_github_check`
 
-export const getUserInfo = (id) => `${baseUrl}/users/${id}/`
+export const userInfoId = (id) => `${baseUrl}/users/${id}/`
+export const userInfoName = `${baseUrl}/users/infos_by_name/`
 export const myInfo = `${baseUrl}/users/infos/`
 export const editUser = (id) => `${baseUrl}/users/${id}/`
 
-export const getCategorys = (id) => `${baseUrl}/category/${id}/category_list/`
+export const categorysId = `${baseUrl}/category/list_by_id/`
+export const categorysName = `${baseUrl}/category/list_by_name/`
 export const updateCategory = (id) => `${baseUrl}/category/${id}/`
 export const category = (id) => `${baseUrl}/category/`
 
 export const getFriend = (id) => `${baseUrl}/friend/${id}/links/`
 
-export const getBlogList = (id) => `${baseUrl}/blogs/${id}/blog_list/`
+export const blogsId = `${baseUrl}/blogs/list_by_id/`
+export const blogsName = `${baseUrl}/blogs/list_by_name/`
 export const uploadImg = () => `${baseUrl}/img_upload/`
 
-export const blogsId = (id) => `${baseUrl}/blogs/${id}/`
+export const blogsDetailId = (id) => `${baseUrl}/blogs/${id}/`
 export const blogs = `${baseUrl}/blogs/`
 
 export const link = `${baseUrl}/friend/`

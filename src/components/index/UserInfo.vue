@@ -7,7 +7,7 @@
       <v-flex>
         <v-layout align-center  mx-2 my-2>
           <v-avatar :size="50" class="grey lighten-4">
-            <img :src="info.icon?info.icon:'~assets/imgs/avatar.jpg'" alt="avatar">
+            <img :src="info.icon" alt="avatar">
           </v-avatar>
           <p class="info-footer-text">{{info.username}}</p>
         </v-layout>

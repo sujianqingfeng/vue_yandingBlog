@@ -20,10 +20,18 @@ const router = new Router({
           component: resolve => require(['components/index/Introduce'], resolve)
         },
         {
-          path: '/home/:id',
-          name: 'home',
-          component: resolve => require(['components/index/Home'], resolve)
+          path: '/:name',
+          name: 'name',
+          component: resolve => require(['components/user/Name'], resolve),
+          children: [
+            {
+              path: '/',
+              name: 'home',
+              component: resolve => require(['components/index/Home'], resolve)
+            }
+          ]
         },
+
         {
           path: '/detail/:id',
           name: 'blogdetail',

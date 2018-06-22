@@ -12,7 +12,7 @@
       temporary
       v-model="drawerConfig.show"
       absolute>
-      <navbar :categorys='categorys' :user='user' :info='info'/>
+      <navbar :categorys='categorys' :user='user'/>
      </v-navigation-drawer>
 
     <v-content class="blog-container">
@@ -22,10 +22,10 @@
             <v-layout>
 
               <v-flex xs12 md8 mr-3>
-                <user-info :info='info'/>
+                <user-info :info='user'/>
               </v-flex>
               <v-flex xs12 md4>
-                <user-oper :info='info'/>
+                <user-oper :info='user'/>
               </v-flex>
             </v-layout>
 
@@ -63,6 +63,9 @@ import Navbar from './Navbar'
 import { mapGetters, mapActions } from 'vuex'
 export default {
   name: 'index',
+  props: {
+    user: Object
+  },
   data () {
     return {
       drawerConfig: {
@@ -78,12 +81,11 @@ export default {
       'categorys',
       'hasNext',
       'hasPre',
-      'showHeader',
-      'user'
+      'showHeader'
     ])
   },
   methods: {
-    ...mapActions(['getBlogList', 'getUser', 'getCategory']),
+    ...mapActions(['getBlogsByName', 'getCategorysByName']),
     homeClick: () => {
       this.menuVisible = !this.menuVisible
     },
@@ -101,11 +103,10 @@ export default {
     }
   },
   created () {
-    const id = this.$route.params.id
+    const name = this.$route.params.name
 
-    this.getBlogList({ id: id, page: this.page })
-    this.getUser(id)
-    this.getCategory(id)
+    this.getBlogsByName({ name: name, page: this.page })
+    this.getCategorysByName(name)
   },
   components: {
     UserInfo,
