@@ -1,15 +1,30 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>言鼎博客</title>
-    <link rel="stylesheet" href="//fonts.cat.net/css?family=Roboto:300,400,500,700,400italic">
-    <link rel="stylesheet" href="//fonts.cat.net/icon?family=Material+Icons">
-    <link href="https://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css" rel="stylesheet">
-    <!-- <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> -->
-  </head>
-  <body>
-    <div id="app"></div>
-    <!-- built files will be auto injected -->
-  </body>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+  <title>凌寒初见 | こんにちは</title>
+  <link rel="stylesheet" href="//fonts.cat.net/css?family=Roboto:300,400,500,700,400italic">
+  <link rel="stylesheet" href="//fonts.cat.net/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://cdn.materialdesignicons.com/2.1.19/css/materialdesignicons.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <!-- <script src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> -->
+</head>
+
+<body>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+  <div class="waifu">
+    <div class="waifu-tips"></div>
+    <canvas id="live2d" width="280" height="250" class="live2d"></canvas>
+  </div>
+</body>
+<script type="text/javascript" src="./static/js/personage/jquery-3.3.1.min.js"></script>
+<script async type="text/javascript" src="./static/js/personage/waifu-tips.js"></script>
+<script type="text/javascript" src="./static/js/personage/live2d.js"></script>
+<script type="text/javascript" src="./static/js/personage/personage.js"></script>
+<script>
+  loadlive2d('live2d', './static/js/personage/Pio/model.json')
+</script>
 </html>

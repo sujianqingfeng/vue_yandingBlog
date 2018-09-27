@@ -36,7 +36,7 @@
 import FriendItem from './FriendItem'
 import BlogFooter from 'components/index/BlogFooter'
 import { mapGetters, mapActions } from 'vuex'
-import TextUtil from '../../utils/TextUtils'
+import { isEmpty } from '../../utils/TextUtils'
 export default {
   name: 'friend',
   components: {
@@ -52,7 +52,7 @@ export default {
   created () {
     const id = this.$route.params.id
     this.getFriend(id)
-    !TextUtil.isEmpty(id) && this.getUser(id)
+    !isEmpty(id) && this.getUser(id)
   }
 }
 </script>

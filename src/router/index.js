@@ -1,8 +1,10 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-
+import nprogress from 'nprogress'
 import {getCookie} from '../utils/cookie'
 // import store from 'store/index.js'
+
+nprogress.configure({showSpinner: false})
 
 Vue.use(Router)
 
@@ -122,11 +124,14 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   to.path.includes('admin') && !getCookie('csrftoken') && next({name: 'login'})
+  nprogress.configure({trickle: true, minimum: 0.08})
+  nprogress.set(0)
   next()
 })
 
 router.afterEach((to, from, next) => {
   window.scrollTo(0, 0)
+  nprogress.done()
 })
 
 export default router

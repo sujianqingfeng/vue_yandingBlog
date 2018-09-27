@@ -67,7 +67,7 @@
 <script>
 import BlogFooter from '../index/BlogFooter'
 import { mapGetters, mapActions } from 'vuex'
-import TextUtil from '../../utils/TextUtils'
+import { isEmpty } from '../../utils/TextUtils'
 export default {
   name: 'blog-detail',
   data () {
@@ -110,7 +110,7 @@ export default {
       this.about = res
     })
 
-    TextUtil.isEmpty(this.info) && this.getUser(id)
+    isEmpty(this.info) && this.getUser(id)
   }
 }
 </script>

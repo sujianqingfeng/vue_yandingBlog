@@ -1,52 +1,44 @@
-<template>
-    <transition name='bounce'>
-
-        <v-btn light fab color="white"  @click="goTop" v-show='show' >
-          <v-icon>expand_less</v-icon>
-        </v-btn>
-    </transition>
+<template lang='pug'>
+    v-layout.moile-goTop(v-scroll="onScroll")
+      div.scroll-image(@click="setScrollTop")
 
 </template>
 
 
 <script>
+import {getScrollHeight, getWindowHeight} from '@/utils/TextUtils'
+import nprogress from 'nprogress'
+
 export default {
   name: 'goTop',
   data: () => ({
-    show: false,
-    beforeScrollTop: 0
+    offsetTop: 0
   }),
   mounted () {
     this.$nextTick(() => {
-      this.listener = window.addEventListener('scroll', this.scrollListener)
+      nprogress.configure({trickle: false, minimum: 0})
+      this.listener = window.addEventListener('scroll', this.setScroll)
     })
   },
   methods: {
-    scrollListener () {
-      let curHeight = document.documentElement.scrollTop || document.body.scrollTop
-      let viewHeight = document.documentElement.clientHeight
-
-      if (curHeight > this.beforeScrollTop) {
-        this.timer && clearInterval(this.timer)
-      }
-
-      this.show = (curHeight > viewHeight + 100)
-      this.beforeScrollTop = curHeight
+    onScroll (e) {
+      this.offsetTop = window.pageYOffset || document.documentElement.scrollTop
     },
-    goTop () {
-      this.timer = setInterval(this.startScroll, 50)
+    setScroll () {
+      this.$store.dispatch('setScroll', this.offsetTop)
+      if (this.offsetTop > 50) { document.querySelector('.scroll-image').style.top = '-200px' } else { document.querySelector('.scroll-image').style.top = '-900px' }
+      let result = this.offsetTop / (getScrollHeight() - getWindowHeight())
+      if (result >= 1) { return }
+      nprogress.set(result)
     },
-    startScroll () {
-      let curHeight = document.documentElement.scrollTop || document.body.scrollTop
-      let now = curHeight
-      let speed = (0 - now) / 7
-      speed = speed > 0 ? Math.ceil(speed) : Math.floor(speed)
-      if (curHeight === 0) {
-        this.timer && clearInterval(this.timer)
-      } else {
-        document.documentElement.scrollTop = curHeight + speed
-        document.body.scrollTop = curHeight + speed
-      }
+    setScrollTop () {
+      let scrollTopTime = setInterval(() => {
+        document.body.scrollTop = document.body.scrollTop - 50
+        if (document.body.scrollTop === 0) {
+          nprogress.set(0)
+          clearInterval(scrollTopTime)
+        }
+      }, 10)
     }
   },
   destroyed () {
@@ -56,24 +48,27 @@ export default {
 </script>
 
 
-<style scoped>
-.bounce-enter-active {
-  animation: bounce-in 0.5s;
-}
-.bounce-leave-active {
-  animation: bounce-in 0.5s reverse;
-}
+<style scoped lang='stylus'>
+.scroll-image
+  position: fixed
+  top : -900px
+  right : 25px
+  height : 900px
+  width : 70px
+  background : url('./../../assets/imgs/scroll.png') no-repeat center
+  background-size: contain
+  transition: all .5s ease-in-out
+  animation: bounce 2s linear infinite
 
+@keyframes bounce
+  0% 
+    transform: translateY(0)
+  50% 
+    transform: translateY(-6px)
+  100% 
+    transform: translateY(0)
 
-@keyframes bounce-in {
-  0% {
-    transform: scale(0);
-  }
-  50% {
-    transform: scale(1.5);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
+@media screen and (max-width:960px)
+  .moile-goTop
+    display: none 
 </style>

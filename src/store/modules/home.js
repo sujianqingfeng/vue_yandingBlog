@@ -1,5 +1,5 @@
 import {apiConst, http} from '../../api'
-import TextUtils from '../../utils/TextUtils'
+import {isEmpty} from '../../utils/TextUtils'
 
 const state = {
   list: [],
@@ -20,8 +20,8 @@ const actions = {
     http.get(apiConst.blogsName, {name: name}, {page: page})
        .then(res => {
          commit('setList', res.data.results)
-         commit('setNext', !TextUtils.isEmpty(res.data.next))
-         commit('setPre', !TextUtils.isEmpty(res.data.previous))
+         commit('setNext', !isEmpty(res.data.next))
+         commit('setPre', !isEmpty(res.data.previous))
          commit('setShowHeader', page === 1)
        })
   }
